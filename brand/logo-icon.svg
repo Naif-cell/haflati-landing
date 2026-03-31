@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Rose to Gold gradient - primary brand gradient -->
+    <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8636B"/>
+      <stop offset="100%" stop-color="#D4A05A"/>
+    </linearGradient>
+    <!-- Subtle highlight gradient for depth -->
+    <linearGradient id="highlightGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E8636B" stop-opacity="0.9"/>
+      <stop offset="50%" stop-color="#D4A05A" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#E8636B" stop-opacity="0.9"/>
+    </linearGradient>
+    <!-- Rounded square clip for app icon -->
+    <clipPath id="appClip">
+      <rect x="16" y="16" width="480" height="480" rx="96" ry="96"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect x="16" y="16" width="480" height="480" rx="96" ry="96" fill="url(#brandGradient)"/>
+
+  <!-- Abstract celebration mark: stylized crescent + star + sparkle motif -->
+  <!-- This represents a crescent (Saudi heritage) merging with a celebration burst -->
+
+  <!-- Central celebration burst - abstract party/sparkle shape -->
+  <g transform="translate(256, 240)">
+    <!-- Main diamond sparkle -->
+    <path d="M0,-100 C15,-40 40,-15 100,0 C40,15 15,40 0,100 C-15,40 -40,15 -100,0 C-40,-15 -15,-40 0,-100Z"
+          fill="white" opacity="0.95"/>
+
+    <!-- Inner smaller sparkle rotated 45deg -->
+    <path d="M0,-60 C8,-24 24,-8 60,0 C24,8 8,24 0,60 C-8,24 -24,8 -60,0 C-24,-8 -8,-24 0,-60Z"
+          fill="white" opacity="0.3" transform="rotate(45)"/>
+  </g>
+
+  <!-- Decorative small sparkles around the main mark -->
+  <!-- Top right sparkle -->
+  <g transform="translate(370, 130)">
+    <path d="M0,-18 C3,-7 7,-3 18,0 C7,3 3,7 0,18 C-3,7 -7,3 -18,0 C-7,-3 -3,-7 0,-18Z"
+          fill="white" opacity="0.8"/>
+  </g>
+
+  <!-- Top left sparkle -->
+  <g transform="translate(148, 150)">
+    <path d="M0,-12 C2,-5 5,-2 12,0 C5,2 2,5 0,12 C-2,5 -5,2 -12,0 C-5,-2 -2,-5 0,-12Z"
+          fill="white" opacity="0.6"/>
+  </g>
+
+  <!-- Bottom right sparkle -->
+  <g transform="translate(390, 310)">
+    <path d="M0,-14 C2.5,-5.5 5.5,-2.5 14,0 C5.5,2.5 2.5,5.5 0,14 C-2.5,5.5 -5.5,2.5 -14,0 C-5.5,-2.5 -2.5,-5.5 0,-14Z"
+          fill="white" opacity="0.7"/>
+  </g>
+
+  <!-- Small dot accents -->
+  <circle cx="420" cy="200" r="5" fill="white" opacity="0.5"/>
+  <circle cx="110" cy="260" r="4" fill="white" opacity="0.4"/>
+  <circle cx="180" cy="370" r="3.5" fill="white" opacity="0.45"/>
+
+  <!-- Arabic letter hint: subtle "ح" (Ha) from حفلتي integrated as decorative arc -->
+  <path d="M200,380 Q256,420 312,380" stroke="white" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <circle cx="290" cy="400" r="5" fill="white" opacity="0.7"/>
+</svg>

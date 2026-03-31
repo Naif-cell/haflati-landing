@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حفلتي — أول منصة سعودية لتنظيم المناسبات | Haflati</title>
+  <meta name="description" content="حفلتي هي أول منصة سعودية لتنظيم المناسبات. اكتشف أفضل مزودي خدمات الأعراس وأعياد الميلاد والتخرج في الرياض وجدة. احجز بثقة مع تقييمات موثّقة.">
+  <meta name="keywords" content="تنظيم مناسبات، حفلات، أعراس، زفاف، عيد ميلاد، تخرج، السعودية، الرياض، جدة، مزودي خدمات">
+  <meta name="author" content="Haflati">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://haflati.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://haflati.app/">
+  <meta property="og:title" content="حفلتي — أول منصة سعودية لتنظيم المناسبات | Haflati">
+  <meta property="og:description" content="اكتشف أفضل مزودي خدمات المناسبات في السعودية. احجز بثقة مع تقييمات موثّقة وأسعار شفافة.">
+  <meta property="og:image" content="https://haflati.app/images/og-cover.jpg">
+  <meta property="og:locale" content="ar_SA">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name" content="Haflati">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Haflati_app">
+  <meta name="twitter:title" content="حفلتي — أول منصة سعودية لتنظيم المناسبات">
+  <meta name="twitter:description" content="اكتشف أفضل مزودي خدمات المناسبات في السعودية. احجز بثقة مع تقييمات موثّقة.">
+  <meta name="twitter:image" content="https://haflati.app/images/og-cover.jpg">
+  <link rel="icon" type="image/svg+xml" href="brand/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Warm, celebratory palette — inspired by Airbnb, The Knot, Gathern */
+  --coral:#FF385C;
+  --coral-light:#FF6B81;
+  --coral-soft:rgba(255,56,92,.08);
+  --gold:#F5A623;
+  --gold-light:#FFD27F;
+  --gold-soft:rgba(245,166,35,.1);
+  --teal:#0C9AB0;
+  --teal-soft:rgba(12,154,176,.08);
+  --cream:#FFFAF5;
+  --cream-warm:#FFF5EC;
+  --blush:#FFF0EB;
+  --brown:#2D1810;
+  --brown-mid:#5C4033;
+  --brown-light:#8B7262;
+  --white:#FFFFFF;
+  --gray-bg:#F8F5F2;
+  --gray-border:#E8DDD5;
+  --gray-text:#6B5E54;
+  --radius:16px;
+  --radius-sm:12px;
+  --shadow-sm:0 2px 8px rgba(45,24,16,.06);
+  --shadow-md:0 8px 30px rgba(45,24,16,.08);
+  --shadow-lg:0 20px 60px rgba(45,24,16,.1);
+  --font-ar:'Cairo',sans-serif;
+  --font-en:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-ar);
+  background:var(--cream);color:var(--brown);
+  line-height:1.8;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+:lang(en){font-family:var(--font-en);line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+
+/* ===== LAYOUT ===== */
+.container{max-width:1120px;margin-inline:auto;padding-inline:20px}
+.section{padding:80px 0}
+@media(max-width:768px){.section{padding:56px 0}}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== HEADER ===== */
+.header{
+  position:fixed;top:0;inset-inline:0;z-index:100;
+  padding:12px 0;background:rgba(255,250,245,.8);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(232,221,213,.5);
+  transition:box-shadow .3s;
+}
+.header.scrolled{box-shadow:var(--shadow-sm)}
+.header .container{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.35rem;color:var(--coral)}
+.logo svg{width:38px;height:38px}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{font-size:.88rem;font-weight:600;color:var(--brown-mid);transition:color .2s}
+.nav-links a:hover{color:var(--coral)}
+.lang-btn{
+  background:var(--white);border:1.5px solid var(--gray-border);
+  color:var(--brown);padding:6px 14px;border-radius:20px;font-size:.78rem;
+  cursor:pointer;font-family:var(--font-en);font-weight:600;transition:all .2s;
+}
+.lang-btn:hover{border-color:var(--coral);color:var(--coral)}
+.nav-cta{
+  background:var(--coral);color:var(--white);
+  padding:10px 22px;border-radius:24px;font-weight:700;font-size:.85rem;
+  border:none;cursor:pointer;font-family:var(--font-ar);
+  transition:transform .15s,box-shadow .15s;
+}
+.nav-cta:hover{transform:scale(1.04);box-shadow:0 4px 20px rgba(255,56,92,.25)}
+.hamburger{display:none;background:none;border:none;color:var(--brown);cursor:pointer}
+.hamburger svg{width:28px;height:28px}
+
+/* Mobile drawer */
+.mobile-drawer{
+  position:fixed;inset:0;background:rgba(255,250,245,.98);backdrop-filter:blur(20px);
+  z-index:200;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.mobile-drawer.open{opacity:1;pointer-events:auto}
+.mobile-drawer a{font-size:1.2rem;font-weight:700;color:var(--brown)}
+.close-drawer{position:absolute;top:20px;inset-inline-end:20px;background:none;border:none;color:var(--brown);cursor:pointer;font-size:1.8rem}
+
+@media(max-width:768px){
+  .nav-links,.nav-cta-wrap{display:none}
+  .hamburger{display:block}
+}
+
+/* ===== HERO ===== */
+.hero{
+  padding-top:100px;padding-bottom:60px;
+  background:linear-gradient(170deg,var(--cream) 0%,var(--blush) 50%,var(--cream-warm) 100%);
+  position:relative;overflow:hidden;
+}
+/* Decorative circles */
+.hero::before{
+  content:'';position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,56,92,.06) 0%,transparent 70%);
+  top:-150px;inset-inline-end:-100px;pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(245,166,35,.06) 0%,transparent 70%);
+  bottom:-100px;inset-inline-start:-100px;pointer-events:none;
+}
+.hero .container{
+  display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
+  position:relative;z-index:1;
+}
+.hero-content{max-width:540px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--coral-soft);border:1px solid rgba(255,56,92,.15);
+  padding:6px 18px;border-radius:24px;font-size:.8rem;font-weight:700;
+  color:var(--coral);margin-bottom:20px;
+}
+.hero-badge .dot{width:8px;height:8px;background:var(--coral);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{
+  font-size:clamp(2rem,5vw,3.2rem);
+  font-weight:900;line-height:1.35;margin-bottom:16px;
+  color:var(--brown);
+}
+.hero h1 .highlight{color:var(--coral)}
+.hero-sub{
+  font-size:clamp(.95rem,1.8vw,1.15rem);
+  color:var(--gray-text);line-height:2;margin-bottom:28px;
+}
+
+/* Quiz — "What event are you planning?" */
+.hero-quiz{margin-bottom:24px}
+.hero-quiz p{font-size:.88rem;font-weight:700;margin-bottom:10px;color:var(--brown-mid)}
+.quiz-options{display:flex;flex-wrap:wrap;gap:8px}
+.quiz-opt{
+  background:var(--white);border:2px solid var(--gray-border);
+  padding:10px 16px;border-radius:var(--radius-sm);
+  font-size:.82rem;font-weight:700;cursor:pointer;
+  transition:all .2s;font-family:var(--font-ar);color:var(--brown);
+  display:flex;align-items:center;gap:6px;
+  box-shadow:var(--shadow-sm);
+}
+.quiz-opt:hover{border-color:var(--coral);color:var(--coral);transform:translateY(-2px)}
+.quiz-opt.active{border-color:var(--coral);background:var(--coral-soft);color:var(--coral)}
+.quiz-opt .emoji{font-size:1.05rem}
+
+/* Hero form */
+.hero-form{display:flex;gap:10px;max-width:440px}
+.hero-form input{
+  flex:1;background:var(--white);border:2px solid var(--gray-border);
+  padding:14px 18px;border-radius:var(--radius-sm);color:var(--brown);
+  font-family:var(--font-ar);font-size:.92rem;outline:none;transition:border-color .2s;
+  box-shadow:var(--shadow-sm);
+}
+.hero-form input:focus{border-color:var(--coral)}
+.hero-form input::placeholder{color:var(--brown-light)}
+.hero-form button{
+  background:var(--coral);color:var(--white);
+  padding:14px 28px;border-radius:var(--radius-sm);border:none;
+  font-weight:700;font-size:.92rem;cursor:pointer;white-space:nowrap;
+  font-family:var(--font-ar);transition:transform .15s,box-shadow .15s;
+}
+.hero-form button:hover{transform:scale(1.03);box-shadow:0 6px 24px rgba(255,56,92,.25)}
+.hero-trust{display:flex;align-items:center;gap:16px;margin-top:14px;font-size:.78rem;color:var(--gray-text)}
+.hero-trust .check{color:var(--teal);font-weight:700}
+
+/* Phone mockup */
+.hero-visual{display:flex;justify-content:center;position:relative}
+.phone-frame{
+  width:270px;height:540px;
+  background:var(--white);
+  border:3px solid var(--gray-border);
+  border-radius:36px;padding:10px;position:relative;
+  box-shadow:var(--shadow-lg);
+}
+.phone-screen{
+  width:100%;height:100%;border-radius:28px;overflow:hidden;
+  background:linear-gradient(180deg,#FFF5EC 0%,#FFFFFF 100%);
+  display:flex;flex-direction:column;align-items:center;padding:32px 16px;gap:12px;
+}
+.phone-screen .app-icon{
+  width:52px;height:52px;border-radius:14px;
+  background:linear-gradient(135deg,var(--coral),var(--gold));
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;font-weight:900;color:var(--white);
+}
+.phone-screen .app-name{font-weight:900;font-size:1.1rem;color:var(--brown)}
+.phone-screen .app-tagline{font-size:.68rem;color:var(--gray-text);text-align:center}
+.phone-cards{width:100%;display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.phone-card{
+  background:var(--white);border:1.5px solid var(--gray-border);border-radius:var(--radius-sm);
+  padding:10px 12px;display:flex;align-items:center;gap:10px;font-size:.68rem;
+  box-shadow:var(--shadow-sm);
+}
+.phone-card .pc-icon{font-size:1.1rem}
+.phone-card .pc-text{flex:1}
+.phone-card .pc-text strong{display:block;font-size:.72rem;color:var(--brown);margin-bottom:1px}
+.phone-card .pc-text span{color:var(--gray-text);font-size:.62rem}
+.phone-card .pc-stars{color:var(--gold);font-size:.65rem;letter-spacing:1px}
+
+/* Floating badges around phone */
+.float-badge{
+  position:absolute;background:var(--white);
+  border:1.5px solid var(--gray-border);border-radius:var(--radius-sm);
+  padding:10px 14px;font-size:.72rem;font-weight:700;
+  box-shadow:var(--shadow-md);display:flex;align-items:center;gap:8px;
+  animation:floatY 4s ease-in-out infinite;
+}
+.float-badge.b1{top:60px;inset-inline-start:-50px;animation-delay:0s}
+.float-badge.b2{bottom:100px;inset-inline-end:-40px;animation-delay:1.5s}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+@media(max-width:768px){
+  .hero .container{grid-template-columns:1fr;text-align:center}
+  .hero-content{max-width:100%}
+  .quiz-options{justify-content:center}
+  .hero-form{flex-direction:column;max-width:100%}
+  .hero-trust{justify-content:center}
+  .hero-visual{margin-top:16px}
+  .phone-frame{width:220px;height:440px}
+  .float-badge{display:none}
+}
+
+/* ===== TRUST BAR ===== */
+.trust-bar{background:var(--white);border-bottom:1px solid var(--gray-border);padding:28px 0}
+.trust-bar .container{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;text-align:center}
+.trust-item{display:flex;flex-direction:column;align-items:center;gap:2px}
+.trust-item .t-icon{font-size:1.4rem;margin-bottom:4px}
+.trust-item .t-label{font-size:.78rem;color:var(--gray-text);font-weight:600}
+.trust-item .t-value{font-size:1rem;font-weight:800;color:var(--brown)}
+
+/* ===== PROBLEM ===== */
+.problems{background:var(--cream)}
+.section-label{
+  display:inline-block;
+  font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--coral);margin-bottom:10px;
+  background:var(--coral-soft);padding:4px 14px;border-radius:20px;
+}
+.section-title{
+  font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:900;
+  margin-bottom:14px;line-height:1.4;color:var(--brown);
+}
+.section-title .accent{color:var(--coral)}
+.section-sub{color:var(--gray-text);max-width:540px;margin-inline:auto;margin-bottom:44px;font-size:.95rem}
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.problem-card{
+  background:var(--white);border:1.5px solid var(--gray-border);
+  border-radius:var(--radius);padding:28px 24px;text-align:center;
+  transition:transform .3s,box-shadow .3s;
+}
+.problem-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.problem-card .p-icon{
+  width:56px;height:56px;border-radius:16px;margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+}
+.problem-card:nth-child(1) .p-icon{background:var(--coral-soft)}
+.problem-card:nth-child(2) .p-icon{background:var(--gold-soft)}
+.problem-card:nth-child(3) .p-icon{background:var(--teal-soft)}
+.problem-card h3{font-size:1rem;font-weight:800;margin-bottom:6px}
+.problem-card p{font-size:.83rem;color:var(--gray-text);line-height:1.9}
+@media(max-width:768px){.problem-grid{grid-template-columns:1fr;gap:14px}}
+
+/* ===== HOW IT WORKS ===== */
+.how-it-works{background:var(--white)}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;position:relative}
+.steps-grid::before{
+  content:'';position:absolute;top:40px;inset-inline-start:16%;width:68%;height:3px;
+  background:linear-gradient(90deg,var(--coral),var(--gold),var(--teal));
+  border-radius:4px;opacity:.2;
+}
+.step{text-align:center;position:relative;z-index:1}
+.step-num{
+  width:60px;height:60px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 18px;font-weight:900;font-size:1.3rem;
+  color:var(--white);
+}
+.step:nth-child(1) .step-num{background:linear-gradient(135deg,var(--coral),var(--coral-light))}
+.step:nth-child(2) .step-num{background:linear-gradient(135deg,var(--gold),var(--gold-light))}
+.step:nth-child(3) .step-num{background:linear-gradient(135deg,var(--teal),#3ECFCF)}
+.step h3{font-size:1.05rem;font-weight:800;margin-bottom:6px}
+.step p{font-size:.83rem;color:var(--gray-text);max-width:260px;margin-inline:auto;line-height:1.9}
+@media(max-width:768px){
+  .steps-grid{grid-template-columns:1fr;gap:36px}
+  .steps-grid::before{display:none}
+}
+
+/* ===== EVENTS BENTO ===== */
+.categories{background:var(--cream)}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:14px}
+.bento-card{
+  background:var(--white);border:2px solid var(--gray-border);
+  border-radius:var(--radius);padding:28px 22px;
+  position:relative;overflow:hidden;cursor:pointer;
+  transition:all .3s;min-height:180px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.bento-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.bento-card .b-emoji{font-size:2.2rem;margin-bottom:10px}
+.bento-card h3{font-size:1rem;font-weight:800;margin-bottom:2px;color:var(--brown)}
+.bento-card p{font-size:.76rem;color:var(--gray-text)}
+.bento-card:nth-child(1){grid-column:span 2;min-height:220px;border-color:rgba(255,56,92,.2);background:linear-gradient(135deg,var(--white),var(--blush))}
+.bento-card:nth-child(1) .b-emoji{font-size:2.8rem}
+.bento-card:nth-child(1) h3{font-size:1.2rem}
+.bento-card:nth-child(1):hover{border-color:var(--coral)}
+.bento-card:nth-child(2):hover{border-color:var(--gold)}
+.bento-card:nth-child(3):hover{border-color:var(--teal)}
+.bento-card:nth-child(4):hover{border-color:var(--coral-light)}
+.bento-card:nth-child(5):hover{border-color:var(--gold)}
+@media(max-width:768px){
+  .bento{grid-template-columns:1fr 1fr;gap:12px}
+  .bento-card{min-height:150px;padding:22px 16px}
+  .bento-card:nth-child(1){grid-column:span 2;min-height:170px}
+}
+@media(max-width:480px){
+  .bento{grid-template-columns:1fr}
+  .bento-card:nth-child(1){grid-column:span 1}
+}
+
+/* ===== FEATURES ===== */
+.features{background:var(--white)}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feat-card{
+  background:var(--cream);border:1.5px solid var(--gray-border);
+  border-radius:var(--radius);padding:26px 22px;
+  transition:transform .3s,box-shadow .3s;
+}
+.feat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+.feat-card .f-icon{
+  width:44px;height:44px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.25rem;margin-bottom:14px;
+}
+.feat-card:nth-child(1) .f-icon{background:var(--coral-soft)}
+.feat-card:nth-child(2) .f-icon{background:var(--gold-soft)}
+.feat-card:nth-child(3) .f-icon{background:var(--teal-soft)}
+.feat-card:nth-child(4) .f-icon{background:var(--coral-soft)}
+.feat-card:nth-child(5) .f-icon{background:var(--gold-soft)}
+.feat-card:nth-child(6) .f-icon{background:var(--teal-soft)}
+.feat-card h3{font-size:.95rem;font-weight:800;margin-bottom:4px}
+.feat-card p{font-size:.8rem;color:var(--gray-text);line-height:1.9}
+@media(max-width:768px){.feat-grid{grid-template-columns:1fr}}
+
+/* ===== VENDOR CTA ===== */
+.vendor-cta{background:var(--cream)}
+.vendor-box{
+  background:linear-gradient(135deg,var(--blush),var(--cream-warm));
+  border:2px solid rgba(255,56,92,.12);
+  border-radius:20px;padding:44px 40px;
+  display:flex;align-items:center;justify-content:space-between;gap:28px;
+}
+.vendor-box h2{font-size:clamp(1.2rem,2.5vw,1.7rem);font-weight:900;margin-bottom:6px}
+.vendor-box p{color:var(--gray-text);font-size:.9rem}
+.vendor-btn{
+  background:var(--gold);color:var(--brown);
+  padding:14px 32px;border-radius:var(--radius-sm);border:none;
+  font-weight:700;font-size:.92rem;cursor:pointer;white-space:nowrap;
+  font-family:var(--font-ar);transition:transform .15s,box-shadow .15s;
+}
+.vendor-btn:hover{transform:scale(1.04);box-shadow:0 4px 20px rgba(245,166,35,.3)}
+@media(max-width:768px){.vendor-box{flex-direction:column;text-align:center;padding:32px 24px}}
+
+/* ===== WAITLIST ===== */
+.waitlist{background:var(--white);position:relative;overflow:hidden}
+.waitlist::before{
+  content:'';position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,56,92,.04) 0%,transparent 70%);
+  top:-150px;inset-inline-start:50%;transform:translateX(-50%);pointer-events:none;
+}
+.waitlist .container{text-align:center;position:relative;z-index:1}
+.waitlist-form{
+  max-width:460px;margin:0 auto;display:flex;flex-direction:column;gap:12px;
+}
+.waitlist-form input,.waitlist-form select{
+  background:var(--cream);border:2px solid var(--gray-border);
+  padding:14px 18px;border-radius:var(--radius-sm);color:var(--brown);
+  font-family:var(--font-ar);font-size:.92rem;outline:none;transition:border-color .2s;
+  width:100%;
+}
+.waitlist-form select{
+  appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236B5E54' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:16px center;
+}
+.waitlist-form input:focus,.waitlist-form select:focus{border-color:var(--coral)}
+.waitlist-form option{background:var(--cream)}
+.waitlist-submit{
+  background:var(--coral);color:var(--white);
+  padding:16px;border-radius:var(--radius-sm);border:none;
+  font-weight:700;font-size:1rem;cursor:pointer;
+  font-family:var(--font-ar);transition:transform .15s,box-shadow .15s;
+}
+.waitlist-submit:hover{transform:scale(1.02);box-shadow:0 6px 24px rgba(255,56,92,.2)}
+.waitlist-note{font-size:.76rem;color:var(--brown-light);margin-top:8px}
+.form-success{
+  display:none;text-align:center;padding:28px;
+  background:var(--coral-soft);border:2px solid rgba(255,56,92,.15);
+  border-radius:var(--radius);
+}
+.form-success h3{color:var(--coral);font-size:1.15rem;font-weight:800;margin-bottom:6px}
+.form-success p{color:var(--gray-text);font-size:.88rem}
+
+/* ===== FAQ ===== */
+.faq{background:var(--cream)}
+.faq-list{max-width:660px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.faq-item{background:var(--white);border:1.5px solid var(--gray-border);border-radius:var(--radius-sm);overflow:hidden}
+.faq-q{
+  padding:16px 22px;cursor:pointer;font-weight:700;font-size:.92rem;
+  display:flex;justify-content:space-between;align-items:center;transition:color .2s;
+}
+.faq-q:hover{color:var(--coral)}
+.faq-q .arrow{transition:transform .3s;font-size:.7rem;color:var(--brown-light)}
+.faq-item.open .faq-q .arrow{transform:rotate(180deg)}
+.faq-a{
+  max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;
+  padding:0 22px;font-size:.85rem;color:var(--gray-text);line-height:2;
+}
+.faq-item.open .faq-a{max-height:300px;padding:0 22px 16px}
+
+/* ===== BLOG ===== */
+.blog-preview{background:var(--white)}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.blog-card{
+  background:var(--cream);border:1.5px solid var(--gray-border);
+  border-radius:var(--radius);overflow:hidden;transition:transform .3s,box-shadow .3s;
+  display:block;
+}
+.blog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.blog-card-img{
+  height:150px;display:flex;align-items:center;justify-content:center;font-size:2.4rem;
+  background:linear-gradient(135deg,var(--blush),var(--cream-warm));
+}
+.blog-card-body{padding:18px}
+.blog-card-tag{
+  display:inline-block;background:var(--coral-soft);color:var(--coral);
+  padding:2px 10px;border-radius:6px;font-size:.68rem;font-weight:700;margin-bottom:6px;
+}
+.blog-card-body h3{font-size:.9rem;font-weight:800;margin-bottom:4px;line-height:1.5;color:var(--brown)}
+.blog-card-body p{font-size:.76rem;color:var(--gray-text);line-height:1.8}
+.blog-more{text-align:center;margin-top:28px}
+.blog-more a{color:var(--coral);font-weight:700;font-size:.88rem;border-bottom:2px solid transparent;transition:border-color .2s;padding-bottom:2px}
+.blog-more a:hover{border-color:var(--coral)}
+@media(max-width:768px){.blog-grid{grid-template-columns:1fr}}
+
+/* ===== FOOTER ===== */
+.footer{background:var(--brown);color:var(--white);padding:48px 0 20px}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:32px;flex-wrap:wrap;margin-bottom:28px}
+.footer-brand{max-width:260px}
+.footer-brand .logo{margin-bottom:10px;color:var(--coral-light)}
+.footer-brand .logo span{-webkit-text-fill-color:var(--coral-light);background:none}
+.footer-brand p{font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.9}
+.footer-links h4{font-size:.82rem;font-weight:700;margin-bottom:10px;color:var(--white)}
+.footer-links a{display:block;font-size:.78rem;color:rgba(255,255,255,.5);margin-bottom:6px;transition:color .2s}
+.footer-links a:hover{color:var(--coral-light)}
+.footer-social{display:flex;gap:10px;margin-top:14px}
+.footer-social a{
+  width:34px;height:34px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;font-size:.8rem;
+  transition:all .2s;color:rgba(255,255,255,.6);
+}
+.footer-social a:hover{background:rgba(255,56,92,.2);border-color:var(--coral);color:var(--coral-light)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:16px;text-align:center;font-size:.72rem;color:rgba(255,255,255,.4);
+}
+
+/* ===== STICKY CTA (mobile) ===== */
+.sticky-cta{
+  position:fixed;bottom:0;inset-inline:0;z-index:90;
+  background:rgba(255,250,245,.96);backdrop-filter:blur(12px);
+  border-top:1px solid var(--gray-border);
+  padding:10px 20px;display:none;
+  transform:translateY(100%);transition:transform .3s;
+}
+.sticky-cta.show{transform:translateY(0)}
+.sticky-cta .container{display:flex;gap:8px;align-items:center}
+.sticky-cta input{
+  flex:1;background:var(--white);border:1.5px solid var(--gray-border);
+  padding:10px 14px;border-radius:10px;color:var(--brown);font-size:.82rem;
+  font-family:var(--font-ar);outline:none;
+}
+.sticky-cta button{
+  background:var(--coral);color:var(--white);
+  padding:10px 18px;border-radius:10px;border:none;
+  font-weight:700;font-size:.82rem;cursor:pointer;font-family:var(--font-ar);
+}
+@media(max-width:768px){.sticky-cta{display:block}}
+
+/* ===== WHATSAPP FAB ===== */
+.fab-wa{
+  position:fixed;bottom:76px;inset-inline-end:20px;z-index:80;
+  width:50px;height:50px;border-radius:50%;
+  background:#25D366;color:#fff;border:none;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:0 4px 14px rgba(37,211,102,.35);
+  transition:transform .2s;font-size:1.3rem;text-decoration:none;
+}
+.fab-wa:hover{transform:scale(1.1)}
+@media(min-width:769px){.fab-wa{bottom:28px}}
+
+/* Hidden */
+.hidden-iframe{display:none}
+[data-lang="en"]{display:none}
+html[lang="en"] [data-lang="en"]{display:initial}
+html[lang="en"] [data-lang="ar"]{display:none}
+</style>
+</head>
+
+<body>
+<iframe name="hidden_iframe" class="hidden-iframe"></iframe>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container">
+    <a href="/" class="logo">
+      <svg viewBox="0 0 38 38" fill="none"><defs><linearGradient id="lg1" x1="0" y1="0" x2="38" y2="38"><stop offset="0%" stop-color="#FF385C"/><stop offset="100%" stop-color="#F5A623"/></linearGradient></defs><rect width="38" height="38" rx="11" fill="url(#lg1)"/><text x="19" y="26" text-anchor="middle" fill="#FFF" font-family="Cairo" font-weight="900" font-size="18">ح</text></svg>
+      حفلتي
+    </a>
+    <nav class="nav-links">
+      <a href="#how"><span data-lang="ar">كيف تعمل</span><span data-lang="en">How it Works</span></a>
+      <a href="#categories"><span data-lang="ar">المناسبات</span><span data-lang="en">Events</span></a>
+      <a href="vendors.html"><span data-lang="ar">للمزودين</span><span data-lang="en">For Vendors</span></a>
+      <a href="blog/index.html"><span data-lang="ar">المدونة</span><span data-lang="en">Blog</span></a>
+      <a href="about.html"><span data-lang="ar">عن حفلتي</span><span data-lang="en">About</span></a>
+      <button class="lang-btn" id="langToggle">EN</button>
+    </nav>
+    <div class="nav-cta-wrap" style="display:flex;gap:10px;align-items:center">
+      <a href="#waitlist"><button class="nav-cta"><span data-lang="ar">سجّل الآن</span><span data-lang="en">Join Now</span></button></a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Drawer -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <button class="close-drawer" id="closeDrawer" aria-label="Close">&times;</button>
+  <a href="#how" onclick="closeDrawer()"><span data-lang="ar">كيف تعمل</span><span data-lang="en">How it Works</span></a>
+  <a href="#categories" onclick="closeDrawer()"><span data-lang="ar">المناسبات</span><span data-lang="en">Events</span></a>
+  <a href="vendors.html"><span data-lang="ar">للمزودين</span><span data-lang="en">For Vendors</span></a>
+  <a href="blog/index.html"><span data-lang="ar">المدونة</span><span data-lang="en">Blog</span></a>
+  <a href="about.html"><span data-lang="ar">عن حفلتي</span><span data-lang="en">About</span></a>
+  <button class="lang-btn" id="langToggle2">EN</button>
+  <a href="#waitlist" onclick="closeDrawer()"><button class="nav-cta"><span data-lang="ar">سجّل الآن</span><span data-lang="en">Join Now</span></button></a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="dot"></span>
+        <span data-lang="ar">قريبًا — صيف ٢٠٢٦</span>
+        <span data-lang="en">Coming Soon — Summer 2026</span>
+      </div>
+      <h1>
+        <span data-lang="ar">نظّم <span class="highlight">مناسبتك</span> بكل سهولة وثقة</span>
+        <span data-lang="en">Plan Your <span class="highlight">Perfect Event</span> With Confidence</span>
+      </h1>
+      <p class="hero-sub">
+        <span data-lang="ar">أول منصة سعودية تربطك بأفضل مزودي خدمات المناسبات — تقييمات حقيقية، أسعار شفافة، حجز فوري في الرياض وجدة والدمام.</span>
+        <span data-lang="en">Saudi Arabia's first marketplace connecting you with top event vendors — real reviews, transparent pricing, instant booking in Riyadh, Jeddah & Dammam.</span>
+      </p>
+      <div class="hero-quiz">
+        <p><span data-lang="ar">ما نوع مناسبتك؟</span><span data-lang="en">What event are you planning?</span></p>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-event="wedding"><span class="emoji">💍</span><span data-lang="ar">زفاف</span><span data-lang="en">Wedding</span></button>
+          <button class="quiz-opt" data-event="birthday"><span class="emoji">🎂</span><span data-lang="ar">عيد ميلاد</span><span data-lang="en">Birthday</span></button>
+          <button class="quiz-opt" data-event="graduation"><span class="emoji">🎓</span><span data-lang="ar">تخرج</span><span data-lang="en">Graduation</span></button>
+          <button class="quiz-opt" data-event="baby_shower"><span class="emoji">👶</span><span data-lang="ar">استقبال مولود</span><span data-lang="en">Baby Shower</span></button>
+          <button class="quiz-opt" data-event="corporate"><span class="emoji">🏢</span><span data-lang="ar">شركات</span><span data-lang="en">Corporate</span></button>
+        </div>
+      </div>
+      <form class="hero-form" id="heroForm" action="https://script.google.com/macros/s/AKfycbxsXNqLSt-ISvV2QI9hIfXm_MPAV4EZqGEI1db8U5I1XeLrSQum4Gh_LXAdIpdT0jZZ/exec" method="POST" target="hidden_iframe">
+        <input type="hidden" name="event_type" id="heroEventType" value="">
+        <input type="hidden" name="source" value="hero">
+        <input type="email" name="email" required>
+        <button type="submit"><span data-lang="ar">احجز مكانك</span><span data-lang="en">Get Early Access</span></button>
+      </form>
+      <div class="hero-trust">
+        <span><span class="check">✓</span> <span data-lang="ar">مجاني بالكامل</span><span data-lang="en">100% Free</span></span>
+        <span><span class="check">✓</span> <span data-lang="ar">بدون التزام</span><span data-lang="en">No commitment</span></span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-frame">
+        <div class="phone-screen">
+          <div class="app-icon">ح</div>
+          <div class="app-name">حفلتي</div>
+          <div class="app-tagline"><span data-lang="ar">اكتشف أفضل مزودي الخدمات</span><span data-lang="en">Discover top event vendors</span></div>
+          <div class="phone-cards">
+            <div class="phone-card"><span class="pc-icon">💍</span><div class="pc-text"><strong><span data-lang="ar">زفاف سارة</span><span data-lang="en">Sara's Wedding</span></strong><span>12 <span data-lang="ar">مزود متاح</span><span data-lang="en">vendors</span></span></div><span class="pc-stars">★★★★★</span></div>
+            <div class="phone-card"><span class="pc-icon">🎂</span><div class="pc-text"><strong><span data-lang="ar">عيد ميلاد ليان</span><span data-lang="en">Layan's Birthday</span></strong><span>8 <span data-lang="ar">مزود متاح</span><span data-lang="en">vendors</span></span></div><span class="pc-stars">★★★★★</span></div>
+            <div class="phone-card"><span class="pc-icon">🎓</span><div class="pc-text"><strong><span data-lang="ar">حفل تخرج نورة</span><span data-lang="en">Noura's Graduation</span></strong><span>6 <span data-lang="ar">مزود متاح</span><span data-lang="en">vendors</span></span></div><span class="pc-stars">★★★★☆</span></div>
+          </div>
+        </div>
+        <div class="float-badge b1"><span style="font-size:1.1rem">⭐</span> <span data-lang="ar">تقييم ٤.٩</span><span data-lang="en">4.9 Rating</span></div>
+        <div class="float-badge b2"><span style="font-size:1.1rem;color:var(--teal)">✓</span> <span data-lang="ar">مزود موثّق</span><span data-lang="en">Verified</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-item">
+      <span class="t-icon">🎉</span>
+      <span class="t-value"><span data-lang="ar">٥ أنواع</span><span data-lang="en">5 Types</span></span>
+      <span class="t-label"><span data-lang="ar">مناسبات مدعومة</span><span data-lang="en">Events Supported</span></span>
+    </div>
+    <div class="trust-item">
+      <span class="t-icon">📍</span>
+      <span class="t-value"><span data-lang="ar">٣ مدن</span><span data-lang="en">3 Cities</span></span>
+      <span class="t-label"><span data-lang="ar">الرياض · جدة · الدمام</span><span data-lang="en">Riyadh · Jeddah · Dammam</span></span>
+    </div>
+    <div class="trust-item">
+      <span class="t-icon">🚀</span>
+      <span class="t-value"><span data-lang="ar">صيف ٢٠٢٦</span><span data-lang="en">Summer 2026</span></span>
+      <span class="t-label"><span data-lang="ar">موعد الإطلاق</span><span data-lang="en">Launch Date</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMS -->
+<section class="problems section" id="problems">
+  <div class="container" style="text-align:center">
+    <span class="section-label reveal"><span data-lang="ar">المشكلة</span><span data-lang="en">The Problem</span></span>
+    <h2 class="section-title reveal"><span data-lang="ar">تنظيم المناسبات <span class="accent">أصعب مما يجب</span></span><span data-lang="en">Event planning is <span class="accent">harder than it should be</span></span></h2>
+    <p class="section-sub reveal"><span data-lang="ar">٧٣٪ من العائلات السعودية يواجهون صعوبة في إيجاد مزودي خدمات موثوقين</span><span data-lang="en">73% of Saudi families struggle to find trusted event vendors</span></p>
+    <div class="problem-grid">
+      <div class="problem-card reveal">
+        <div class="p-icon">🔍</div>
+        <h3><span data-lang="ar">بحث مرهق</span><span data-lang="en">Exhausting Search</span></h3>
+        <p><span data-lang="ar">ساعات من البحث في انستقرام وسناب بدون تقييمات واضحة</span><span data-lang="en">Hours scrolling social media with no clear reviews</span></p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="p-icon">💸</div>
+        <h3><span data-lang="ar">أسعار غامضة</span><span data-lang="en">Hidden Pricing</span></h3>
+        <p><span data-lang="ar">لا شفافية في الأسعار — تكتشف التكلفة بعد فوات الأوان</span><span data-lang="en">No transparency — you discover real costs too late</span></p>
+      </div>
+      <div class="problem-card reveal">
+        <div class="p-icon">😰</div>
+        <h3><span data-lang="ar">ضغط وتوتر</span><span data-lang="en">Stress & Anxiety</span></h3>
+        <p><span data-lang="ar">التنسيق بين مزودين بدون ضمانات يحوّل الفرحة لمصدر قلق</span><span data-lang="en">Coordinating vendors without guarantees turns joy into worry</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works section" id="how">
+  <div class="container" style="text-align:center">
+    <span class="section-label reveal"><span data-lang="ar">كيف تعمل</span><span data-lang="en">How It Works</span></span>
+    <h2 class="section-title reveal"><span data-lang="ar">ثلاث خطوات لـ<span class="accent">مناسبة مثالية</span></span><span data-lang="en">Three steps to your <span class="accent">perfect event</span></span></h2>
+    <p class="section-sub reveal"><span data-lang="ar">من الفكرة إلى التنفيذ — حفلتي تجعل كل شيء أسهل</span><span data-lang="en">From idea to execution — Haflati makes it easy</span></p>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">١</div>
+        <h3><span data-lang="ar">اختر مناسبتك</span><span data-lang="en">Choose Event</span></h3>
+        <p><span data-lang="ar">حدد النوع والميزانية والموقع واحصل على قائمة مخصصة</span><span data-lang="en">Select type, budget & location for a personalized list</span></p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">٢</div>
+        <h3><span data-lang="ar">قارن واحجز</span><span data-lang="en">Compare & Book</span></h3>
+        <p><span data-lang="ar">تصفح التقييمات وقارن الأسعار واحجز من التطبيق</span><span data-lang="en">Browse reviews, compare prices & book from the app</span></p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">٣</div>
+        <h3><span data-lang="ar">استمتع</span><span data-lang="en">Enjoy</span></h3>
+        <p><span data-lang="ar">تابع التفاصيل من مكان واحد واستمتع بمناسبتك</span><span data-lang="en">Track everything from one place & enjoy your event</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS BENTO -->
+<section class="categories section" id="categories">
+  <div class="container" style="text-align:center">
+    <span class="section-label reveal"><span data-lang="ar">المناسبات</span><span data-lang="en">Events</span></span>
+    <h2 class="section-title reveal"><span data-lang="ar">كل مناسبة تستحق <span class="accent">الأفضل</span></span><span data-lang="en">Every event deserves <span class="accent">the best</span></span></h2>
+    <p class="section-sub reveal"><span data-lang="ar">مزودي خدمات مختارين بعناية لكل نوع من المناسبات</span><span data-lang="en">Hand-picked vendors for every type of event</span></p>
+    <div class="bento">
+      <div class="bento-card reveal"><div class="b-emoji">💍</div><h3><span data-lang="ar">حفلات الزفاف</span><span data-lang="en">Weddings</span></h3><p><span data-lang="ar">قاعات · تصوير · كوش · ضيافة</span><span data-lang="en">Venues · Photography · Decor · Catering</span></p></div>
+      <div class="bento-card reveal"><div class="b-emoji">🎂</div><h3><span data-lang="ar">أعياد الميلاد</span><span data-lang="en">Birthdays</span></h3><p><span data-lang="ar">كيك · ترفيه · ديكور</span><span data-lang="en">Cakes · Fun · Decor</span></p></div>
+      <div class="bento-card reveal"><div class="b-emoji">🎓</div><h3><span data-lang="ar">حفلات التخرج</span><span data-lang="en">Graduations</span></h3><p><span data-lang="ar">تنظيم · تصوير · ضيافة</span><span data-lang="en">Planning · Photo · Catering</span></p></div>
+      <div class="bento-card reveal"><div class="b-emoji">👶</div><h3><span data-lang="ar">استقبال مولود</span><span data-lang="en">Baby Showers</span></h3><p><span data-lang="ar">ديكور · ضيافة · هدايا</span><span data-lang="en">Decor · Catering · Gifts</span></p></div>
+      <div class="bento-card reveal"><div class="b-emoji">🏢</div><h3><span data-lang="ar">فعاليات الشركات</span><span data-lang="en">Corporate</span></h3><p><span data-lang="ar">مؤتمرات · ورش عمل</span><span data-lang="en">Conferences · Workshops</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features section" id="features">
+  <div class="container" style="text-align:center">
+    <span class="section-label reveal"><span data-lang="ar">المميزات</span><span data-lang="en">Features</span></span>
+    <h2 class="section-title reveal"><span data-lang="ar">لماذا <span class="accent">حفلتي</span>؟</span><span data-lang="en">Why <span class="accent">Haflati</span>?</span></h2>
+    <p class="section-sub reveal"><span data-lang="ar">صُممت خصيصًا للسوق السعودي</span><span data-lang="en">Built for the Saudi market</span></p>
+    <div class="feat-grid" style="text-align:start">
+      <div class="feat-card reveal"><div class="f-icon">⭐</div><h3><span data-lang="ar">تقييمات حقيقية</span><span data-lang="en">Real Reviews</span></h3><p><span data-lang="ar">تقييمات من عملاء حقيقيين — لا مراجعات وهمية</span><span data-lang="en">From real customers only — no fake ratings</span></p></div>
+      <div class="feat-card reveal"><div class="f-icon">💰</div><h3><span data-lang="ar">أسعار شفافة</span><span data-lang="en">Transparent Pricing</span></h3><p><span data-lang="ar">شاهد الأسعار مباشرة وقارن بسهولة</span><span data-lang="en">See prices upfront and compare easily</span></p></div>
+      <div class="feat-card reveal"><div class="f-icon">✅</div><h3><span data-lang="ar">مزودون موثّقون</span><span data-lang="en">Verified Vendors</span></h3><p><span data-lang="ar">عملية تحقق صارمة قبل الانضمام</span><span data-lang="en">Strict verification before joining</span></p></div>
+      <div class="feat-card reveal"><div class="f-icon">📱</div><h3><span data-lang="ar">حجز فوري</span><span data-lang="en">Instant Booking</span></h3><p><span data-lang="ar">احجز واحصل على تأكيد فوري</span><span data-lang="en">Book and get instant confirmation</span></p></div>
+      <div class="feat-card reveal"><div class="f-icon">🛡️</div><h3><span data-lang="ar">دفع آمن</span><span data-lang="en">Secure Payment</span></h3><p><span data-lang="ar">مدى · Apple Pay · بطاقات ائتمان</span><span data-lang="en">Mada · Apple Pay · Credit Cards</span></p></div>
+      <div class="feat-card reveal"><div class="f-icon">🇸🇦</div><h3><span data-lang="ar">صُنع في السعودية</span><span data-lang="en">Made in Saudi</span></h3><p><span data-lang="ar">مصمم لاحتياجات وثقافة المجتمع السعودي</span><span data-lang="en">For Saudi culture and needs</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VENDOR CTA -->
+<section class="vendor-cta section">
+  <div class="container">
+    <div class="vendor-box reveal">
+      <div><h2><span data-lang="ar">هل أنت مزود خدمات مناسبات؟</span><span data-lang="en">Are you an event vendor?</span></h2><p><span data-lang="ar">انضم لشبكة حفلتي واحصل على عملاء جدد</span><span data-lang="en">Join Haflati and get new clients</span></p></div>
+      <a href="vendors.html"><button class="vendor-btn"><span data-lang="ar">سجّل كمزود</span><span data-lang="en">Register as Vendor</span></button></a>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="waitlist section" id="waitlist">
+  <div class="container">
+    <span class="section-label reveal"><span data-lang="ar">الوصول المبكر</span><span data-lang="en">Early Access</span></span>
+    <h2 class="section-title reveal"><span data-lang="ar">كن من <span class="accent">أول المستخدمين</span></span><span data-lang="en">Be among the <span class="accent">first users</span></span></h2>
+    <p class="section-sub reveal"><span data-lang="ar">سجّل الآن واحصل على ٣ أشهر مجانية من الباقة المميزة</span><span data-lang="en">Sign up now and get 3 months free premium</span></p>
+    <form class="waitlist-form reveal" id="waitlistForm" action="https://script.google.com/macros/s/AKfycbxsXNqLSt-ISvV2QI9hIfXm_MPAV4EZqGEI1db8U5I1XeLrSQum4Gh_LXAdIpdT0jZZ/exec" method="POST" target="hidden_iframe">
+      <input type="hidden" name="source" value="waitlist">
+      <input type="text" name="name" placeholder="الاسم الكامل | Full Name" required>
+      <input type="email" name="email" placeholder="البريد الإلكتروني | Email" required>
+      <input type="tel" name="phone" placeholder="رقم الجوال (اختياري) | Phone (optional)">
+      <select name="event_type" id="waitlistEventType">
+        <option value="" disabled selected>نوع المناسبة | Event Type</option>
+        <option value="wedding">💍 زفاف | Wedding</option>
+        <option value="birthday">🎂 عيد ميلاد | Birthday</option>
+        <option value="graduation">🎓 تخرج | Graduation</option>
+        <option value="baby_shower">👶 استقبال مولود | Baby Shower</option>
+        <option value="corporate">🏢 شركات | Corporate</option>
+      </select>
+      <select name="city">
+        <option value="" disabled selected>المدينة | City</option>
+        <option value="riyadh">الرياض | Riyadh</option>
+        <option value="jeddah">جدة | Jeddah</option>
+        <option value="dammam">الدمام | Dammam</option>
+        <option value="other">أخرى | Other</option>
+      </select>
+      <button type="submit" class="waitlist-submit"><span data-lang="ar">احجز مكانك مجانًا</span><span data-lang="en">Reserve Your Spot — Free</span></button>
+    </form>
+    <div class="form-success" id="formSuccess">
+      <h3><span data-lang="ar">تم التسجيل بنجاح! 🎉</span><span data-lang="en">Successfully registered! 🎉</span></h3>
+      <p><span data-lang="ar">سنتواصل معك قبل الإطلاق</span><span data-lang="en">We'll contact you before launch</span></p>
+    </div>
+    <p class="waitlist-note reveal"><span data-lang="ar">لن نشارك بياناتك مع أي طرف ثالث</span><span data-lang="en">We never share your data</span></p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq section" id="faq">
+  <div class="container" style="text-align:center">
+    <span class="section-label reveal"><span data-lang="ar">أسئلة شائعة</span><span data-lang="en">FAQ</span></span>
+    <h2 class="section-title reveal" style="margin-bottom:36px"><span data-lang="ar">عندك سؤال؟</span><span data-lang="en">Have a question?</span></h2>
+    <div class="faq-list" style="text-align:start">
+      <div class="faq-item reveal"><div class="faq-q"><span data-lang="ar">متى سيتم إطلاق حفلتي؟</span><span data-lang="en">When will Haflati launch?</span><span class="arrow">▼</span></div><div class="faq-a"><span data-lang="ar">صيف ٢٠٢٦ في الرياض أولًا، ثم جدة والدمام.</span><span data-lang="en">Summer 2026 in Riyadh first, then Jeddah and Dammam.</span></div></div>
+      <div class="faq-item reveal"><div class="faq-q"><span data-lang="ar">هل التطبيق مجاني؟</span><span data-lang="en">Is it free?</span><span class="arrow">▼</span></div><div class="faq-a"><span data-lang="ar">نعم! التصفح والحجز مجاني. هناك باقة مميزة اختيارية بـ ٢٩ ريال/شهر.</span><span data-lang="en">Yes! Browsing and booking is free. Optional premium at 29 SAR/month.</span></div></div>
+      <div class="faq-item reveal"><div class="faq-q"><span data-lang="ar">كيف تضمنون جودة المزودين؟</span><span data-lang="en">How do you ensure quality?</span><span class="arrow">▼</span></div><div class="faq-a"><span data-lang="ar">كل مزود يمر بتحقق صارم — سجل تجاري، تقييمات، جودة خدمة.</span><span data-lang="en">Every vendor goes through strict verification — license, reviews, quality checks.</span></div></div>
+      <div class="faq-item reveal"><div class="faq-q"><span data-lang="ar">كيف أنضم كمزود؟</span><span data-lang="en">How do I join as a vendor?</span><span class="arrow">▼</span></div><div class="faq-a"><span data-lang="ar">سجّل من <a href="vendors.html" style="color:var(--coral);font-weight:700">صفحة المزودين</a> وسنتواصل معك.</span><span data-lang="en">Register at the <a href="vendors.html" style="color:var(--coral);font-weight:700">vendors page</a> and we'll reach out.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog-preview section">
+  <div class="container" style="text-align:center">
+    <span class="section-label reveal"><span data-lang="ar">المدونة</span><span data-lang="en">Blog</span></span>
+    <h2 class="section-title reveal"><span data-lang="ar">نصائح لمناسبتك القادمة</span><span data-lang="en">Tips for your next event</span></h2>
+    <p class="section-sub reveal"><span data-lang="ar">أحدث المقالات من خبراء المناسبات</span><span data-lang="en">Latest articles from event experts</span></p>
+    <div class="blog-grid" style="text-align:start">
+      <a href="blog/choosing-wedding-venue-riyadh.html" class="blog-card reveal"><div class="blog-card-img">💍</div><div class="blog-card-body"><span class="blog-card-tag"><span data-lang="ar">زفاف</span><span data-lang="en">Wedding</span></span><h3><span data-lang="ar">كيف تختار قاعة الزفاف المثالية في الرياض</span><span data-lang="en">How to Choose the Perfect Wedding Venue in Riyadh</span></h3><p><span data-lang="ar">دليلك الشامل لاختيار القاعة المناسبة</span><span data-lang="en">Your complete venue selection guide</span></p></div></a>
+      <a href="blog/birthday-party-ideas-kids-saudi.html" class="blog-card reveal"><div class="blog-card-img">🎂</div><div class="blog-card-body"><span class="blog-card-tag"><span data-lang="ar">عيد ميلاد</span><span data-lang="en">Birthday</span></span><h3><span data-lang="ar">أفكار مبتكرة لحفلات أعياد ميلاد الأطفال</span><span data-lang="en">Creative Kids Birthday Party Ideas</span></h3><p><span data-lang="ar">أفكار ممتعة لحفلة لا تُنسى</span><span data-lang="en">Fun ideas for an unforgettable party</span></p></div></a>
+      <a href="blog/graduation-celebration-guide.html" class="blog-card reveal"><div class="blog-card-img">🎓</div><div class="blog-card-body"><span class="blog-card-tag"><span data-lang="ar">تخرج</span><span data-lang="en">Graduation</span></span><h3><span data-lang="ar">دليل الاحتفال بالتخرج في السعودية</span><span data-lang="en">Saudi Graduation Celebration Guide</span></h3><p><span data-lang="ar">كل ما تحتاجه لحفل تخرج مميز</span><span data-lang="en">Everything for a special graduation</span></p></div></a>
+    </div>
+    <div class="blog-more reveal"><a href="blog/index.html"><span data-lang="ar">جميع المقالات ←</span><span data-lang="en">All Articles →</span></a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <svg viewBox="0 0 38 38" fill="none"><defs><linearGradient id="lg3" x1="0" y1="0" x2="38" y2="38"><stop offset="0%" stop-color="#FF6B81"/><stop offset="100%" stop-color="#FFD27F"/></linearGradient></defs><rect width="38" height="38" rx="11" fill="url(#lg3)"/><text x="19" y="26" text-anchor="middle" fill="#FFF" font-family="Cairo" font-weight="900" font-size="18">ح</text></svg>
+          حفلتي
+        </div>
+        <p><span data-lang="ar">أول منصة سعودية لتنظيم المناسبات</span><span data-lang="en">Saudi Arabia's first event planning marketplace</span></p>
+        <div class="footer-social">
+          <a href="https://x.com/Haflati_app" target="_blank" rel="noopener" aria-label="X">𝕏</a>
+          <a href="https://instagram.com/haflati.app" target="_blank" rel="noopener" aria-label="Instagram">📷</a>
+          <a href="https://tiktok.com/@haflati.app" target="_blank" rel="noopener" aria-label="TikTok">♪</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4><span data-lang="ar">روابط</span><span data-lang="en">Links</span></h4>
+        <a href="about.html"><span data-lang="ar">عن حفلتي</span><span data-lang="en">About</span></a>
+        <a href="vendors.html"><span data-lang="ar">للمزودين</span><span data-lang="en">Vendors</span></a>
+        <a href="blog/index.html"><span data-lang="ar">المدونة</span><span data-lang="en">Blog</span></a>
+        <a href="#faq"><span data-lang="ar">أسئلة شائعة</span><span data-lang="en">FAQ</span></a>
+      </div>
+      <div class="footer-links">
+        <h4><span data-lang="ar">تواصل</span><span data-lang="en">Contact</span></h4>
+        <a href="mailto:hello@haflati.app">hello@haflati.app</a>
+        <a><span data-lang="ar">الرياض، السعودية</span><span data-lang="en">Riyadh, Saudi Arabia</span></a>
+      </div>
+    </div>
+    <div class="footer-bottom"><span data-lang="ar">© ٢٠٢٦ حفلتي. جميع الحقوق محفوظة.</span><span data-lang="en">© 2026 Haflati. All rights reserved.</span></div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="container">
+    <input type="email" id="stickyEmail" placeholder="بريدك الإلكتروني">
+    <button id="stickyBtn"><span data-lang="ar">سجّل</span><span data-lang="en">Join</span></button>
+  </div>
+</div>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/966500000000?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7" class="fab-wa" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+<script>
+(function(){
+  const header=document.getElementById('header');
+  window.addEventListener('scroll',()=>{header.classList.toggle('scrolled',window.scrollY>40)},{passive:true});
+
+  const drawer=document.getElementById('mobileDrawer');
+  document.getElementById('hamburger').addEventListener('click',()=>drawer.classList.add('open'));
+  document.getElementById('closeDrawer').addEventListener('click',()=>drawer.classList.remove('open'));
+  window.closeDrawer=()=>drawer.classList.remove('open');
+
+  const html=document.documentElement;let isAr=true;
+  function toggleLang(){
+    isAr=!isAr;html.lang=isAr?'ar':'en';html.dir=isAr?'rtl':'ltr';
+    document.querySelectorAll('[data-lang]').forEach(el=>{el.style.display=el.dataset.lang===(isAr?'ar':'en')?'':'none'});
+    document.querySelectorAll('.lang-btn').forEach(b=>b.textContent=isAr?'EN':'عربي');
+  }
+  document.getElementById('langToggle').addEventListener('click',toggleLang);
+  document.getElementById('langToggle2').addEventListener('click',toggleLang);
+  document.querySelectorAll('[data-lang="en"]').forEach(el=>el.style.display='none');
+
+  document.querySelectorAll('.quiz-opt').forEach(opt=>{
+    opt.addEventListener('click',()=>{
+      document.querySelectorAll('.quiz-opt').forEach(o=>o.classList.remove('active'));
+      opt.classList.add('active');
+      const v=opt.dataset.event;
+      document.getElementById('heroEventType').value=v;
+      const ws=document.getElementById('waitlistEventType');
+      if(ws){for(let i=0;i<ws.options.length;i++){if(ws.options[i].value===v){ws.selectedIndex=i;break}}}
+    });
+  });
+
+  ['heroForm','waitlistForm'].forEach(id=>{
+    const f=document.getElementById(id);if(!f)return;
+    f.addEventListener('submit',function(){
+      setTimeout(()=>{
+        if(id==='heroForm'){f.innerHTML='<p style="color:var(--coral);font-weight:800;font-size:1.1rem">✓ '+(isAr?'تم التسجيل!':'Registered!')+'</p>'}
+        else{f.style.display='none';document.getElementById('formSuccess').style.display='block'}
+      },800);
+    });
+  });
+
+  const stickyCta=document.getElementById('stickyCta');
+  window.addEventListener('scroll',()=>{if(window.innerWidth<=768)stickyCta.classList.toggle('show',window.scrollY>600)},{passive:true});
+  document.getElementById('stickyBtn').addEventListener('click',()=>{
+    const e=document.getElementById('stickyEmail').value;
+    if(e&&e.includes('@')){
+      const fd=new FormData();fd.append('email',e);fd.append('source','sticky');
+      fetch('https://script.google.com/macros/s/AKfycbxsXNqLSt-ISvV2QI9hIfXm_MPAV4EZqGEI1db8U5I1XeLrSQum4Gh_LXAdIpdT0jZZ/exec',{method:'POST',body:fd,mode:'no-cors'});
+      document.getElementById('stickyBtn').textContent='✓';document.getElementById('stickyEmail').value='';
+      setTimeout(()=>{document.getElementById('stickyBtn').textContent=isAr?'سجّل':'Join'},2000);
+    }
+  });
+
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  document.querySelectorAll('.faq-q').forEach(q=>{
+    q.addEventListener('click',()=>{
+      const item=q.parentElement,wasOpen=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen)item.classList.add('open');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حفلتي — سينمائي وعاطفي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0F1628;--navy2:#172034;--rose:#E8636B;--rose2:#F08088;--champ:#F2D8A0;--champ2:#F8ECC4;--blush:#FFF0F0;--white:#fff;--gray:rgba(255,255,255,.5);--font-ar:'Tajawal',sans-serif;--font-en-h:'DM Serif Display',serif;--font-en:'DM Sans',sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-ar);background:var(--white);color:var(--navy);overflow-x:hidden;line-height:1.75}
+html[lang="en"] body{font-family:var(--font-en)}
+a{text-decoration:none;color:inherit}
+.container{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 0;transition:.4s}
+.nav.dark{background:rgba(15,22,40,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.07);padding:14px 0}
+.nav.light{background:rgba(255,255,255,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(15,22,40,.07);padding:14px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.5rem;font-weight:900;letter-spacing:1px;transition:.4s}
+.nav.dark .logo{color:var(--champ)}
+.nav.light .logo{background:linear-gradient(135deg,var(--rose),var(--navy));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:.85rem;font-weight:500;transition:.3s;letter-spacing:.5px}
+.nav.dark .nav-links a{color:rgba(255,255,255,.5)}
+.nav.light .nav-links a{color:rgba(15,22,40,.5)}
+.nav.dark .nav-links a:hover{color:var(--champ)}
+.nav.light .nav-links a:hover{color:var(--rose)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang-btn{background:transparent;padding:6px 16px;border-radius:2px;cursor:pointer;font-size:.78rem;font-weight:600;transition:.3s;font-family:inherit}
+.nav.dark .lang-btn{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.6)}
+.nav.dark .lang-btn:hover{background:rgba(255,255,255,.1);color:#fff}
+.nav.light .lang-btn{border:1px solid rgba(15,22,40,.2);color:rgba(15,22,40,.6)}
+.nav.light .lang-btn:hover{background:var(--rose);color:#fff;border-color:var(--rose)}
+.nav-cta{padding:9px 26px;font-weight:700;font-size:.85rem;transition:.3s;display:inline-block}
+.nav.dark .nav-cta{background:var(--champ);color:var(--navy)}
+.nav.dark .nav-cta:hover{background:var(--champ2);transform:translateY(-1px)}
+.nav.light .nav-cta{background:var(--rose);color:#fff;box-shadow:0 4px 16px rgba(232,99,107,.3)}
+.nav.light .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(232,99,107,.4)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.ham span{width:24px;height:1.5px;display:block;transition:.3s}
+.nav.dark .ham span{background:rgba(255,255,255,.7)}
+.nav.light .ham span{background:var(--navy)}
+
+/* HERO — FULL SCREEN CINEMATIC */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background:var(--navy);text-align:center}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0F1628 0%,#1A2540 40%,#0F1628 70%,rgba(232,99,107,.08) 100%);animation:bgshift 12s ease-in-out infinite alternate}
+@keyframes bgshift{0%{background:linear-gradient(160deg,#0F1628 0%,#1A2540 40%,#0F1628 70%,rgba(232,99,107,.08) 100%)}100%{background:linear-gradient(200deg,#1A2540 0%,#0F1628 50%,rgba(242,216,160,.05) 80%,#0F1628 100%)}}
+.hero-noise{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")}
+.hero-content{position:relative;z-index:2;max-width:900px;padding:0 24px;padding-top:80px}
+.hero-sub-label{display:inline-block;color:var(--champ);font-size:.72rem;letter-spacing:5px;text-transform:uppercase;margin-bottom:36px;opacity:.8}
+.hero-title{font-size:clamp(3.5rem,9vw,8rem);font-weight:900;line-height:.95;color:var(--white);margin-bottom:32px;letter-spacing:-3px}
+.hero-title .rose-word{color:var(--rose)}
+.hero-desc{font-size:1.1rem;color:rgba(255,255,255,.5);max-width:560px;margin:0 auto 48px;line-height:1.9;font-weight:300}
+.hero-cta{display:inline-block;background:var(--rose);color:#fff;padding:18px 56px;font-size:1rem;font-weight:700;letter-spacing:1px;transition:.3s;box-shadow:0 8px 40px rgba(232,99,107,.4)}
+.hero-cta:hover{transform:translateY(-3px);box-shadow:0 16px 60px rgba(232,99,107,.5);background:var(--rose2)}
+.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.25);font-size:.65rem;letter-spacing:4px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px}
+.hero-scroll::after{content:'';width:1px;height:44px;background:linear-gradient(var(--rose),transparent);animation:sc 1.8s ease-in-out infinite}
+@keyframes sc{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* EDITORIAL INTRO */
+.editorial{padding:100px 0;background:var(--white)}
+.editorial-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.editorial-visual{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:4px;height:480px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.ev-grad{position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,99,107,.15),transparent 60%,rgba(242,216,160,.08))}
+.ev-big-num{font-size:6rem;font-weight:900;color:rgba(255,255,255,.06);line-height:1;position:absolute;bottom:20px;right:24px}
+.ev-center{position:relative;z-index:2;text-align:center}
+.ev-icon{font-size:4rem;display:block;margin-bottom:20px}
+.ev-label{color:var(--champ);font-size:.75rem;letter-spacing:4px;text-transform:uppercase}
+.stats-row{display:flex;gap:48px;margin-top:32px}
+.srow-item{}
+.srow-num{font-size:2.4rem;font-weight:900;color:var(--rose)}
+.srow-lbl{font-size:.78rem;color:rgba(15,22,40,.45);margin-top:2px}
+.editorial-tag{font-size:.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--rose);margin-bottom:20px;display:block}
+.editorial-title{font-size:clamp(2rem,3.5vw,3rem);font-weight:900;line-height:1.15;margin-bottom:20px;color:var(--navy)}
+.editorial-text{font-size:.98rem;color:rgba(15,22,40,.55);line-height:1.9;margin-bottom:32px}
+
+/* EVENT TYPES — ALTERNATING */
+.events{background:var(--white);padding:0}
+.event-block{display:grid;grid-template-columns:1fr 1fr;min-height:420px;overflow:hidden}
+.event-block.reverse{direction:ltr}
+.event-block.reverse .event-visual{order:-1}
+.event-visual{position:relative;min-height:320px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.event-visual .bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:8rem;opacity:.15}
+.event-content{display:flex;flex-direction:column;justify-content:center;padding:64px 52px;position:relative}
+.event-num{font-size:4rem;font-weight:900;opacity:.06;position:absolute;top:24px;right:28px;line-height:1}
+.event-tag{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;display:block}
+.event-title{font-size:2rem;font-weight:900;margin-bottom:14px;line-height:1.15}
+.event-text{font-size:.92rem;line-height:1.85;opacity:.6;max-width:360px}
+.ev1{background:linear-gradient(135deg,#2A1540,var(--navy))}
+.ev2{background:linear-gradient(135deg,#1A2040,var(--navy2))}
+.ev3{background:linear-gradient(135deg,#1A1035,var(--navy))}
+.ev4{background:linear-gradient(135deg,#1F2A40,var(--navy2))}
+.ev5{background:linear-gradient(135deg,#251540,var(--navy))}
+
+/* BIG NUMBERS */
+.big-nums{background:var(--navy);padding:90px 0;color:#fff}
+.nums-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:52px}
+.num-item{text-align:center;padding:24px;border-right:1px solid rgba(255,255,255,.07)}
+.num-item:last-child{border-right:none}
+.num-big{font-size:clamp(3rem,5vw,5rem);font-weight:900;color:var(--rose);display:block;line-height:1}
+.num-lbl{font-size:.75rem;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:10px;display:block}
+
+/* HOW */
+.how{background:var(--blush);padding:90px 0}
+.how-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.how-sticky{position:sticky;top:120px}
+.how-visual{background:var(--navy);border-radius:4px;padding:48px;height:400px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.hw-icon{font-size:6rem;opacity:.2;position:absolute}
+.hw-text{font-size:1.1rem;color:rgba(255,255,255,.6);text-align:center;line-height:1.8;position:relative;z-index:2;font-weight:300}
+.hw-text strong{color:var(--champ);font-weight:700}
+.how-steps{display:flex;flex-direction:column;gap:40px}
+.how-step{padding:36px;border-left:3px solid transparent;transition:.3s;background:rgba(255,255,255,.6);border-radius:0 4px 4px 0}
+.how-step:hover{border-left-color:var(--rose);background:#fff;box-shadow:0 8px 32px rgba(15,22,40,.08)}
+html[dir="rtl"] .how-step{border-left:none;border-right:3px solid transparent}
+html[dir="rtl"] .how-step:hover{border-right-color:var(--rose);border-left:none;border-radius:4px 0 0 4px}
+.how-step-num{font-size:.7rem;letter-spacing:3px;text-transform:uppercase;color:var(--rose);font-weight:700;margin-bottom:10px;display:block}
+.how-step-title{font-size:1.1rem;font-weight:800;color:var(--navy);margin-bottom:8px}
+.how-step-text{font-size:.9rem;color:rgba(15,22,40,.55);line-height:1.85}
+
+/* VENDOR DARK */
+.vendors{background:var(--navy);padding:90px 0;color:#fff}
+.vendors-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.vendor-perks{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:14px}
+.vendor-perks li{display:flex;align-items:flex-start;gap:12px;font-size:.92rem;color:rgba(255,255,255,.55)}
+.vp-dot{width:6px;height:6px;background:var(--rose);border-radius:50%;margin-top:8px;flex-shrink:0}
+.vendor-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:48px;text-align:center}
+.vb-tag{font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:20px;display:block}
+.vb-free{font-size:3.5rem;font-weight:900;color:var(--champ);line-height:1}
+.vb-note{font-size:.82rem;color:rgba(255,255,255,.3);margin-top:6px}
+.vb-div{height:1px;background:rgba(255,255,255,.08);margin:28px 0}
+.vb-comm-box{background:rgba(232,99,107,.1);border:1px solid rgba(232,99,107,.2);padding:20px}
+.vb-comm-num{font-size:2.8rem;font-weight:900;color:var(--rose)}
+.vb-comm-lbl{font-size:.78rem;color:rgba(255,255,255,.35);margin-top:4px}
+
+/* WAITLIST */
+.waitlist{background:linear-gradient(160deg,var(--champ2),var(--blush));padding:90px 0;text-align:center}
+.wl-title{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;color:var(--navy);margin-bottom:12px}
+.wl-title .rose{color:var(--rose)}
+.wl-sub{font-size:1rem;color:rgba(15,22,40,.5);max-width:480px;margin:0 auto 40px;line-height:1.85}
+.wl-form{max-width:480px;margin:0 auto;display:flex;border:1px solid rgba(15,22,40,.12);background:#fff;box-shadow:0 8px 32px rgba(15,22,40,.08)}
+.wl-input{flex:1;background:transparent;border:none;color:var(--navy);padding:16px 22px;font-size:.92rem;font-family:inherit;outline:none}
+.wl-input::placeholder{color:rgba(15,22,40,.3)}
+.wl-btn{background:var(--rose);color:#fff;border:none;padding:16px 28px;font-weight:700;cursor:pointer;font-family:inherit;font-size:.88rem;white-space:nowrap;transition:.3s}
+.wl-btn:hover{background:#D94F57}
+.wl-ok{display:none;margin-top:20px;font-size:.98rem;font-weight:700;color:var(--rose)}
+
+/* FOOTER */
+.footer{background:var(--navy);color:#fff;padding:52px 0 28px}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px}
+.footer-logo{font-size:1.5rem;font-weight:900;color:var(--champ);display:block;margin-bottom:6px;letter-spacing:2px}
+.footer-tag{font-size:.72rem;color:rgba(255,255,255,.2);letter-spacing:1px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:40px;height:40px;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);font-size:.8rem;transition:.3s}
+.footer-social a:hover{border-color:var(--rose);color:var(--rose)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;display:flex;justify-content:space-between}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.18)}
+
+/* DRAWER */
+.drawer{position:fixed;top:0;right:-320px;width:300px;height:100%;background:var(--navy);z-index:2000;padding:80px 28px;border-left:1px solid rgba(255,255,255,.08);transition:right .4s cubic-bezier(.4,0,.2,1)}
+.drawer.open{right:0}
+.drawer-close{position:absolute;top:24px;left:24px;background:none;border:none;color:rgba(255,255,255,.5);font-size:1.4rem;cursor:pointer}
+.drawer-links{list-style:none;display:flex;flex-direction:column;gap:24px}
+.drawer-links a{font-size:.98rem;color:rgba(255,255,255,.4);font-weight:600;transition:.3s;letter-spacing:1px}
+.drawer-links a:hover{color:var(--champ)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1500;opacity:0;pointer-events:none;transition:opacity .4s}
+.overlay.open{opacity:1;pointer-events:all}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.15s}.rv.d2{transition-delay:.3s}.rv.d3{transition-delay:.45s}
+
+/* SECTION SHARED */
+.sec-tag-light{display:block;font-size:.68rem;letter-spacing:4px;text-transform:uppercase;color:var(--rose);margin-bottom:16px;opacity:.9}
+.sec-title-light{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;color:var(--navy);margin-bottom:14px;line-height:1.15}
+.sec-title-dark{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;color:#fff;margin-bottom:14px;line-height:1.15}
+.sec-sub-light{font-size:.95rem;color:rgba(15,22,40,.5);line-height:1.9;max-width:500px}
+.sec-sub-dark{font-size:.95rem;color:rgba(255,255,255,.4);line-height:1.9;max-width:500px}
+.sec-header{margin-bottom:52px}
+.champ{color:var(--champ)}
+.rose{color:var(--rose)}
+
+@media(max-width:960px){.nav-links{display:none}.ham{display:flex}.editorial-inner{grid-template-columns:1fr}.how-inner{grid-template-columns:1fr}.how-sticky{position:relative;top:0}.vendors-inner{grid-template-columns:1fr}.nums-grid{grid-template-columns:repeat(2,1fr)}.footer-inner{flex-direction:column;gap:24px}}
+@media(max-width:760px){.event-block,.event-block.reverse{grid-template-columns:1fr}.event-visual{min-height:200px}.event-block.reverse{direction:rtl}.event-block.reverse .event-visual{order:0}}
+@media(max-width:600px){.wl-form{flex-direction:column}.hero-title{font-size:clamp(2.8rem,12vw,5rem)}}
+</style>
+</head>
+<body>
+<div class="overlay" id="ov" onclick="closeD()"></div>
+<div class="drawer" id="dr">
+  <button class="drawer-close" onclick="closeD()">✕</button>
+  <ul class="drawer-links">
+    <li><a href="#events" data-ar="المناسبات" data-en="Events" onclick="closeD()">المناسبات</a></li>
+    <li><a href="#how" data-ar="كيف تعمل" data-en="How It Works" onclick="closeD()">كيف تعمل</a></li>
+    <li><a href="#vendors" data-ar="للمزودين" data-en="For Vendors" onclick="closeD()">للمزودين</a></li>
+    <li><a href="#waitlist" data-ar="قائمة الانتظار" data-en="Waitlist" onclick="closeD()">قائمة الانتظار</a></li>
+  </ul>
+</div>
+<nav class="nav dark" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo" data-ar="حفلتي" data-en="HAFLATI">حفلتي</a>
+    <ul class="nav-links">
+      <li><a href="#events" data-ar="المناسبات" data-en="Events">المناسبات</a></li>
+      <li><a href="#how" data-ar="كيف تعمل" data-en="How It Works">كيف تعمل</a></li>
+      <li><a href="#vendors" data-ar="للمزودين" data-en="For Vendors">للمزودين</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-btn" id="lbtn" onclick="toggleLang()">EN</button>
+      <a href="#waitlist" class="nav-cta" data-ar="سجّل الآن" data-en="Join Now">سجّل الآن</a>
+      <button class="ham" onclick="openD()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO CINEMATIC -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-content">
+    <span class="hero-sub-label rv" data-ar="أول منصة سعودية لتنظيم المناسبات" data-en="Saudi Arabia's First Event Planning Platform">أول منصة سعودية لتنظيم المناسبات</span>
+    <h1 class="hero-title rv d1"><span class="rose-word" data-ar="حفلتي" data-en="Haflati">حفلتي</span></h1>
+    <p class="hero-desc rv d2" data-ar="مناسبتك تستحق أكثر من مجرد تنظيم — تستحق تجربة لا تُنسى. اكتشف أفضل مزودي الخدمات في المملكة واحجز بثقة تامة." data-en="Your event deserves more than just planning — it deserves an unforgettable experience. Discover the finest vendors in the Kingdom and book with complete confidence.">مناسبتك تستحق أكثر من مجرد تنظيم — تستحق تجربة لا تُنسى. اكتشف أفضل مزودي الخدمات في المملكة واحجز بثقة تامة.</p>
+    <a href="#events" class="hero-cta rv d3" data-ar="اكتشف الآن" data-en="Discover Now">اكتشف الآن</a>
+  </div>
+  <div class="hero-scroll"><span data-ar="مرر للأسفل" data-en="Scroll">مرر للأسفل</span></div>
+</section>
+
+<!-- EDITORIAL INTRO -->
+<section class="editorial">
+  <div class="container">
+    <div class="editorial-inner">
+      <div class="editorial-visual rv">
+        <div class="ev-grad"></div>
+        <div class="ev-big-num">✨</div>
+        <div class="ev-center">
+          <span class="ev-icon">🎊</span>
+          <span class="ev-label" data-ar="منصة المناسبات السعودية" data-en="Saudi Event Platform">منصة المناسبات السعودية</span>
+        </div>
+      </div>
+      <div>
+        <span class="editorial-tag rv" data-ar="قصتنا" data-en="OUR STORY">قصتنا</span>
+        <h2 class="editorial-title rv d1" data-ar="مناسبتك، بشكل لم تتخيّله من قبل" data-en="Your Event, Reimagined">مناسبتك، بشكل لم تتخيّله من قبل</h2>
+        <p class="editorial-text rv d2" data-ar="حفلتي وُلدت من رؤية بسيطة: تنظيم المناسبات في السعودية يجب أن يكون أسهل، أكثر أماناً، وأكثر إبداعاً. نربط العملاء بأفضل مزودي الخدمات الموثّقين — بنظام دفع آمن يحمي حقوق الجميع." data-en="Haflati was born from a simple vision: event planning in Saudi Arabia should be easier, more secure, and more creative. We connect clients with the best verified vendors — with a secure payment system that protects everyone's rights.">حفلتي وُلدت من رؤية بسيطة: تنظيم المناسبات في السعودية يجب أن يكون أسهل، أكثر أماناً، وأكثر إبداعاً. نربط العملاء بأفضل مزودي الخدمات الموثّقين — بنظام دفع آمن يحمي حقوق الجميع.</p>
+        <div class="stats-row rv d3">
+          <div class="srow-item"><div class="srow-num">5+</div><div class="srow-lbl" data-ar="أنواع مناسبات" data-en="Event Types">أنواع مناسبات</div></div>
+          <div class="srow-item"><div class="srow-num">100+</div><div class="srow-lbl" data-ar="فئة خدمة" data-en="Services">فئة خدمة</div></div>
+          <div class="srow-item"><div class="srow-num">5%</div><div class="srow-lbl" data-ar="عمولة فقط" data-en="Commission">عمولة فقط</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVENT TYPES ALTERNATING -->
+<section id="events">
+  <div class="event-block">
+    <div class="event-visual ev1"><div class="bg">💍</div></div>
+    <div class="event-content" style="background:var(--blush)">
+      <span class="event-num" style="color:var(--navy)">01</span>
+      <span class="event-tag rv" style="color:var(--rose)" data-ar="الأعراس" data-en="WEDDINGS">الأعراس</span>
+      <h3 class="event-title rv d1" style="color:var(--navy)" data-ar="ليلة لا تُنسى" data-en="An Unforgettable Night">ليلة لا تُنسى</h3>
+      <p class="event-text rv d2" style="color:rgba(15,22,40,.55)" data-ar="من التصوير الاحترافي إلى الضيافة الفاخرة — كل ما تحتاجه لزفافك المثالي في مكان واحد" data-en="From professional photography to luxury catering — everything you need for your perfect wedding in one place">من التصوير الاحترافي إلى الضيافة الفاخرة — كل ما تحتاجه لزفافك المثالي في مكان واحد</p>
+    </div>
+  </div>
+  <div class="event-block reverse">
+    <div class="event-visual ev2"><div class="bg">🎂</div></div>
+    <div class="event-content" style="background:var(--white)">
+      <span class="event-num" style="color:var(--navy)">02</span>
+      <span class="event-tag rv" style="color:var(--rose)" data-ar="أعياد الميلاد" data-en="BIRTHDAYS">أعياد الميلاد</span>
+      <h3 class="event-title rv d1" style="color:var(--navy)" data-ar="احتفل بأسلوبك" data-en="Celebrate Your Way">احتفل بأسلوبك</h3>
+      <p class="event-text rv d2" style="color:rgba(15,22,40,.55)" data-ar="كيك مخصص، ديكور فريد، وترفيه لا ينتهي — اجعل عيد ميلادك حديث الجميع" data-en="Custom cake, unique decor, endless entertainment — make your birthday the talk of the town">كيك مخصص، ديكور فريد، وترفيه لا ينتهي — اجعل عيد ميلادك حديث الجميع</p>
+    </div>
+  </div>
+  <div class="event-block">
+    <div class="event-visual ev3"><div class="bg">🎓</div></div>
+    <div class="event-content" style="background:var(--blush)">
+      <span class="event-num" style="color:var(--navy)">03</span>
+      <span class="event-tag rv" style="color:var(--rose)" data-ar="التخرج" data-en="GRADUATION">التخرج</span>
+      <h3 class="event-title rv d1" style="color:var(--navy)" data-ar="لحظة النجاح تستحق الاحتفال" data-en="Success Deserves Celebration">لحظة النجاح تستحق الاحتفال</h3>
+      <p class="event-text rv d2" style="color:rgba(15,22,40,.55)" data-ar="خطط لحفلة تخرج تليق بإنجازاتك — تصوير، ضيافة، وذكريات تدوم للأبد" data-en="Plan a graduation party worthy of your achievements — photography, catering, and memories that last forever">خطط لحفلة تخرج تليق بإنجازاتك — تصوير، ضيافة، وذكريات تدوم للأبد</p>
+    </div>
+  </div>
+  <div class="event-block reverse">
+    <div class="event-visual ev4"><div class="bg">👶</div></div>
+    <div class="event-content" style="background:var(--white)">
+      <span class="event-num" style="color:var(--navy)">04</span>
+      <span class="event-tag rv" style="color:var(--rose)" data-ar="استقبال المولود" data-en="BABY SHOWER">استقبال المولود</span>
+      <h3 class="event-title rv d1" style="color:var(--navy)" data-ar="أهلاً بالجديد" data-en="Welcome the New One">أهلاً بالجديد</h3>
+      <p class="event-text rv d2" style="color:rgba(15,22,40,.55)" data-ar="احتفل بقدوم المولود الجديد بحفلة دافئة ومميزة تجمع أحبائك" data-en="Celebrate the newborn's arrival with a warm and special party that brings your loved ones together">احتفل بقدوم المولود الجديد بحفلة دافئة ومميزة تجمع أحبائك</p>
+    </div>
+  </div>
+  <div class="event-block">
+    <div class="event-visual ev5"><div class="bg">🏢</div></div>
+    <div class="event-content" style="background:var(--blush)">
+      <span class="event-num" style="color:var(--navy)">05</span>
+      <span class="event-tag rv" style="color:var(--rose)" data-ar="فعاليات الشركات" data-en="CORPORATE">فعاليات الشركات</span>
+      <h3 class="event-title rv d1" style="color:var(--navy)" data-ar="احترافية في كل تفصيلة" data-en="Professionalism in Every Detail">احترافية في كل تفصيلة</h3>
+      <p class="event-text rv d2" style="color:rgba(15,22,40,.55)" data-ar="فعاليات شركتك تعكس هويتها — دعنا نساعدك تخطط لحدث لا يُنسى يترك أثراً" data-en="Your corporate events reflect your brand identity — let us help you plan an unforgettable event">فعاليات شركتك تعكس هويتها — دعنا نساعدك تخطط لحدث لا يُنسى يترك أثراً</p>
+    </div>
+  </div>
+</section>
+
+<!-- BIG NUMBERS -->
+<section class="big-nums">
+  <div class="container">
+    <div class="sec-header" style="text-align:center">
+      <span class="sec-tag-light rv" data-ar="بالأرقام" data-en="BY THE NUMBERS">بالأرقام</span>
+      <h2 class="sec-title-dark rv d1" style="text-align:center"><span class="champ" data-ar="حفلتي" data-en="Haflati">حفلتي</span> <span data-ar="في أرقام" data-en="in Numbers">في أرقام</span></h2>
+    </div>
+    <div class="nums-grid">
+      <div class="num-item rv"><span class="num-big">5%</span><span class="num-lbl" data-ar="عمولة فقط — أقل من المنافسين" data-en="Commission only — lower than competitors">عمولة فقط — أقل من المنافسين</span></div>
+      <div class="num-item rv d1"><span class="num-big">100+</span><span class="num-lbl" data-ar="فئة خدمة متاحة" data-en="Service categories available">فئة خدمة متاحة</span></div>
+      <div class="num-item rv d2"><span class="num-big">3</span><span class="num-lbl" data-ar="مدن عند الإطلاق" data-en="Cities at launch">مدن عند الإطلاق</span></div>
+      <div class="num-item rv d3"><span class="num-big">24/7</span><span class="num-lbl" data-ar="دعم ومساعدة متواصلة" data-en="Ongoing support & assistance">دعم ومساعدة متواصلة</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-tag-light rv" data-ar="كيف تعمل" data-en="HOW IT WORKS">كيف تعمل</span>
+      <h2 class="sec-title-light rv d1"><span class="rose" data-ar="رحلتك" data-en="Your Journey">رحلتك</span> <span data-ar="نحو مناسبة مثالية" data-en="to a Perfect Event">نحو مناسبة مثالية</span></h2>
+    </div>
+    <div class="how-inner">
+      <div class="how-sticky">
+        <div class="how-visual rv">
+          <span class="hw-icon">🛡️</span>
+          <div class="hw-text" data-ar="مالك محفوظ في نظام الضمان حتى تنتهي مناسبتك — هذه هي <strong>حماية حفلتي</strong>" data-en="Your money is held in escrow until your event is done — this is <strong>Haflati Protection</strong>">مالك محفوظ في نظام الضمان حتى تنتهي مناسبتك — هذه هي <strong>حماية حفلتي</strong></div>
+        </div>
+      </div>
+      <div class="how-steps">
+        <div class="how-step rv"><span class="how-step-num" data-ar="الخطوة الأولى" data-en="STEP ONE">الخطوة الأولى</span><h3 class="how-step-title" data-ar="ابحث وقارن" data-en="Search & Compare">ابحث وقارن</h3><p class="how-step-text" data-ar="تصفح مئات المزودين الموثّقين، قارن الأسعار والتقييمات واختر الأنسب لمناسبتك" data-en="Browse hundreds of verified vendors, compare prices and reviews, choose the best fit for your event">تصفح مئات المزودين الموثّقين، قارن الأسعار والتقييمات واختر الأنسب لمناسبتك</p></div>
+        <div class="how-step rv d1"><span class="how-step-num" data-ar="الخطوة الثانية" data-en="STEP TWO">الخطوة الثانية</span><h3 class="how-step-title" data-ar="احجز بحماية حفلتي" data-en="Book with Haflati Protection">احجز بحماية حفلتي</h3><p class="how-step-text" data-ar="ادفع بأمان تام — مالك محفوظ في نظام الضمان، لا يصل للمزود إلا بعد تأكيدك نجاح المناسبة" data-en="Pay with total security — your money is in escrow, only reaches the vendor after you confirm the event's success">ادفع بأمان تام — مالك محفوظ في نظام الضمان، لا يصل للمزود إلا بعد تأكيدك نجاح المناسبة</p></div>
+        <div class="how-step rv d2"><span class="how-step-num" data-ar="الخطوة الثالثة" data-en="STEP THREE">الخطوة الثالثة</span><h3 class="how-step-title" data-ar="استمتع وأكّد" data-en="Enjoy & Confirm">استمتع وأكّد</h3><p class="how-step-text" data-ar="بعد المناسبة أكّد رضاك وسيحصل المزود على مستحقاته تلقائياً — بسيط، شفاف، وعادل للجميع" data-en="After the event confirm your satisfaction and the vendor gets paid automatically — simple, transparent, and fair for everyone">بعد المناسبة أكّد رضاك وسيحصل المزود على مستحقاته تلقائياً — بسيط، شفاف، وعادل للجميع</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENDORS -->
+<section class="vendors" id="vendors">
+  <div class="container">
+    <div class="vendors-inner">
+      <div>
+        <span class="sec-tag-light rv" data-ar="للمزودين" data-en="FOR VENDORS">للمزودين</span>
+        <h2 class="sec-title-dark rv d1"><span class="champ" data-ar="نمّي نشاطك" data-en="Grow Your Business">نمّي نشاطك</span> <span data-ar="مع حفلتي" data-en="with Haflati">مع حفلتي</span></h2>
+        <p class="sec-sub-dark rv d2" data-ar="انضم مجاناً — لا رسوم شهرية إلزامية. عمولة بسيطة فقط عند إتمام الحجز الناجح" data-en="Join free — no mandatory monthly fees. A small commission only when a booking is completed">انضم مجاناً — لا رسوم شهرية إلزامية. عمولة بسيطة فقط عند إتمام الحجز الناجح</p>
+        <ul class="vendor-perks rv d2">
+          <li><div class="vp-dot"></div><span data-ar="وصول مباشر لآلاف العملاء الجاهزين للحجز" data-en="Direct access to thousands of ready-to-book clients">وصول مباشر لآلاف العملاء الجاهزين للحجز</span></li>
+          <li><div class="vp-dot"></div><span data-ar="صفحة احترافية تعرض خدماتك وأعمالك السابقة" data-en="Professional page showcasing your services and past work">صفحة احترافية تعرض خدماتك وأعمالك السابقة</span></li>
+          <li><div class="vp-dot"></div><span data-ar="نظام حجوزات ذكي مع تقويم يمنع التضارب" data-en="Smart booking system with conflict-prevention calendar">نظام حجوزات ذكي مع تقويم يمنع التضارب</span></li>
+          <li><div class="vp-dot"></div><span data-ar="مدفوعاتك مضمونة ومحمية عبر نظام الضمان" data-en="Payments guaranteed and protected through escrow">مدفوعاتك مضمونة ومحمية عبر نظام الضمان</span></li>
+        </ul>
+        <div style="margin-top:40px" class="rv d3"><a href="#waitlist" style="display:inline-block;background:var(--champ);color:var(--navy);padding:15px 40px;font-weight:800;font-size:.92rem;transition:.3s" onmouseover="this.style.background='#F8ECC4'" onmouseout="this.style.background='var(--champ)'" data-ar="سجّل كمزود — مجاناً" data-en="Register as Vendor — Free">سجّل كمزود — مجاناً</a></div>
+      </div>
+      <div class="vendor-box rv d1">
+        <span class="vb-tag" data-ar="نموذج الأرباح" data-en="EARNINGS MODEL">نموذج الأرباح</span>
+        <div class="vb-free" data-ar="مجاناً" data-en="Free">مجاناً</div>
+        <div class="vb-note" data-ar="للانضمام — لا رسوم شهرية" data-en="to join — no monthly fees">للانضمام — لا رسوم شهرية</div>
+        <div class="vb-div"></div>
+        <div class="vb-comm-box">
+          <div class="vb-comm-num">5%</div>
+          <div class="vb-comm-lbl" data-ar="عمولة فقط عند إتمام الحجز" data-en="commission only on completed bookings">عمولة فقط عند إتمام الحجز</div>
+        </div>
+        <div style="margin-top:12px;font-size:.75rem;color:rgba(255,255,255,.3)" data-ar="2.5% مع الاشتراك المميز" data-en="2.5% with Premium subscription">2.5% مع الاشتراك المميز</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="waitlist" id="waitlist">
+  <div class="container">
+    <h2 class="wl-title rv"><span data-ar="كن من" data-en="Be Among the"></span> <span class="rose" data-ar="الأوائل" data-en="First">الأوائل</span></h2>
+    <p class="wl-sub rv d1" data-ar="سجّل الآن واحصل على 3 أشهر بريميوم مجاناً عند الإطلاق — حصرياً للمشتركين الأوائل" data-en="Register now and get 3 months Premium free at launch — exclusively for early subscribers">سجّل الآن واحصل على 3 أشهر بريميوم مجاناً عند الإطلاق — حصرياً للمشتركين الأوائل</p>
+    <form class="wl-form rv d2" id="wlf" onsubmit="submitWL(event)">
+      <input class="wl-input" id="wlEmail" type="email" placeholder="بريدك الإلكتروني" required>
+      <button class="wl-btn" type="submit" data-ar="أبلغني عند الإطلاق" data-en="Notify Me at Launch">أبلغني عند الإطلاق</button>
+    </form>
+    <div class="wl-ok" id="wlOk" data-ar="✦ شكراً! سنبلغك فور الإطلاق" data-en="✦ Thank you! We'll notify you at launch">✦ شكراً! سنبلغك فور الإطلاق</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div><span class="footer-logo" data-ar="حفلتي" data-en="HAFLATI">حفلتي</span><span class="footer-tag" data-ar="أول منصة سعودية لتنظيم المناسبات" data-en="Saudi Arabia's First Event Platform">أول منصة سعودية لتنظيم المناسبات</span></div>
+      <div class="footer-social">
+        <a href="https://x.com/Haflati_app" target="_blank" rel="noopener">𝕏</a>
+        <a href="https://instagram.com/haflati.app" target="_blank" rel="noopener">IG</a>
+        <a href="https://tiktok.com/@haflati.app" target="_blank" rel="noopener">TK</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy" data-ar="© 2026 حفلتي. جميع الحقوق محفوظة." data-en="© 2026 Haflati. All rights reserved.">© 2026 حفلتي. جميع الحقوق محفوظة.</span>
+      <span class="footer-copy" data-ar="صُنع بـ ♥ في السعودية" data-en="Made with ♥ in Saudi Arabia">صُنع بـ ♥ في السعودية</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+let lang='ar';
+function toggleLang(){
+  lang=lang==='ar'?'en':'ar';
+  document.documentElement.setAttribute('lang',lang);
+  document.documentElement.setAttribute('dir',lang==='ar'?'rtl':'ltr');
+  document.getElementById('lbtn').textContent=lang==='ar'?'EN':'عر';
+  document.querySelectorAll('[data-ar]').forEach(el=>{if(el.tagName!=='INPUT')el.textContent=lang==='ar'?el.dataset.ar:el.dataset.en});
+  const ei=document.getElementById('wlEmail');if(ei)ei.placeholder=lang==='ar'?'بريدك الإلكتروني':'Your email address';
+}
+// Nav color switch based on scroll position
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('nav');
+  const heroH=document.querySelector('.hero').offsetHeight;
+  if(scrollY>heroH-80){nav.className='nav light';} else {nav.className='nav dark';}
+});
+function openD(){document.getElementById('dr').classList.add('open');document.getElementById('ov').classList.add('open')}
+function closeD(){document.getElementById('dr').classList.remove('open');document.getElementById('ov').classList.remove('open')}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+function submitWL(e){e.preventDefault();fetch('https://script.google.com/macros/s/AKfycbzfTFDzExqClMJMXMV4FPLSGb0tkB9mKLEePCVfRkBaHEMaM6xDO1K5rM0GOl4RDv4/exec',{method:'POST',mode:'no-cors',body:JSON.stringify({email:document.getElementById('wlEmail').value,source:'index_5_cinematic',lang,timestamp:new Date().toISOString()})});document.getElementById('wlf').style.display='none';document.getElementById('wlOk').style.display='block';}
+</script>
+</body>
+</html>

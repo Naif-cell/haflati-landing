@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" width="400" height="500">
+  <defs>
+    <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8636B"/>
+      <stop offset="100%" stop-color="#D4A05A"/>
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E8636B"/>
+      <stop offset="100%" stop-color="#D4A05A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon Mark (centered, upper area) -->
+  <g transform="translate(200, 160)">
+    <!-- Gradient rounded square -->
+    <rect x="-100" y="-100" width="200" height="200" rx="40" ry="40" fill="url(#brandGradient)"/>
+
+    <!-- Main celebration sparkle -->
+    <path d="M0,-62 C9,-25 25,-9 62,0 C25,9 9,25 0,62 C-9,25 -25,9 -62,0 C-25,-9 -9,-25 0,-62Z"
+          fill="white" opacity="0.95" transform="translate(0,-6)"/>
+
+    <!-- Inner rotated sparkle -->
+    <path d="M0,-37 C4.6,-15 15,-4.6 37,0 C15,4.6 4.6,15 0,37 C-4.6,15 -15,4.6 -37,0 C-15,-4.6 -4.6,-15 0,-37Z"
+          fill="white" opacity="0.3" transform="translate(0,-6) rotate(45)"/>
+
+    <!-- Small sparkles -->
+    <g transform="translate(70,-54)">
+      <path d="M0,-10 C1.8,-4 4,-1.8 10,0 C4,1.8 1.8,4 0,10 C-1.8,4 -4,1.8 -10,0 C-4,-1.8 -1.8,-4 0,-10Z"
+            fill="white" opacity="0.8"/>
+    </g>
+    <g transform="translate(-66,-44)">
+      <path d="M0,-7 C1.2,-2.8 2.8,-1.2 7,0 C2.8,1.2 1.2,2.8 0,7 C-1.2,2.8 -2.8,1.2 -7,0 C-2.8,-1.2 -1.2,-2.8 0,-7Z"
+            fill="white" opacity="0.6"/>
+    </g>
+    <g transform="translate(74,42)">
+      <path d="M0,-8 C1.4,-3.2 3.2,-1.4 8,0 C3.2,1.4 1.4,3.2 0,8 C-1.4,3.2 -3.2,1.4 -8,0 C-3.2,-1.4 -1.4,-3.2 0,-8Z"
+            fill="white" opacity="0.7"/>
+    </g>
+
+    <!-- Dot accents -->
+    <circle cx="84" cy="0" r="3" fill="white" opacity="0.5"/>
+    <circle cx="-80" cy="16" r="2.5" fill="white" opacity="0.4"/>
+
+    <!-- Decorative arc (Ha letter hint) -->
+    <path d="M-34,66 Q0,86 34,66" stroke="white" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <circle cx="22" cy="77" r="2.8" fill="white" opacity="0.7"/>
+  </g>
+
+  <!-- Arabic text: حفلتي -->
+  <text x="200" y="340" text-anchor="middle"
+        font-family="'Readex Pro', 'Noto Sans Arabic', Arial, sans-serif"
+        font-weight="700" font-size="68" fill="url(#textGradient)"
+        direction="rtl" unicode-bidi="bidi-override">حفلتي</text>
+
+  <!-- English text: HAFLATI -->
+  <text x="200" y="385" text-anchor="middle"
+        font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif"
+        font-weight="600" font-size="28" fill="#16213E"
+        letter-spacing="3">HAFLATI</text>
+
+  <!-- Tagline -->
+  <text x="200" y="420" text-anchor="middle"
+        font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif"
+        font-weight="400" font-size="13" fill="#6B7280"
+        letter-spacing="3.5">EVENT PLANNING MARKETPLACE</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 100" width="480" height="100">
+  <defs>
+    <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8636B"/>
+      <stop offset="100%" stop-color="#D4A05A"/>
+    </linearGradient>
+    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E8636B"/>
+      <stop offset="100%" stop-color="#D4A05A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon Mark -->
+  <g transform="translate(50, 50)">
+    <rect x="-36" y="-36" width="72" height="72" rx="15" ry="15" fill="url(#brandGradient)"/>
+    <path d="M0,-22 C3.3,-8.8 8.8,-3.3 22,0 C8.8,3.3 3.3,8.8 0,22 C-3.3,8.8 -8.8,3.3 -22,0 C-8.8,-3.3 -3.3,-8.8 0,-22Z"
+          fill="white" opacity="0.95" transform="translate(0,-2)"/>
+    <path d="M0,-13 C1.6,-5.2 5.2,-1.6 13,0 C5.2,1.6 1.6,5.2 0,13 C-1.6,5.2 -5.2,1.6 -13,0 C-5.2,-1.6 -1.6,-5.2 0,-13Z"
+          fill="white" opacity="0.3" transform="translate(0,-2) rotate(45)"/>
+    <g transform="translate(25,-19)">
+      <path d="M0,-4 C0.7,-1.6 1.6,-0.7 4,0 C1.6,0.7 0.7,1.6 0,4 C-0.7,1.6 -1.6,0.7 -4,0 C-1.6,-0.7 -0.7,-1.6 0,-4Z"
+            fill="white" opacity="0.8"/>
+    </g>
+    <g transform="translate(-24,-15)">
+      <path d="M0,-3 C0.5,-1.2 1.2,-0.5 3,0 C1.2,0.5 0.5,1.2 0,3 C-0.5,1.2 -1.2,0.5 -3,0 C-1.2,-0.5 -0.5,-1.2 0,-3Z"
+            fill="white" opacity="0.6"/>
+    </g>
+    <path d="M-12,24 Q0,31 12,24" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <circle cx="8" cy="28" r="1.2" fill="white" opacity="0.7"/>
+  </g>
+
+  <!-- Arabic text (white for dark backgrounds) -->
+  <text x="115" y="42" text-anchor="start"
+        font-family="'Readex Pro', 'Noto Sans Arabic', Arial, sans-serif"
+        font-weight="700" font-size="38" fill="url(#textGradient)"
+        direction="rtl" unicode-bidi="bidi-override">حفلتي</text>
+
+  <!-- English text (white for dark backgrounds) -->
+  <text x="115" y="72" text-anchor="start"
+        font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif"
+        font-weight="600" font-size="18" fill="white"
+        letter-spacing="2.5">HAFLATI</text>
+</svg>

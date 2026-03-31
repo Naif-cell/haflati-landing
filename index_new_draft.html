@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حفلتي — أول منصة سعودية لتنظيم المناسبات | Haflati</title>
+  <meta name="description" content="حفلتي هي أول منصة سعودية لتنظيم المناسبات. اكتشف أفضل مزودي خدمات الأعراس وأعياد الميلاد والتخرج في الرياض وجدة. احجز بثقة مع تقييمات موثّقة.">
+  <meta name="keywords" content="تنظيم مناسبات، حفلات، أعراس، زفاف، عيد ميلاد، تخرج، السعودية، الرياض، جدة، مزودي خدمات">
+  <meta name="author" content="Haflati">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://haflati.app/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://haflati.app/">
+  <meta property="og:title" content="حفلتي — أول منصة سعودية لتنظيم المناسبات | Haflati">
+  <meta property="og:description" content="اكتشف أفضل مزودي خدمات المناسبات في السعودية. احجز بثقة مع تقييمات موثّقة وأسعار شفافة.">
+  <meta property="og:image" content="https://haflati.app/images/og-cover.jpg">
+  <meta property="og:locale" content="ar_SA">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name" content="Haflati">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Haflati_app">
+  <meta name="twitter:title" content="حفلتي — أول منصة سعودية لتنظيم المناسبات">
+  <meta name="twitter:description" content="اكتشف أفضل مزودي خدمات المناسبات في السعودية. احجز بثقة مع تقييمات موثّقة.">
+  <meta name="twitter:image" content="https://haflati.app/images/og-cover.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="brand/favicon.svg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Haflati",
+        "alternateName": "حفلتي",
+        "url": "https://haflati.app",
+        "description": "Saudi Arabia's first event planning marketplace connecting customers with verified vendors.",
+        "foundingDate": "2026",
+        "areaServed": { "@type": "Country", "name": "Saudi Arabia" },
+        "sameAs": [
+          "https://x.com/Haflati_app",
+          "https://instagram.com/haflati.app",
+          "https://tiktok.com/@haflati.app"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "availableLanguage": ["Arabic", "English"],
+          "email": "hello@haflati.app"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "name": "Haflati",
+        "alternateName": "حفلتي",
+        "url": "https://haflati.app",
+        "inLanguage": ["ar", "en"]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ======= RESET & BASE ======= */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body { font-family: 'Readex Pro', 'Segoe UI', Tahoma, sans-serif; color: #1A1A2E; background: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    html[lang="en"] body { font-family: 'DM Sans', 'Segoe UI', sans-serif; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+    @media (min-width: 768px) { .container { padding: 0 32px; } }
+
+    /* ======= COLORS ======= */
+    :root {
+      --rose: #E8636B; --rose-dark: #c0444c; --gold: #D4A05A; --teal: #0D9488;
+      --purple: #7C3AED; --navy: #16213E; --dark: #1A1A2E; --light: #F8F9FA;
+      --text: #1A1A2E; --text-sub: #4A5568; --text-muted: #718096;
+      --border: #E2E8F0; --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+      --gradient: linear-gradient(135deg, #E8636B, #D4A05A);
+      --radius: 16px; --radius-sm: 10px; --radius-full: 50px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ======= ANIMATIONS ======= */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+    @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+    @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+    @keyframes countUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    [dir="rtl"] @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: 0.1s; } .reveal.d2 { transition-delay: 0.2s; }
+    .reveal.d3 { transition-delay: 0.3s; } .reveal.d4 { transition-delay: 0.4s; }
+
+    /* ======= HEADER ======= */
+    .header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 16px 0; transition: all var(--transition); }
+    .header.scrolled { background: rgba(26,26,46,0.95); backdrop-filter: blur(12px); padding: 10px 0; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+    .header__inner { display: flex; align-items: center; justify-content: space-between; }
+    .header__logo { display: flex; align-items: center; gap: 10px; font-size: 1.3rem; font-weight: 700; color: #fff; }
+    .header__logo img { height: 36px; }
+    .header__nav { display: none; gap: 28px; }
+    @media (min-width: 1024px) { .header__nav { display: flex; } }
+    .header__nav a { color: rgba(255,255,255,0.75); font-size: 0.9rem; font-weight: 500; transition: color var(--transition); }
+    .header__nav a:hover { color: #fff; }
+    .header__actions { display: flex; align-items: center; gap: 10px; }
+    .header__lang { background: rgba(255,255,255,0.12); border: none; color: #fff; padding: 6px 14px; border-radius: var(--radius-full); cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: all var(--transition); font-family: inherit; }
+    .header__lang:hover { background: rgba(255,255,255,0.2); }
+    .header__cta { background: var(--gradient); color: #fff; padding: 8px 22px; border-radius: var(--radius-full); font-size: 0.85rem; font-weight: 600; transition: all var(--transition); border: none; cursor: pointer; }
+    .header__cta:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(232,99,107,0.4); }
+    .header__burger { display: flex; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .header__burger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all var(--transition); }
+    .header__burger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .header__burger.open span:nth-child(2) { opacity: 0; }
+    .header__burger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    @media (min-width: 1024px) { .header__burger { display: none; } }
+
+    /* Mobile menu */
+    .mobile-menu { position: fixed; top: 0; right: 0; bottom: 0; width: 280px; background: var(--dark); z-index: 999; transform: translateX(100%); transition: transform var(--transition); padding: 80px 24px 24px; display: flex; flex-direction: column; gap: 4px; }
+    [dir="rtl"] .mobile-menu { right: auto; left: 0; transform: translateX(-100%); }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a { color: rgba(255,255,255,0.8); padding: 14px 0; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .mobile-menu a:hover { color: #fff; }
+    .mobile-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 998; opacity: 0; pointer-events: none; transition: opacity var(--transition); }
+    .mobile-overlay.open { opacity: 1; pointer-events: auto; }
+
+    /* ======= HERO ======= */
+    .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; background: linear-gradient(160deg, #1A1A2E 0%, #0f1629 40%, #16213E 100%); }
+    .hero::before { content: ''; position: absolute; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(232,99,107,0.15) 0%, transparent 70%); top: -200px; right: -200px; animation: float 8s ease-in-out infinite; }
+    .hero::after { content: ''; position: absolute; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(212,160,90,0.1) 0%, transparent 70%); bottom: -150px; left: -150px; animation: float 10s ease-in-out infinite reverse; }
+    .hero__inner { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; padding: 120px 0 80px; position: relative; z-index: 2; }
+    @media (min-width: 1024px) { .hero__inner { grid-template-columns: 1fr 1fr; padding: 140px 0 100px; } }
+    .hero__content { text-align: center; }
+    @media (min-width: 1024px) { .hero__content { text-align: start; } }
+
+    .hero__badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(232,99,107,0.15); border: 1px solid rgba(232,99,107,0.25); color: var(--rose); padding: 8px 18px; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 600; margin-bottom: 24px; animation: fadeUp 0.6s ease both; }
+    .hero__badge::before { content: ''; width: 8px; height: 8px; background: var(--rose); border-radius: 50%; animation: pulse 2s infinite; }
+    .hero__title { font-size: 2.5rem; font-weight: 800; color: #fff; line-height: 1.35; margin-bottom: 20px; animation: fadeUp 0.6s ease 0.15s both; }
+    .hero__title em { font-style: normal; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    @media (min-width: 768px) { .hero__title { font-size: 3.2rem; } }
+    @media (min-width: 1280px) { .hero__title { font-size: 3.8rem; } }
+    .hero__sub { color: rgba(255,255,255,0.65); font-size: 1.1rem; line-height: 1.8; max-width: 480px; margin-bottom: 32px; animation: fadeUp 0.6s ease 0.3s both; }
+    @media (min-width: 1024px) { .hero__sub { margin-inline-end: auto; } }
+
+    /* Hero Quiz / Event Selector */
+    .hero__quiz { background: rgba(255,255,255,0.06); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); padding: 24px; animation: fadeUp 0.6s ease 0.45s both; }
+    .hero__quiz-label { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 14px; display: block; }
+    .hero__quiz-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 16px; }
+    @media (min-width: 480px) { .hero__quiz-grid { grid-template-columns: repeat(5, 1fr); } }
+    .quiz-option { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-sm); padding: 14px 8px; text-align: center; cursor: pointer; transition: all var(--transition); }
+    .quiz-option:hover, .quiz-option.selected { background: rgba(232,99,107,0.15); border-color: var(--rose); }
+    .quiz-option__icon { font-size: 1.5rem; margin-bottom: 6px; display: block; }
+    .quiz-option__text { color: rgba(255,255,255,0.8); font-size: 0.7rem; font-weight: 500; }
+    .quiz-option.selected .quiz-option__text { color: #fff; }
+    .hero__quiz-cta { width: 100%; background: var(--gradient); color: #fff; border: none; padding: 14px; border-radius: var(--radius-sm); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all var(--transition); font-family: inherit; }
+    .hero__quiz-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,99,107,0.35); }
+
+    /* Hero Phone Mockup */
+    .hero__phone { position: relative; display: flex; justify-content: center; animation: fadeUp 0.8s ease 0.5s both; }
+    .hero__phone-device { width: 260px; height: 520px; background: #111; border-radius: 32px; border: 3px solid #333; position: relative; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.4), inset 0 0 0 1px rgba(255,255,255,0.05); }
+    @media (min-width: 768px) { .hero__phone-device { width: 280px; height: 560px; } }
+    .hero__phone-notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; background: #111; border-radius: 0 0 16px 16px; z-index: 3; }
+    .hero__phone-screen { padding: 40px 16px 16px; height: 100%; background: linear-gradient(180deg, #1A1A2E 0%, #16213E 100%); display: flex; flex-direction: column; gap: 12px; }
+    .phone-card { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 12px; display: flex; gap: 10px; align-items: center; animation: slideIn 0.5s ease both; }
+    .phone-card:nth-child(2) { animation-delay: 0.7s; }
+    .phone-card:nth-child(3) { animation-delay: 0.9s; }
+    .phone-card:nth-child(4) { animation-delay: 1.1s; }
+    .phone-card__img { width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0; }
+    .phone-card__info { flex: 1; }
+    .phone-card__name { color: #fff; font-size: 0.75rem; font-weight: 600; margin-bottom: 3px; }
+    .phone-card__cat { color: rgba(255,255,255,0.5); font-size: 0.65rem; }
+    .phone-card__stars { color: var(--gold); font-size: 0.6rem; }
+    .phone-card__price { color: var(--rose); font-size: 0.7rem; font-weight: 700; }
+    .hero__phone-glow { position: absolute; width: 300px; height: 300px; background: radial-gradient(circle, rgba(232,99,107,0.2) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; z-index: -1; animation: float 6s ease-in-out infinite; }
+
+    /* ======= TRUST BAR ======= */
+    .trust-bar { background: #fff; padding: 40px 0; border-bottom: 1px solid var(--border); }
+    .trust-bar__inner { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; text-align: center; }
+    @media (min-width: 768px) { .trust-bar__inner { grid-template-columns: repeat(4, 1fr); } }
+    .trust-item__number { font-size: 2rem; font-weight: 800; color: var(--dark); }
+    .trust-item__number span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .trust-item__label { color: var(--text-muted); font-size: 0.85rem; margin-top: 4px; }
+
+    /* ======= SECTION SHARED ======= */
+    .section { padding: 80px 0; }
+    @media (min-width: 768px) { .section { padding: 100px 0; } }
+    .section--dark { background: var(--dark); color: #fff; }
+    .section--light { background: var(--light); }
+    .section__label { display: inline-block; background: rgba(232,99,107,0.1); color: var(--rose); padding: 6px 16px; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 600; margin-bottom: 16px; }
+    .section--dark .section__label { background: rgba(232,99,107,0.15); }
+    .section__title { font-size: 2rem; font-weight: 800; line-height: 1.4; margin-bottom: 12px; }
+    @media (min-width: 768px) { .section__title { font-size: 2.5rem; } }
+    .section__sub { color: var(--text-sub); font-size: 1rem; line-height: 1.8; max-width: 560px; }
+    .section--dark .section__sub { color: rgba(255,255,255,0.6); }
+    .section__header { text-align: center; margin-bottom: 48px; }
+    .section__header .section__sub { margin: 0 auto; }
+
+    /* ======= HOW IT WORKS ======= */
+    .steps-grid { display: grid; grid-template-columns: 1fr; gap: 24px; position: relative; }
+    @media (min-width: 768px) { .steps-grid { grid-template-columns: repeat(3, 1fr); } }
+    .step-card { background: #fff; border-radius: var(--radius); padding: 32px 24px; text-align: center; position: relative; border: 1px solid var(--border); transition: all var(--transition); }
+    .step-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--rose); }
+    .step-card__num { width: 48px; height: 48px; background: var(--gradient); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 800; margin: 0 auto 20px; }
+    .step-card__title { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; color: var(--dark); }
+    .step-card__text { color: var(--text-sub); font-size: 0.9rem; line-height: 1.7; }
+
+    /* ======= EVENT CATEGORIES ======= */
+    .categories-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (min-width: 768px) { .categories-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .categories-grid { grid-template-columns: repeat(5, 1fr); } }
+    .cat-card { position: relative; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3/4; cursor: pointer; transition: all var(--transition); }
+    .cat-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .cat-card__bg { position: absolute; inset: 0; transition: transform 0.5s ease; }
+    .cat-card:hover .cat-card__bg { transform: scale(1.08); }
+    .cat-card__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 60%); z-index: 1; }
+    .cat-card__content { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; z-index: 2; }
+    .cat-card__icon { font-size: 1.8rem; margin-bottom: 8px; display: block; }
+    .cat-card__name { color: #fff; font-size: 1rem; font-weight: 700; }
+    .cat-card__count { color: rgba(255,255,255,0.6); font-size: 0.75rem; margin-top: 4px; }
+
+    /* ======= FEATURES ======= */
+    .features-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 768px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
+    .feat-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radius); padding: 28px; transition: all var(--transition); }
+    .feat-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(232,99,107,0.3); transform: translateY(-4px); }
+    .feat-card__icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 1.5rem; }
+    .feat-card__title { color: #fff; font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .feat-card__text { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.7; }
+
+    /* ======= APP PREVIEW ======= */
+    .preview { position: relative; overflow: hidden; }
+    .preview__inner { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
+    @media (min-width: 1024px) { .preview__inner { grid-template-columns: 1fr 1fr; } }
+    .preview__points { display: flex; flex-direction: column; gap: 20px; }
+    .preview-point { display: flex; gap: 16px; align-items: flex-start; }
+    .preview-point__icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.2rem; }
+    .preview-point__title { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .preview-point__text { color: var(--text-sub); font-size: 0.88rem; line-height: 1.6; }
+
+    /* ======= WAITLIST ======= */
+    .waitlist { background: linear-gradient(160deg, #1A1A2E, #16213E); padding: 80px 0; position: relative; overflow: hidden; }
+    .waitlist::before { content: ''; position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(232,99,107,0.12) 0%, transparent 70%); top: -100px; right: -100px; border-radius: 50%; }
+    .waitlist__inner { max-width: 560px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+    .waitlist__title { font-size: 2rem; font-weight: 800; color: #fff; margin-bottom: 12px; }
+    @media (min-width: 768px) { .waitlist__title { font-size: 2.5rem; } }
+    .waitlist__sub { color: rgba(255,255,255,0.6); margin-bottom: 32px; font-size: 1rem; line-height: 1.7; }
+    .waitlist__form { display: flex; flex-direction: column; gap: 14px; }
+    .waitlist__input { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: #fff; padding: 14px 18px; border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; transition: all var(--transition); }
+    .waitlist__input::placeholder { color: rgba(255,255,255,0.35); }
+    .waitlist__input:focus { outline: none; border-color: var(--rose); background: rgba(255,255,255,0.12); }
+    .waitlist__select { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); padding: 14px 18px; border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; cursor: pointer; appearance: none; }
+    .waitlist__select option { background: var(--dark); color: #fff; }
+    .waitlist__btn { background: var(--gradient); color: #fff; border: none; padding: 16px; border-radius: var(--radius-sm); font-size: 1.05rem; font-weight: 700; cursor: pointer; font-family: inherit; transition: all var(--transition); }
+    .waitlist__btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,99,107,0.35); }
+    .waitlist__note { color: rgba(255,255,255,0.4); font-size: 0.78rem; margin-top: 12px; }
+    .waitlist__counter { display: inline-flex; align-items: center; gap: 8px; background: rgba(232,99,107,0.12); border: 1px solid rgba(232,99,107,0.2); color: var(--rose); padding: 8px 18px; border-radius: var(--radius-full); font-size: 0.82rem; font-weight: 600; margin-bottom: 20px; }
+    .waitlist__success { display: none; text-align: center; padding: 40px 20px; }
+    .waitlist__success h3 { color: #fff; font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+    .waitlist__success p { color: rgba(255,255,255,0.6); }
+
+    /* ======= VENDOR CTA ======= */
+    .vendor-cta { background: #fff; padding: 60px 0; border-top: 1px solid var(--border); }
+    .vendor-cta__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 16px; }
+    @media (min-width: 768px) { .vendor-cta__inner { flex-direction: row; text-align: start; justify-content: space-between; } }
+    .vendor-cta__text h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; }
+    .vendor-cta__text p { color: var(--text-sub); font-size: 0.95rem; }
+    .vendor-cta__btn { background: var(--dark); color: #fff; padding: 12px 28px; border-radius: var(--radius-full); font-size: 0.95rem; font-weight: 600; transition: all var(--transition); white-space: nowrap; }
+    .vendor-cta__btn:hover { background: var(--navy); transform: translateY(-2px); }
+
+    /* ======= COUNTDOWN ======= */
+    .countdown { display: flex; gap: 16px; justify-content: center; margin-top: 12px; }
+    @media (min-width: 1024px) { .countdown { justify-content: flex-start; } }
+    .countdown__item { text-align: center; }
+    .countdown__num { display: block; font-size: 1.8rem; font-weight: 800; color: #fff; line-height: 1; }
+    .countdown__label { color: rgba(255,255,255,0.4); font-size: 0.7rem; margin-top: 4px; }
+
+    /* ======= FAQ ======= */
+    .faq-list { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; transition: all var(--transition); }
+    .faq-item:hover { border-color: rgba(232,99,107,0.3); }
+    .faq-item.open { border-color: var(--rose); box-shadow: 0 4px 16px rgba(232,99,107,0.08); }
+    .faq-q { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px; cursor: pointer; font-weight: 600; font-size: 0.95rem; gap: 12px; }
+    .faq-q__icon { width: 28px; height: 28px; border-radius: 50%; background: var(--light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all var(--transition); font-size: 1.1rem; color: var(--text-sub); }
+    .faq-item.open .faq-q__icon { background: var(--rose); color: #fff; transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-a__inner { padding: 0 20px 18px; color: var(--text-sub); font-size: 0.9rem; line-height: 1.8; }
+
+    /* ======= BLOG PREVIEW ======= */
+    .blog-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 768px) { .blog-grid { grid-template-columns: repeat(3, 1fr); } }
+    .blog-card { background: #fff; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); transition: all var(--transition); display: flex; flex-direction: column; }
+    .blog-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .blog-card__img { height: 180px; display: flex; align-items: center; justify-content: center; }
+    .blog-card__body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .blog-card__tag { display: inline-block; padding: 3px 10px; border-radius: var(--radius-full); font-size: 0.7rem; font-weight: 600; width: fit-content; margin-bottom: 10px; }
+    .blog-card__title { font-size: 1rem; font-weight: 700; line-height: 1.6; margin-bottom: 8px; }
+    .blog-card__link { color: var(--rose); font-size: 0.8rem; font-weight: 600; margin-top: auto; }
+
+    /* ======= FOOTER ======= */
+    .footer { background: #0A0A14; padding: 60px 0 24px; }
+    .footer__grid { display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 40px; }
+    @media (min-width: 768px) { .footer__grid { grid-template-columns: 2fr 1fr 1fr; } }
+    .footer__brand { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .footer__desc { color: rgba(255,255,255,0.45); font-size: 0.85rem; line-height: 1.7; max-width: 300px; }
+    .footer__social { display: flex; gap: 10px; margin-top: 16px; }
+    .footer__social a { width: 38px; height: 38px; border-radius: 10px; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.5); transition: all var(--transition); }
+    .footer__social a:hover { background: var(--rose); color: #fff; }
+    .footer__social a svg { width: 16px; height: 16px; fill: currentColor; }
+    .footer__col-title { color: rgba(255,255,255,0.8); font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; }
+    .footer__link { display: block; color: rgba(255,255,255,0.4); font-size: 0.85rem; padding: 5px 0; transition: color var(--transition); }
+    .footer__link:hover { color: var(--rose); }
+    .footer__bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 20px; display: flex; flex-direction: column; gap: 12px; align-items: center; text-align: center; }
+    @media (min-width: 768px) { .footer__bottom { flex-direction: row; justify-content: space-between; } }
+    .footer__copy { color: rgba(255,255,255,0.3); font-size: 0.8rem; }
+    .footer__badge { display: inline-flex; align-items: center; gap: 6px; color: rgba(255,255,255,0.3); font-size: 0.75rem; }
+    .footer__badge svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* ======= STICKY MOBILE CTA ======= */
+    .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(26,26,46,0.95); backdrop-filter: blur(12px); padding: 12px 20px; z-index: 900; transform: translateY(100%); transition: transform var(--transition); display: flex; gap: 10px; align-items: center; border-top: 1px solid rgba(255,255,255,0.08); }
+    .sticky-cta.visible { transform: translateY(0); }
+    .sticky-cta__text { flex: 1; color: #fff; font-size: 0.85rem; font-weight: 600; }
+    .sticky-cta__text small { color: rgba(255,255,255,0.5); font-weight: 400; display: block; font-size: 0.72rem; }
+    .sticky-cta__btn { background: var(--gradient); color: #fff; border: none; padding: 10px 20px; border-radius: var(--radius-full); font-size: 0.85rem; font-weight: 700; cursor: pointer; font-family: inherit; white-space: nowrap; }
+    @media (min-width: 1024px) { .sticky-cta { display: none; } }
+
+    /* ======= WhatsApp FAB ======= */
+    .fab-wa { position: fixed; bottom: 80px; left: 20px; width: 52px; height: 52px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 800; box-shadow: 0 4px 16px rgba(37,211,102,0.3); transition: all var(--transition); }
+    [dir="rtl"] .fab-wa { left: auto; right: 20px; }
+    .fab-wa:hover { transform: scale(1.1); }
+    .fab-wa svg { width: 26px; height: 26px; fill: #fff; }
+    @media (min-width: 1024px) { .fab-wa { bottom: 24px; } }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="/" class="header__logo" aria-label="Haflati">
+        <img src="brand/logo-horizontal.svg" alt="Haflati" height="32" onerror="this.style.display='none'">
+        <span data-ar="حفلتي" data-en="Haflati">حفلتي</span>
+      </a>
+      <nav class="header__nav">
+        <a href="#how" data-ar="كيف نعمل" data-en="How It Works">كيف نعمل</a>
+        <a href="#categories" data-ar="المناسبات" data-en="Events">المناسبات</a>
+        <a href="#features" data-ar="المميزات" data-en="Features">المميزات</a>
+        <a href="blog/index.html" data-ar="المدونة" data-en="Blog">المدونة</a>
+        <a href="#faq" data-ar="الأسئلة" data-en="FAQ">الأسئلة</a>
+      </nav>
+      <div class="header__actions">
+        <button class="header__lang" id="lang-toggle" data-ar="EN" data-en="عربي">EN</button>
+        <a href="#waitlist" class="header__cta" data-ar="سجّل الآن" data-en="Join Waitlist">سجّل الآن</a>
+        <button class="header__burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-overlay" id="mob-overlay"></div>
+  <div class="mobile-menu" id="mob-menu">
+    <a href="#how" data-ar="كيف نعمل" data-en="How It Works">كيف نعمل</a>
+    <a href="#categories" data-ar="المناسبات" data-en="Events">المناسبات</a>
+    <a href="#features" data-ar="المميزات" data-en="Features">المميزات</a>
+    <a href="blog/index.html" data-ar="المدونة" data-en="Blog">المدونة</a>
+    <a href="#faq" data-ar="الأسئلة" data-en="FAQ">الأسئلة</a>
+    <a href="vendors.html" data-ar="انضم كمزود" data-en="Join as Vendor">انضم كمزود</a>
+    <a href="#waitlist" style="background:var(--gradient);color:#fff;text-align:center;border-radius:var(--radius-sm);padding:14px;margin-top:12px;border:none;font-weight:700;" data-ar="سجّل الآن" data-en="Join Waitlist">سجّل الآن</a>
+  </div>
+
+  <main>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <div class="hero__badge" data-ar="الإطلاق — صيف 2026" data-en="Launching — Summer 2026">الإطلاق — صيف 2026</div>
+          <h1 class="hero__title">
+            <span data-ar="حفلتك المثالية" data-en="Your Perfect Event">حفلتك المثالية</span><br>
+            <em data-ar="تبدأ هنا" data-en="Starts Here">تبدأ هنا</em>
+          </h1>
+          <p class="hero__sub" data-ar="أول منصة سعودية تربطك بأفضل مزودي خدمات المناسبات — مصورين، قاعات، ضيافة، ديكور — كل شيء في مكان واحد." data-en="Saudi Arabia's first marketplace connecting you with the best event vendors — photographers, venues, catering, decor — all in one place.">أول منصة سعودية تربطك بأفضل مزودي خدمات المناسبات — مصورين، قاعات، ضيافة، ديكور — كل شيء في مكان واحد.</p>
+
+          <!-- Event Type Quiz -->
+          <div class="hero__quiz">
+            <span class="hero__quiz-label" data-ar="ايش مناسبتك؟" data-en="What's your event?">ايش مناسبتك؟</span>
+            <div class="hero__quiz-grid" id="quiz-grid">
+              <div class="quiz-option" data-event="wedding">
+                <span class="quiz-option__icon">💍</span>
+                <span class="quiz-option__text" data-ar="زواج" data-en="Wedding">زواج</span>
+              </div>
+              <div class="quiz-option" data-event="birthday">
+                <span class="quiz-option__icon">🎂</span>
+                <span class="quiz-option__text" data-ar="عيد ميلاد" data-en="Birthday">عيد ميلاد</span>
+              </div>
+              <div class="quiz-option" data-event="graduation">
+                <span class="quiz-option__icon">🎓</span>
+                <span class="quiz-option__text" data-ar="تخرج" data-en="Graduation">تخرج</span>
+              </div>
+              <div class="quiz-option" data-event="baby-shower">
+                <span class="quiz-option__icon">👶</span>
+                <span class="quiz-option__text" data-ar="مولود" data-en="Baby Shower">مولود</span>
+              </div>
+              <div class="quiz-option" data-event="corporate">
+                <span class="quiz-option__icon">🏢</span>
+                <span class="quiz-option__text" data-ar="شركات" data-en="Corporate">شركات</span>
+              </div>
+            </div>
+            <button class="hero__quiz-cta" id="quiz-cta" data-ar="سجّل في قائمة الانتظار" data-en="Join the Waitlist">سجّل في قائمة الانتظار</button>
+          </div>
+
+          <!-- Countdown -->
+          <div class="countdown" id="countdown">
+            <div class="countdown__item"><span class="countdown__num" id="cd-days">--</span><span class="countdown__label" data-ar="يوم" data-en="Days">يوم</span></div>
+            <div class="countdown__item"><span class="countdown__num" id="cd-hours">--</span><span class="countdown__label" data-ar="ساعة" data-en="Hours">ساعة</span></div>
+            <div class="countdown__item"><span class="countdown__num" id="cd-mins">--</span><span class="countdown__label" data-ar="دقيقة" data-en="Min">دقيقة</span></div>
+            <div class="countdown__item"><span class="countdown__num" id="cd-secs">--</span><span class="countdown__label" data-ar="ثانية" data-en="Sec">ثانية</span></div>
+          </div>
+        </div>
+
+        <!-- Phone Mockup -->
+        <div class="hero__phone">
+          <div class="hero__phone-device">
+            <div class="hero__phone-notch"></div>
+            <div class="hero__phone-screen">
+              <div style="color:rgba(255,255,255,0.5);font-size:0.65rem;text-align:center;padding:8px 0;">حفلتي</div>
+              <div class="phone-card">
+                <div class="phone-card__img" style="background:linear-gradient(135deg,#E8636B,#c0444c);"></div>
+                <div class="phone-card__info">
+                  <div class="phone-card__name">استديو لمسات</div>
+                  <div class="phone-card__cat">تصوير مناسبات — الرياض</div>
+                  <div class="phone-card__stars">★★★★★ 4.9</div>
+                </div>
+                <div class="phone-card__price">1,200 ر.س</div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card__img" style="background:linear-gradient(135deg,#D4A05A,#B07A35);"></div>
+                <div class="phone-card__info">
+                  <div class="phone-card__name">قاعة الماسة</div>
+                  <div class="phone-card__cat">قاعات أفراح — جدة</div>
+                  <div class="phone-card__stars">★★★★★ 4.8</div>
+                </div>
+                <div class="phone-card__price">8,500 ر.س</div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card__img" style="background:linear-gradient(135deg,#0D9488,#065f56);"></div>
+                <div class="phone-card__info">
+                  <div class="phone-card__name">ضيافة الورد</div>
+                  <div class="phone-card__cat">كاترينق — الدمام</div>
+                  <div class="phone-card__stars">★★★★☆ 4.7</div>
+                </div>
+                <div class="phone-card__price">3,200 ر.س</div>
+              </div>
+              <div class="phone-card">
+                <div class="phone-card__img" style="background:linear-gradient(135deg,#7C3AED,#5B21B6);"></div>
+                <div class="phone-card__info">
+                  <div class="phone-card__name">ديكور الأحلام</div>
+                  <div class="phone-card__cat">تنسيق وديكور — الرياض</div>
+                  <div class="phone-card__stars">★★★★★ 4.9</div>
+                </div>
+                <div class="phone-card__price">2,800 ر.س</div>
+              </div>
+            </div>
+          </div>
+          <div class="hero__phone-glow"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TRUST BAR ===== -->
+    <section class="trust-bar">
+      <div class="container trust-bar__inner">
+        <div class="trust-item reveal">
+          <div class="trust-item__number"><span data-target="500">0</span>+</div>
+          <div class="trust-item__label" data-ar="مزود خدمة مسجّل" data-en="Registered Vendors">مزود خدمة مسجّل</div>
+        </div>
+        <div class="trust-item reveal d1">
+          <div class="trust-item__number"><span data-target="5">0</span></div>
+          <div class="trust-item__label" data-ar="أنواع مناسبات" data-en="Event Types">أنواع مناسبات</div>
+        </div>
+        <div class="trust-item reveal d2">
+          <div class="trust-item__number"><span data-target="3">0</span></div>
+          <div class="trust-item__label" data-ar="مدن سعودية" data-en="Saudi Cities">مدن سعودية</div>
+        </div>
+        <div class="trust-item reveal d3">
+          <div class="trust-item__number"><span>100</span>%</div>
+          <div class="trust-item__label" data-ar="مزودين موثّقين" data-en="Verified Vendors">مزودين موثّقين</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOW IT WORKS ===== -->
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__label" data-ar="كيف نعمل" data-en="How It Works">كيف نعمل</span>
+          <h2 class="section__title" data-ar="ثلاث خطوات لمناسبة مثالية" data-en="Three Steps to Your Perfect Event">ثلاث خطوات لمناسبة مثالية</h2>
+          <p class="section__sub" data-ar="من البحث إلى الحجز — حفلتي تسهّل كل شيء" data-en="From browsing to booking — Haflati makes it easy">من البحث إلى الحجز — حفلتي تسهّل كل شيء</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card reveal">
+            <div class="step-card__num">1</div>
+            <h3 class="step-card__title" data-ar="اختر مناسبتك" data-en="Choose Your Event">اختر مناسبتك</h3>
+            <p class="step-card__text" data-ar="حدد نوع المناسبة والمدينة والميزانية — وسنعرض لك أفضل الخيارات المناسبة" data-en="Select your event type, city, and budget — we'll show you the best matching options">حدد نوع المناسبة والمدينة والميزانية — وسنعرض لك أفضل الخيارات المناسبة</p>
+          </div>
+          <div class="step-card reveal d1">
+            <div class="step-card__num">2</div>
+            <h3 class="step-card__title" data-ar="قارن واختر" data-en="Compare & Choose">قارن واختر</h3>
+            <p class="step-card__text" data-ar="شاهد التقييمات والأسعار ومعرض الأعمال — واختر المزود اللي يعجبك" data-en="See reviews, prices, and portfolios — choose the vendor you love">شاهد التقييمات والأسعار ومعرض الأعمال — واختر المزود اللي يعجبك</p>
+          </div>
+          <div class="step-card reveal d2">
+            <div class="step-card__num">3</div>
+            <h3 class="step-card__title" data-ar="احجز واستمتع" data-en="Book & Enjoy">احجز واستمتع</h3>
+            <p class="step-card__text" data-ar="تواصل مع المزود مباشرة واحجز — واستمتع بمناسبة لا تُنسى" data-en="Contact the vendor directly, book — and enjoy an unforgettable event">تواصل مع المزود مباشرة واحجز — واستمتع بمناسبة لا تُنسى</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EVENT CATEGORIES ===== -->
+    <section class="section section--light" id="categories">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__label" data-ar="المناسبات" data-en="Event Types">المناسبات</span>
+          <h2 class="section__title" data-ar="كل مناسبة لها مكانها عندنا" data-en="Every Event Has Its Place">كل مناسبة لها مكانها عندنا</h2>
+        </div>
+        <div class="categories-grid">
+          <div class="cat-card reveal" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+            <div class="cat-card__bg" style="background:linear-gradient(135deg,#E8636B,#8B1A1A);"></div>
+            <div class="cat-card__overlay"></div>
+            <div class="cat-card__content">
+              <span class="cat-card__icon">💍</span>
+              <div class="cat-card__name" data-ar="أعراس وزفاف" data-en="Weddings">أعراس وزفاف</div>
+              <div class="cat-card__count" data-ar="قاعات، تصوير، ضيافة، ديكور" data-en="Venues, Photography, Catering, Decor">قاعات، تصوير، ضيافة، ديكور</div>
+            </div>
+          </div>
+          <div class="cat-card reveal d1" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+            <div class="cat-card__bg" style="background:linear-gradient(135deg,#7C3AED,#3B0764);"></div>
+            <div class="cat-card__overlay"></div>
+            <div class="cat-card__content">
+              <span class="cat-card__icon">🎂</span>
+              <div class="cat-card__name" data-ar="أعياد ميلاد" data-en="Birthdays">أعياد ميلاد</div>
+              <div class="cat-card__count" data-ar="ثيمات، كيك، ترفيه، بالونات" data-en="Themes, Cakes, Entertainment, Balloons">ثيمات، كيك، ترفيه، بالونات</div>
+            </div>
+          </div>
+          <div class="cat-card reveal d2" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+            <div class="cat-card__bg" style="background:linear-gradient(135deg,#D4A05A,#6B4226);"></div>
+            <div class="cat-card__overlay"></div>
+            <div class="cat-card__content">
+              <span class="cat-card__icon">🎓</span>
+              <div class="cat-card__name" data-ar="حفلات تخرج" data-en="Graduations">حفلات تخرج</div>
+              <div class="cat-card__count" data-ar="تنسيق، تصوير، هدايا، ضيافة" data-en="Coordination, Photography, Gifts, Catering">تنسيق، تصوير، هدايا، ضيافة</div>
+            </div>
+          </div>
+          <div class="cat-card reveal d3" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+            <div class="cat-card__bg" style="background:linear-gradient(135deg,#0D9488,#064E3B);"></div>
+            <div class="cat-card__overlay"></div>
+            <div class="cat-card__content">
+              <span class="cat-card__icon">👶</span>
+              <div class="cat-card__name" data-ar="استقبال مولود" data-en="Baby Showers">استقبال مولود</div>
+              <div class="cat-card__count" data-ar="تجهيزات، توزيعات، ديكور" data-en="Setup, Favors, Decor">تجهيزات، توزيعات، ديكور</div>
+            </div>
+          </div>
+          <div class="cat-card reveal d4" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})">
+            <div class="cat-card__bg" style="background:linear-gradient(135deg,#16213E,#0A0A14);"></div>
+            <div class="cat-card__overlay"></div>
+            <div class="cat-card__content">
+              <span class="cat-card__icon">🏢</span>
+              <div class="cat-card__name" data-ar="فعاليات شركات" data-en="Corporate Events">فعاليات شركات</div>
+              <div class="cat-card__count" data-ar="مؤتمرات، ورش عمل، حفلات تكريم" data-en="Conferences, Workshops, Award Ceremonies">مؤتمرات، ورش عمل، حفلات تكريم</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="section section--dark" id="features">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__label" data-ar="مميزات حفلتي" data-en="Why Haflati">مميزات حفلتي</span>
+          <h2 class="section__title" style="color:#fff" data-ar="ليش حفلتي مختلفة؟" data-en="What Makes Haflati Different?">ليش حفلتي مختلفة؟</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feat-card reveal">
+            <div class="feat-card__icon" style="background:rgba(232,99,107,0.15);">🔍</div>
+            <h3 class="feat-card__title" data-ar="بحث ذكي ومقارنة" data-en="Smart Search & Compare">بحث ذكي ومقارنة</h3>
+            <p class="feat-card__text" data-ar="قارن بين المزودين بناءً على السعر، التقييم، والموقع — بضغطة زر" data-en="Compare vendors by price, rating, and location — in one tap">قارن بين المزودين بناءً على السعر، التقييم، والموقع — بضغطة زر</p>
+          </div>
+          <div class="feat-card reveal d1">
+            <div class="feat-card__icon" style="background:rgba(212,160,90,0.15);">⭐</div>
+            <h3 class="feat-card__title" data-ar="تقييمات حقيقية موثّقة" data-en="Real Verified Reviews">تقييمات حقيقية موثّقة</h3>
+            <p class="feat-card__text" data-ar="كل تقييم من عميل حقيقي حجز فعلاً — ما فيه تقييمات وهمية" data-en="Every review from a real customer who actually booked — no fake reviews">كل تقييم من عميل حقيقي حجز فعلاً — ما فيه تقييمات وهمية</p>
+          </div>
+          <div class="feat-card reveal d2">
+            <div class="feat-card__icon" style="background:rgba(13,148,136,0.15);">📋</div>
+            <h3 class="feat-card__title" data-ar="قائمة تجهيزات ذكية" data-en="Smart Event Checklist">قائمة تجهيزات ذكية</h3>
+            <p class="feat-card__text" data-ar="ما تنسى شيء — قائمة مخصصة لنوع مناسبتك تذكّرك بكل التفاصيل" data-en="Never forget a thing — a custom checklist for your event type reminds you of every detail">ما تنسى شيء — قائمة مخصصة لنوع مناسبتك تذكّرك بكل التفاصيل</p>
+          </div>
+          <div class="feat-card reveal d3">
+            <div class="feat-card__icon" style="background:rgba(124,58,237,0.15);">💰</div>
+            <h3 class="feat-card__title" data-ar="حاسبة الميزانية" data-en="Budget Calculator">حاسبة الميزانية</h3>
+            <p class="feat-card__text" data-ar="حدد ميزانيتك ونساعدك توزعها صح على كل الخدمات" data-en="Set your budget and we'll help you distribute it wisely across all services">حدد ميزانيتك ونساعدك توزعها صح على كل الخدمات</p>
+          </div>
+          <div class="feat-card reveal d4">
+            <div class="feat-card__icon" style="background:rgba(232,99,107,0.15);">📸</div>
+            <h3 class="feat-card__title" data-ar="معرض أعمال مرئي" data-en="Visual Portfolio Gallery">معرض أعمال مرئي</h3>
+            <p class="feat-card__text" data-ar="شاهد أعمال المزودين الفعلية قبل ما تحجز — صور وفيديوهات حقيقية" data-en="See vendors' actual work before booking — real photos and videos">شاهد أعمال المزودين الفعلية قبل ما تحجز — صور وفيديوهات حقيقية</p>
+          </div>
+          <div class="feat-card reveal">
+            <div class="feat-card__icon" style="background:rgba(212,160,90,0.15);">💬</div>
+            <h3 class="feat-card__title" data-ar="تواصل مباشر" data-en="Direct Chat">تواصل مباشر</h3>
+            <p class="feat-card__text" data-ar="تواصل مع المزود مباشرة من التطبيق — بدون وسيط" data-en="Chat directly with vendors from the app — no middleman">تواصل مع المزود مباشرة من التطبيق — بدون وسيط</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WAITLIST ===== -->
+    <section class="waitlist" id="waitlist">
+      <div class="container waitlist__inner">
+        <div class="waitlist__counter" data-ar="انضم لقائمة الانتظار" data-en="Join the Waitlist">انضم لقائمة الانتظار</div>
+        <h2 class="waitlist__title" data-ar="كن أول من يجرّب حفلتي" data-en="Be the First to Try Haflati">كن أول من يجرّب حفلتي</h2>
+        <p class="waitlist__sub" data-ar="سجّل الآن واحصل على 3 أشهر بريميوم مجاناً عند الإطلاق" data-en="Register now and get 3 months Premium free at launch">سجّل الآن واحصل على 3 أشهر بريميوم مجاناً عند الإطلاق</p>
+        <form class="waitlist__form" id="waitlist-form">
+          <input class="waitlist__input" type="text" name="name" required placeholder="الاسم" data-ar-placeholder="الاسم" data-en-placeholder="Full Name">
+          <input class="waitlist__input" type="tel" name="phone" required placeholder="05xxxxxxxx" data-ar-placeholder="05xxxxxxxx" data-en-placeholder="05xxxxxxxx">
+          <select class="waitlist__select" name="city" required>
+            <option value="" disabled selected data-ar="اختر مدينتك" data-en="Choose your city">اختر مدينتك</option>
+            <option value="riyadh" data-ar="الرياض" data-en="Riyadh">الرياض</option>
+            <option value="jeddah" data-ar="جدة" data-en="Jeddah">جدة</option>
+            <option value="dammam" data-ar="الدمام" data-en="Dammam">الدمام</option>
+            <option value="makkah" data-ar="مكة" data-en="Makkah">مكة</option>
+            <option value="madinah" data-ar="المدينة" data-en="Madinah">المدينة</option>
+            <option value="other" data-ar="مدينة أخرى" data-en="Other">مدينة أخرى</option>
+          </select>
+          <select class="waitlist__select" name="event_type" required>
+            <option value="" disabled selected data-ar="نوع المناسبة" data-en="Event type">نوع المناسبة</option>
+            <option value="wedding" data-ar="زواج" data-en="Wedding">زواج</option>
+            <option value="birthday" data-ar="عيد ميلاد" data-en="Birthday">عيد ميلاد</option>
+            <option value="graduation" data-ar="تخرج" data-en="Graduation">تخرج</option>
+            <option value="baby-shower" data-ar="استقبال مولود" data-en="Baby Shower">استقبال مولود</option>
+            <option value="corporate" data-ar="فعالية شركات" data-en="Corporate">فعالية شركات</option>
+          </select>
+          <button class="waitlist__btn" type="submit" data-ar="احجز مكانك الآن" data-en="Reserve Your Spot">احجز مكانك الآن</button>
+        </form>
+        <p class="waitlist__note" data-ar="مجاناً — بدون بطاقة ائتمان — لأول المسجلين فقط" data-en="Free — No credit card — Early members only">مجاناً — بدون بطاقة ائتمان — لأول المسجلين فقط</p>
+        <div class="waitlist__success" id="waitlist-form-success">
+          <h3 data-ar="تم التسجيل بنجاح! 🎉" data-en="Successfully Registered! 🎉">تم التسجيل بنجاح!</h3>
+          <p data-ar="بنرسل لك إشعار قبل الإطلاق. شكراً لثقتك بحفلتي!" data-en="We'll notify you before launch. Thanks for trusting Haflati!">بنرسل لك إشعار قبل الإطلاق. شكراً لثقتك بحفلتي!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VENDOR CTA (minimal) ===== -->
+    <section class="vendor-cta">
+      <div class="container vendor-cta__inner">
+        <div class="vendor-cta__text">
+          <h3 data-ar="عندك خدمة مناسبات؟ انضم لأول 100 مزود" data-en="Have an event service? Join our first 100 vendors">عندك خدمة مناسبات؟ انضم لأول 100 مزود</h3>
+          <p data-ar="6 أشهر مجاناً — بدون رسوم تسجيل — وصول لآلاف العملاء" data-en="6 months free — No registration fees — Reach thousands of clients">6 أشهر مجاناً — بدون رسوم تسجيل — وصول لآلاف العملاء</p>
+        </div>
+        <a href="vendors.html" class="vendor-cta__btn" data-ar="سجّل كمزود" data-en="Register as Vendor">سجّل كمزود</a>
+      </div>
+    </section>
+
+    <!-- ===== BLOG PREVIEW ===== -->
+    <section class="section section--light">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__label" data-ar="المدونة" data-en="Blog">المدونة</span>
+          <h2 class="section__title" data-ar="نصائح لمناسبتك القادمة" data-en="Tips for Your Next Event">نصائح لمناسبتك القادمة</h2>
+        </div>
+        <div class="blog-grid">
+          <a href="blog/wedding-tips-riyadh.html" class="blog-card reveal">
+            <div class="blog-card__img" style="background:linear-gradient(135deg,#E8636B,#16213E);display:flex;align-items:center;justify-content:center;font-size:3rem;">💍</div>
+            <div class="blog-card__body">
+              <span class="blog-card__tag" style="background:rgba(232,99,107,0.1);color:#E8636B;">أعراس</span>
+              <h3 class="blog-card__title">10 نصائح لتنظيم زفاف مثالي في الرياض</h3>
+              <span class="blog-card__link">اقرأ المقال ←</span>
+            </div>
+          </a>
+          <a href="blog/kids-birthday-themes.html" class="blog-card reveal d1">
+            <div class="blog-card__img" style="background:linear-gradient(135deg,#7C3AED,#D4A05A);display:flex;align-items:center;justify-content:center;font-size:3rem;">🎂</div>
+            <div class="blog-card__body">
+              <span class="blog-card__tag" style="background:rgba(124,58,237,0.1);color:#7C3AED;">أعياد ميلاد</span>
+              <h3 class="blog-card__title">أفضل ثيمات أعياد الميلاد للأطفال في 2026</h3>
+              <span class="blog-card__link">اقرأ المقال ←</span>
+            </div>
+          </a>
+          <a href="blog/choose-event-photographer.html" class="blog-card reveal d2">
+            <div class="blog-card__img" style="background:linear-gradient(135deg,#0D9488,#16213E);display:flex;align-items:center;justify-content:center;font-size:3rem;">📸</div>
+            <div class="blog-card__body">
+              <span class="blog-card__tag" style="background:rgba(13,148,136,0.1);color:#0D9488;">نصائح</span>
+              <h3 class="blog-card__title">كيف تختار مصور مناسبات محترف؟</h3>
+              <span class="blog-card__link">اقرأ المقال ←</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section__header">
+          <span class="section__label" data-ar="أسئلة شائعة" data-en="FAQ">أسئلة شائعة</span>
+          <h2 class="section__title" data-ar="عندك سؤال؟" data-en="Have Questions?">عندك سؤال؟</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-q"><span data-ar="متى يطلق التطبيق؟" data-en="When does the app launch?">متى يطلق التطبيق؟</span><span class="faq-q__icon">+</span></div>
+            <div class="faq-a"><div class="faq-a__inner" data-ar="حفلتي يطلق صيف 2026 على Google Play. سجّل في قائمة الانتظار وبنرسل لك إشعار قبل الإطلاق." data-en="Haflati launches Summer 2026 on Google Play. Join the waitlist and we'll notify you before launch.">حفلتي يطلق صيف 2026 على Google Play. سجّل في قائمة الانتظار وبنرسل لك إشعار قبل الإطلاق.</div></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span data-ar="هل التطبيق مجاني؟" data-en="Is the app free?">هل التطبيق مجاني؟</span><span class="faq-q__icon">+</span></div>
+            <div class="faq-a"><div class="faq-a__inner" data-ar="البحث والتصفح مجاني بالكامل. فيه اشتراك بريميوم اختياري بـ 29 ريال/شهر يعطيك مميزات إضافية مثل قوائم تجهيزات ذكية وحاسبة ميزانية." data-en="Browsing and searching is completely free. There's an optional Premium subscription at 29 SAR/month for smart checklists and budget calculator.">البحث والتصفح مجاني بالكامل. فيه اشتراك بريميوم اختياري بـ 29 ريال/شهر يعطيك مميزات إضافية مثل قوائم تجهيزات ذكية وحاسبة ميزانية.</div></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span data-ar="أي مدن متوفر فيها؟" data-en="Which cities are available?">أي مدن متوفر فيها؟</span><span class="faq-q__icon">+</span></div>
+            <div class="faq-a"><div class="faq-a__inner" data-ar="نبدأ بالرياض وجدة والدمام، وبنتوسع لمدن أكثر بعد الإطلاق." data-en="We start with Riyadh, Jeddah, and Dammam, and will expand to more cities after launch.">نبدأ بالرياض وجدة والدمام، وبنتوسع لمدن أكثر بعد الإطلاق.</div></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span data-ar="كيف أتواصل مع المزودين؟" data-en="How do I contact vendors?">كيف أتواصل مع المزودين؟</span><span class="faq-q__icon">+</span></div>
+            <div class="faq-a"><div class="faq-a__inner" data-ar="من خلال التطبيق تقدر تتواصل مع أي مزود مباشرة عبر المحادثة الفورية، أو تطلب عرض سعر." data-en="Through the app you can directly message any vendor via instant chat or request a price quote.">من خلال التطبيق تقدر تتواصل مع أي مزود مباشرة عبر المحادثة الفورية، أو تطلب عرض سعر.</div></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span data-ar="كيف أضمن جودة المزودين؟" data-en="How is vendor quality guaranteed?">كيف أضمن جودة المزودين؟</span><span class="faq-q__icon">+</span></div>
+            <div class="faq-a"><div class="faq-a__inner" data-ar="كل مزود يمر بعملية تحقق قبل القبول — نراجع السجل التجاري ومعرض الأعمال والتقييمات. المزودين اللي ما يلتزمون بالمعايير يتم إزالتهم." data-en="Every vendor goes through verification before acceptance — we review commercial registration, portfolio, and ratings. Vendors who don't meet standards are removed.">كل مزود يمر بعملية تحقق قبل القبول — نراجع السجل التجاري ومعرض الأعمال والتقييمات. المزودين اللي ما يلتزمون بالمعايير يتم إزالتهم.</div></div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q"><span data-ar="أقدر أكون مزود خدمة؟" data-en="Can I join as a vendor?">أقدر أكون مزود خدمة؟</span><span class="faq-q__icon">+</span></div>
+            <div class="faq-a"><div class="faq-a__inner" data-ar="أكيد! سجّل من صفحة المزودين واحصل على 6 أشهر مجاناً. نقبل مصورين، قاعات، ضيافة، ديكور، منسقين، وأكثر." data-en="Absolutely! Register from the vendors page and get 6 months free. We accept photographers, venues, catering, decor, coordinators, and more.">أكيد! سجّل من صفحة المزودين واحصل على 6 أشهر مجاناً. نقبل مصورين، قاعات، ضيافة، ديكور، منسقين، وأكثر.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand" data-ar="حفلتي" data-en="Haflati">حفلتي</div>
+          <p class="footer__desc" data-ar="أول منصة سعودية لتنظيم المناسبات. نربط بين العملاء وأفضل مزودي الخدمات الموثّقين." data-en="Saudi Arabia's first event planning marketplace. Connecting customers with verified vendors.">أول منصة سعودية لتنظيم المناسبات. نربط بين العملاء وأفضل مزودي الخدمات الموثّقين.</p>
+          <div class="footer__social">
+            <a href="https://x.com/Haflati_app" target="_blank" rel="noopener" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="https://instagram.com/haflati.app" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://tiktok.com/@haflati.app" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48v-7.13a8.16 8.16 0 005.58 2.2V11.3a4.85 4.85 0 01-3.15-1.14V6.69h3.15z"/></svg></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title" data-ar="روابط" data-en="Links">روابط</h4>
+          <a href="about.html" class="footer__link" data-ar="عن حفلتي" data-en="About">عن حفلتي</a>
+          <a href="vendors.html" class="footer__link" data-ar="للمزودين" data-en="For Vendors">للمزودين</a>
+          <a href="blog/index.html" class="footer__link" data-ar="المدونة" data-en="Blog">المدونة</a>
+          <a href="#faq" class="footer__link" data-ar="الأسئلة" data-en="FAQ">الأسئلة</a>
+        </div>
+        <div>
+          <h4 class="footer__col-title" data-ar="تواصل" data-en="Contact">تواصل</h4>
+          <a href="mailto:hello@haflati.app" class="footer__link">hello@haflati.app</a>
+          <a href="https://wa.me/966500000000" class="footer__link" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span class="footer__copy" data-ar="© 2026 حفلتي. جميع الحقوق محفوظة." data-en="© 2026 Haflati. All rights reserved.">© 2026 حفلتي. جميع الحقوق محفوظة.</span>
+        <span class="footer__badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          <span data-ar="صنع في السعودية 🇸🇦" data-en="Made in Saudi Arabia 🇸🇦">صنع في السعودية 🇸🇦</span>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== STICKY MOBILE CTA ===== -->
+  <div class="sticky-cta" id="sticky-cta">
+    <div class="sticky-cta__text">
+      <span data-ar="حفلتي" data-en="Haflati">حفلتي</span>
+      <small data-ar="سجّل واحصل على بريميوم مجاناً" data-en="Register for free Premium">سجّل واحصل على بريميوم مجاناً</small>
+    </div>
+    <button class="sticky-cta__btn" onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" data-ar="سجّل الآن" data-en="Join Now">سجّل الآن</button>
+  </div>
+
+  <!-- ===== WhatsApp FAB ===== -->
+  <a href="https://wa.me/966500000000" target="_blank" class="fab-wa" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- ===== JS ===== -->
+  <script>
+  (function(){
+    'use strict';
+
+    var GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxsXNqLSt-ISvV2QI9hIfXm_MPAV4EZqGEI1db8U5I1XeLrSQum4Gh_LXAdIpdT0jZZ/exec';
+
+    // Header scroll
+    var header = document.getElementById('header');
+    var stickyCta = document.getElementById('sticky-cta');
+    window.addEventListener('scroll', function() {
+      if (header) header.classList.toggle('scrolled', window.scrollY > 50);
+      if (stickyCta) stickyCta.classList.toggle('visible', window.scrollY > 600);
+    }, { passive: true });
+
+    // Mobile menu
+    var burger = document.getElementById('burger');
+    var mobMenu = document.getElementById('mob-menu');
+    var mobOverlay = document.getElementById('mob-overlay');
+    function closeMob() { mobMenu.classList.remove('open'); mobOverlay.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow=''; }
+    if (burger) burger.addEventListener('click', function() {
+      var open = mobMenu.classList.contains('open');
+      if (open) closeMob(); else { mobMenu.classList.add('open'); mobOverlay.classList.add('open'); burger.classList.add('open'); document.body.style.overflow='hidden'; }
+    });
+    if (mobOverlay) mobOverlay.addEventListener('click', closeMob);
+    if (mobMenu) mobMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMob); });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click', function(e){
+        var id = this.getAttribute('href'); if (id === '#') return;
+        var el = document.querySelector(id); if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Language toggle
+    var langBtn = document.getElementById('lang-toggle');
+    var html = document.documentElement;
+    function setLang(lang) {
+      var ar = lang === 'ar';
+      html.setAttribute('lang', lang); html.setAttribute('dir', ar ? 'rtl' : 'ltr');
+      document.querySelectorAll('[data-ar][data-en]').forEach(function(el){ el.textContent = ar ? el.getAttribute('data-ar') : el.getAttribute('data-en'); });
+      document.querySelectorAll('[data-ar-placeholder]').forEach(function(el){ el.placeholder = ar ? el.getAttribute('data-ar-placeholder') : el.getAttribute('data-en-placeholder'); });
+      localStorage.setItem('haflati-lang', lang);
+    }
+    setLang(localStorage.getItem('haflati-lang') || 'ar');
+    if (langBtn) langBtn.addEventListener('click', function(){ setLang(html.getAttribute('lang') === 'ar' ? 'en' : 'ar'); });
+
+    // Countdown to Summer 2026 (July 1, 2026)
+    var launch = new Date('2026-07-01T00:00:00+03:00').getTime();
+    function updateCountdown() {
+      var now = Date.now(); var diff = launch - now;
+      if (diff <= 0) return;
+      var d = Math.floor(diff / 86400000); var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000); var s = Math.floor((diff % 60000) / 1000);
+      var de = document.getElementById('cd-days'); if(de) de.textContent = d;
+      var he = document.getElementById('cd-hours'); if(he) he.textContent = h;
+      var me = document.getElementById('cd-mins'); if(me) me.textContent = m;
+      var se = document.getElementById('cd-secs'); if(se) se.textContent = s;
+    }
+    updateCountdown(); setInterval(updateCountdown, 1000);
+
+    // Animated counters
+    function animateNum(el) {
+      var target = parseInt(el.getAttribute('data-target'), 10); if (isNaN(target)) return;
+      var dur = 2000; var start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1); var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.floor(eased * target);
+        if (p < 1) requestAnimationFrame(step); else el.textContent = target;
+      }
+      requestAnimationFrame(step);
+    }
+    var counterObs = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(e){ if (e.isIntersecting){ animateNum(e.target); obs.unobserve(e.target); } });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('[data-target]').forEach(function(el){ counterObs.observe(el); });
+
+    // Scroll reveal
+    var revealObs = new IntersectionObserver(function(entries, obs){
+      entries.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function(el){ revealObs.observe(el); });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item').forEach(function(item){
+      var q = item.querySelector('.faq-q'); if (!q) return;
+      q.addEventListener('click', function(){
+        var open = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(function(o){ if(o!==item){ o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight='0'; } });
+        item.classList.toggle('open', !open);
+        var a = item.querySelector('.faq-a');
+        if (!open) a.style.maxHeight = a.scrollHeight + 'px'; else a.style.maxHeight = '0';
+      });
+    });
+
+    // Event quiz selection
+    var quizOptions = document.querySelectorAll('.quiz-option');
+    var selectedEvent = '';
+    quizOptions.forEach(function(opt){
+      opt.addEventListener('click', function(){
+        quizOptions.forEach(function(o){ o.classList.remove('selected'); });
+        opt.classList.add('selected');
+        selectedEvent = opt.getAttribute('data-event');
+      });
+    });
+    var quizCta = document.getElementById('quiz-cta');
+    if (quizCta) quizCta.addEventListener('click', function(){
+      document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth' });
+      // Pre-fill event type
+      if (selectedEvent) {
+        setTimeout(function(){
+          var sel = document.querySelector('#waitlist-form select[name="event_type"]');
+          if (sel) sel.value = selectedEvent;
+        }, 800);
+      }
+    });
+
+    // Form submission
+    function handleSubmit(e) {
+      e.preventDefault();
+      var form = e.target; var btn = form.querySelector('button[type="submit"]');
+      if (form.dataset.submitting === 'true') return;
+      var data = {}; var valid = true;
+      form.querySelectorAll('[name]').forEach(function(f){
+        data[f.name] = f.value.trim();
+        if (f.required && !f.value.trim()) { valid = false; f.style.borderColor = '#EF4444'; }
+        else { f.style.borderColor = ''; }
+      });
+      if (!valid) return;
+      data.type = 'waitlist';
+      form.dataset.submitting = 'true';
+      if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; }
+
+      var iframe = document.createElement('iframe'); iframe.name = 'hf-' + Date.now(); iframe.style.display = 'none'; document.body.appendChild(iframe);
+      var hf = document.createElement('form'); hf.method = 'POST'; hf.action = GOOGLE_SCRIPT_URL; hf.target = iframe.name; hf.style.display = 'none';
+      Object.keys(data).forEach(function(k){ var inp = document.createElement('input'); inp.type='hidden'; inp.name=k; inp.value=data[k]; hf.appendChild(inp); });
+      document.body.appendChild(hf); hf.submit();
+
+      setTimeout(function(){
+        form.style.display = 'none';
+        var success = document.getElementById(form.id + '-success');
+        if (success) success.style.display = 'block';
+        hf.remove(); iframe.remove();
+      }, 1500);
+    }
+
+    var wf = document.getElementById('waitlist-form');
+    if (wf) wf.addEventListener('submit', handleSubmit);
+
+  })();
+  </script>
+
+</body>
+</html>

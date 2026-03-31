@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عن حفلتي — قصتنا ورؤيتنا | Haflati</title>
+  <meta name="description" content="تعرّف على حفلتي، أول منصة سعودية لتنظيم المناسبات. اكتشف قصتنا ورؤيتنا وقيمنا في خدمة مجتمع المناسبات السعودي.">
+  <meta name="keywords" content="عن حفلتي، قصة حفلتي، رؤية حفلتي، تنظيم مناسبات السعودية، منصة مناسبات">
+  <meta name="author" content="Haflati">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://haflati.app/about.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://haflati.app/about.html">
+  <meta property="og:title" content="عن حفلتي — قصتنا ورؤيتنا | Haflati">
+  <meta property="og:description" content="تعرّف على حفلتي، أول منصة سعودية لتنظيم المناسبات. اكتشف قصتنا ورؤيتنا وقيمنا.">
+  <meta property="og:image" content="https://haflati.app/images/og-cover.jpg">
+  <meta property="og:locale" content="ar_SA">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta property="og:site_name" content="Haflati">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Haflati_app">
+  <meta name="twitter:title" content="عن حفلتي — قصتنا ورؤيتنا">
+  <meta name="twitter:description" content="تعرّف على حفلتي، أول منصة سعودية لتنظيم المناسبات.">
+  <meta name="twitter:image" content="https://haflati.app/images/og-cover.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="brand/favicon.svg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Skip to content -->
+  <a href="#main-content" class="skip-link" data-ar="تخطي إلى المحتوى" data-en="Skip to content">تخطي إلى المحتوى</a>
+
+  <!-- ============================================================
+       NAVBAR
+       ============================================================ -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo" aria-label="حفلتي - الصفحة الرئيسية">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <circle cx="18" cy="18" r="18" fill="url(#logoGrad)"/>
+          <path d="M18 8c-1.5 3-5 5-5 9a5 5 0 0010 0c0-4-3.5-6-5-9z" fill="#FFF" opacity="0.9"/>
+          <path d="M15 26l3-4 3 4" stroke="#FFF" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="36" y2="36"><stop stop-color="#E8636B"/><stop offset="1" stop-color="#D4A05A"/></linearGradient></defs>
+        </svg>
+        <span data-ar="حفلتي" data-en="Haflati">حفلتي</span>
+      </a>
+
+      <div class="navbar__links" id="nav-links">
+        <a href="about.html" class="navbar__link active" data-ar="عن حفلتي" data-en="About">عن حفلتي</a>
+        <a href="index.html#events" class="navbar__link" data-ar="المناسبات" data-en="Events">المناسبات</a>
+        <a href="vendors.html" class="navbar__link" data-ar="للمزودين" data-en="For Vendors">للمزودين</a>
+        <a href="index.html#how-it-works" class="navbar__link" data-ar="كيف نعمل" data-en="How It Works">كيف نعمل</a>
+        <a href="index.html#features" class="navbar__link" data-ar="المميزات" data-en="Features">المميزات</a>
+        <a href="blog/index.html" class="navbar__link" data-ar="المدونة" data-en="Blog">المدونة</a>
+        <a href="index.html#faq" class="navbar__link" data-ar="الأسئلة" data-en="FAQ">الأسئلة</a>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button class="lang-toggle" id="lang-toggle" aria-label="Switch language">
+          <span class="lang-toggle__text" data-ar="EN" data-en="عربي">EN</span>
+        </button>
+        <a href="index.html#waitlist" class="btn btn-primary" style="padding:8px 20px;font-size:0.85rem;" data-ar="سجّل الآن" data-en="Join Now">سجّل الآن</a>
+        <button class="navbar__hamburger" id="hamburger" aria-label="فتح القائمة" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer__overlay" id="drawer-overlay"></div>
+  <div class="mobile-drawer" id="mobile-drawer">
+    <a href="about.html" class="mobile-drawer__link" data-ar="عن حفلتي" data-en="About">عن حفلتي</a>
+    <a href="index.html#events" class="mobile-drawer__link" data-ar="المناسبات" data-en="Events">المناسبات</a>
+    <a href="vendors.html" class="mobile-drawer__link" data-ar="للمزودين" data-en="For Vendors">للمزودين</a>
+    <a href="index.html#how-it-works" class="mobile-drawer__link" data-ar="كيف نعمل" data-en="How It Works">كيف نعمل</a>
+    <a href="index.html#features" class="mobile-drawer__link" data-ar="المميزات" data-en="Features">المميزات</a>
+    <a href="blog/index.html" class="mobile-drawer__link" data-ar="المدونة" data-en="Blog">المدونة</a>
+    <a href="index.html#faq" class="mobile-drawer__link" data-ar="الأسئلة" data-en="FAQ">الأسئلة</a>
+    <a href="index.html#waitlist" class="btn btn-primary" style="margin-top:16px;text-align:center;" data-ar="سجّل الآن" data-en="Join Now">سجّل الآن</a>
+  </div>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         SECTION 1: HERO BANNER
+         ============================================================ -->
+    <section class="hero" style="min-height:60vh;min-height:60dvh;">
+      <div class="hero__sparkle" aria-hidden="true"></div>
+      <div class="hero__sparkle" aria-hidden="true"></div>
+      <div class="hero__sparkle" aria-hidden="true"></div>
+      <div class="hero__sparkle" aria-hidden="true"></div>
+      <div class="hero__sparkle" aria-hidden="true"></div>
+      <div class="hero__sparkle" aria-hidden="true"></div>
+
+      <div class="container" style="text-align:center;position:relative;z-index:2;">
+        <div class="hero__badge fade-in-up" data-ar="تعرّف علينا" data-en="Get to Know Us">تعرّف علينا</div>
+        <h1 class="hero__title fade-in-up stagger-1" style="max-width:700px;margin-inline:auto;">
+          <span data-ar="عن حفلتي" data-en="About Haflati">عن حفلتي</span>
+        </h1>
+        <p class="hero__subtitle fade-in-up stagger-2" style="max-width:600px;margin-inline:auto;" data-ar="نؤمن بأن كل مناسبة تستحق أن تكون استثنائية. حفلتي هي الجسر بين أحلامك وأفضل مزودي الخدمات في السعودية." data-en="We believe every event deserves to be exceptional. Haflati is the bridge between your dreams and the best service providers in Saudi Arabia.">نؤمن بأن كل مناسبة تستحق أن تكون استثنائية. حفلتي هي الجسر بين أحلامك وأفضل مزودي الخدمات في السعودية.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 2: OUR STORY
+         ============================================================ -->
+    <section class="about section-padding" id="our-story">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-label fade-in-up" data-ar="قصتنا" data-en="OUR STORY">قصتنا</span>
+          <h2 class="section-title fade-in-up" data-ar="كيف بدأت حفلتي؟" data-en="How Did Haflati Begin?">كيف بدأت حفلتي؟</h2>
+          <p class="section-subtitle section-subtitle--centered fade-in-up" data-ar="من مشكلة حقيقية إلى حل مبتكر" data-en="From a real problem to an innovative solution">من مشكلة حقيقية إلى حل مبتكر</p>
+        </div>
+
+        <div class="about__text fade-in-up" style="margin-top:var(--space-10);">
+          <p class="about__description" data-ar="بدأت فكرة حفلتي من تجربة شخصية في الرياض. مؤسسنا لاحظ مشكلة يعاني منها كل من يريد تنظيم مناسبة في السعودية: البحث المتشتت عن مزودي الخدمات، صعوبة المقارنة بين الأسعار والجودة، وعدم وجود منصة موحدة تجمع كل ما تحتاجه في مكان واحد." data-en="Haflati's idea started from a personal experience in Riyadh. Our founder noticed a problem everyone faces when planning an event in Saudi Arabia: scattered search for service providers, difficulty comparing prices and quality, and the absence of a unified platform that brings everything together in one place.">بدأت فكرة حفلتي من تجربة شخصية في الرياض. مؤسسنا لاحظ مشكلة يعاني منها كل من يريد تنظيم مناسبة في السعودية: البحث المتشتت عن مزودي الخدمات، صعوبة المقارنة بين الأسعار والجودة، وعدم وجود منصة موحدة تجمع كل ما تحتاجه في مكان واحد.</p>
+        </div>
+
+        <div style="max-width:720px;margin-inline:auto;text-align:center;" class="fade-in-up">
+          <p style="font-size:var(--text-base);color:var(--text-secondary);line-height:2.1;margin-top:var(--space-6);" data-ar="سوق المناسبات في السعودية سوق ضخم يتجاوز 10 مليار ريال، لكنه مشتت بين واتساب وانستقرام ومعارف شخصية. حفلتي جاءت لتنظم هذا السوق وتقدم تجربة رقمية حديثة تليق بالمناسبات السعودية — من الأعراس الفخمة إلى حفلات الميلاد البسيطة." data-en="The events market in Saudi Arabia is a massive market exceeding 10 billion SAR, yet it's fragmented across WhatsApp, Instagram, and personal connections. Haflati came to organize this market and deliver a modern digital experience worthy of Saudi celebrations — from grand weddings to simple birthday parties.">سوق المناسبات في السعودية سوق ضخم يتجاوز 10 مليار ريال، لكنه مشتت بين واتساب وانستقرام ومعارف شخصية. حفلتي جاءت لتنظم هذا السوق وتقدم تجربة رقمية حديثة تليق بالمناسبات السعودية — من الأعراس الفخمة إلى حفلات الميلاد البسيطة.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 3: MISSION & VISION
+         ============================================================ -->
+    <section class="section-padding" style="background:var(--light-bg);">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-label fade-in-up" data-ar="رسالتنا ورؤيتنا" data-en="MISSION & VISION">رسالتنا ورؤيتنا</span>
+          <h2 class="section-title fade-in-up" data-ar="ما الذي يحركنا؟" data-en="What Drives Us?">ما الذي يحركنا؟</h2>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr;gap:var(--space-8);max-width:900px;margin:var(--space-10) auto 0;">
+          <!-- Mission -->
+          <div style="background:var(--white);border-radius:var(--radius-2xl);padding:var(--space-10);border:1px solid var(--border-lighter);text-align:center;position:relative;overflow:hidden;" class="fade-in-up stagger-1">
+            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--rose),var(--gold));"></div>
+            <div style="width:72px;height:72px;background:var(--rose-50);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5);">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 4l4 8 8 1.5-5.8 5.7 1.4 8L18 22.5l-7.6 4.7 1.4-8L6 13.5l8-1.5z" fill="#E8636B"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-xl);font-weight:800;color:var(--text-primary);margin-bottom:var(--space-4);" data-ar="رسالتنا" data-en="Our Mission">رسالتنا</h3>
+            <p style="font-size:var(--text-base);color:var(--text-secondary);line-height:2;" data-ar="تمكين كل شخص في السعودية من تنظيم مناسبته بسهولة وثقة، من خلال ربطه بأفضل مزودي الخدمات الموثّقين في منصة واحدة ذكية وشفافة." data-en="Empowering everyone in Saudi Arabia to plan their event easily and confidently by connecting them with the best verified service providers through one smart and transparent platform.">تمكين كل شخص في السعودية من تنظيم مناسبته بسهولة وثقة، من خلال ربطه بأفضل مزودي الخدمات الموثّقين في منصة واحدة ذكية وشفافة.</p>
+          </div>
+
+          <!-- Vision -->
+          <div style="background:var(--white);border-radius:var(--radius-2xl);padding:var(--space-10);border:1px solid var(--border-lighter);text-align:center;position:relative;overflow:hidden;" class="fade-in-up stagger-2">
+            <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--gold),var(--amber));"></div>
+            <div style="width:72px;height:72px;background:var(--gold-50);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5);">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true"><circle cx="18" cy="18" r="10" stroke="#D4A05A" stroke-width="2.5" fill="none"/><circle cx="18" cy="18" r="4" fill="#D4A05A"/><path d="M18 4v4M18 28v4M4 18h4M28 18h4" stroke="#D4A05A" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-xl);font-weight:800;color:var(--text-primary);margin-bottom:var(--space-4);" data-ar="رؤيتنا" data-en="Our Vision">رؤيتنا</h3>
+            <p style="font-size:var(--text-base);color:var(--text-secondary);line-height:2;" data-ar="أن نكون المنصة الأولى والأكثر ثقة لتنظيم المناسبات في الشرق الأوسط، وأن نحوّل صناعة المناسبات إلى تجربة رقمية متكاملة تواكب رؤية 2030." data-en="To become the most trusted event planning platform in the Middle East, transforming the events industry into a complete digital experience aligned with Vision 2030.">أن نكون المنصة الأولى والأكثر ثقة لتنظيم المناسبات في الشرق الأوسط، وأن نحوّل صناعة المناسبات إلى تجربة رقمية متكاملة تواكب رؤية 2030.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 4: STATS
+         ============================================================ -->
+    <section class="about section-padding" style="background:var(--white);">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-label fade-in-up" data-ar="بالأرقام" data-en="BY THE NUMBERS">بالأرقام</span>
+          <h2 class="section-title fade-in-up" data-ar="حفلتي بالأرقام" data-en="Haflati in Numbers">حفلتي بالأرقام</h2>
+        </div>
+
+        <div class="about__stats fade-in-up" style="margin-top:var(--space-10);">
+          <div class="about__stat">
+            <span class="about__stat-number" data-target="500">0</span>
+            <span class="about__stat-label" data-ar="مزود خدمات+" data-en="Vendors+">مزود خدمات+</span>
+          </div>
+          <div class="about__stat">
+            <span class="about__stat-number" data-target="5">0</span>
+            <span class="about__stat-label" data-ar="أنواع مناسبات" data-en="Event Types">أنواع مناسبات</span>
+          </div>
+          <div class="about__stat">
+            <span class="about__stat-number" data-target="3">0</span>
+            <span class="about__stat-label" data-ar="مدن رئيسية" data-en="Major Cities">مدن رئيسية</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 5: VALUES
+         ============================================================ -->
+    <section class="section-padding" style="background:var(--light-bg);">
+      <div class="container">
+        <div class="text-center">
+          <span class="section-label fade-in-up" data-ar="قيمنا" data-en="OUR VALUES">قيمنا</span>
+          <h2 class="section-title fade-in-up" data-ar="القيم التي نؤمن بها" data-en="The Values We Believe In">القيم التي نؤمن بها</h2>
+          <p class="section-subtitle section-subtitle--centered fade-in-up" data-ar="هذه المبادئ توجّه كل قراراتنا وتشكّل تجربتك معنا" data-en="These principles guide every decision we make and shape your experience with us">هذه المبادئ توجّه كل قراراتنا وتشكّل تجربتك معنا</p>
+        </div>
+
+        <div class="values-grid" style="margin-top:var(--space-10);">
+          <!-- Trust -->
+          <div class="value-card fade-in-up stagger-1">
+            <div style="width:64px;height:64px;background:var(--rose-50);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5);">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4l-10 5v7c0 6.5 4.3 12.6 10 14 5.7-1.4 10-7.5 10-14v-7l-10-5z" stroke="#E8636B" stroke-width="2" fill="none"/><path d="M11 16l3 3 7-7" stroke="#E8636B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-lg);font-weight:700;color:var(--text-primary);margin-bottom:var(--space-2);" data-ar="الثقة" data-en="Trust">الثقة</h3>
+            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:1.8;" data-ar="نتحقق من كل مزود قبل انضمامه. تقييمات حقيقية وشفافية كاملة في الأسعار والخدمات." data-en="We verify every vendor before they join. Real reviews and complete transparency in pricing and services.">نتحقق من كل مزود قبل انضمامه. تقييمات حقيقية وشفافية كاملة في الأسعار والخدمات.</p>
+          </div>
+
+          <!-- Quality -->
+          <div class="value-card fade-in-up stagger-2">
+            <div style="width:64px;height:64px;background:var(--gold-50);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5);">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4l3.5 7 7.5 1-5.5 5.3 1.3 7.7L16 21l-6.8 4 1.3-7.7L5 12l7.5-1z" fill="#D4A05A"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-lg);font-weight:700;color:var(--text-primary);margin-bottom:var(--space-2);" data-ar="الجودة" data-en="Quality">الجودة</h3>
+            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:1.8;" data-ar="نختار أفضل مزودي الخدمات ونضمن معايير جودة عالية في كل خدمة تُقدم عبر المنصة." data-en="We select the best service providers and ensure high quality standards for every service offered through the platform.">نختار أفضل مزودي الخدمات ونضمن معايير جودة عالية في كل خدمة تُقدم عبر المنصة.</p>
+          </div>
+
+          <!-- Innovation -->
+          <div class="value-card fade-in-up stagger-3">
+            <div style="width:64px;height:64px;background:rgba(124,58,237,0.06);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5);">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4c-4 0-7 3-7 7 0 3 1.5 4.5 3 6.5 1 1.3 1 2.5 1 3.5h6c0-1 0-2.2 1-3.5 1.5-2 3-3.5 3-6.5 0-4-3-7-7-7z" stroke="#7C3AED" stroke-width="2" fill="none"/><path d="M13 24h6M14 27h4" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-lg);font-weight:700;color:var(--text-primary);margin-bottom:var(--space-2);" data-ar="الابتكار" data-en="Innovation">الابتكار</h3>
+            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:1.8;" data-ar="نستخدم أحدث التقنيات لتقديم تجربة سلسة وذكية — من التوصيات المخصصة إلى أدوات التخطيط المتقدمة." data-en="We use the latest technologies to deliver a smooth and smart experience — from personalized recommendations to advanced planning tools.">نستخدم أحدث التقنيات لتقديم تجربة سلسة وذكية — من التوصيات المخصصة إلى أدوات التخطيط المتقدمة.</p>
+          </div>
+
+          <!-- Community -->
+          <div class="value-card fade-in-up stagger-4">
+            <div style="width:64px;height:64px;background:var(--teal-50);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5);">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><circle cx="16" cy="12" r="4" stroke="#0D9488" stroke-width="2" fill="none"/><circle cx="8" cy="14" r="3" stroke="#0D9488" stroke-width="1.5" fill="none"/><circle cx="24" cy="14" r="3" stroke="#0D9488" stroke-width="1.5" fill="none"/><path d="M12 22c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="#0D9488" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M4 24c0-2.2 1.8-4 4-4M24 20c2.2 0 4 1.8 4 4" stroke="#0D9488" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-lg);font-weight:700;color:var(--text-primary);margin-bottom:var(--space-2);" data-ar="المجتمع" data-en="Community">المجتمع</h3>
+            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:1.8;" data-ar="نبني مجتمعاً من مزودي الخدمات ومنظمي المناسبات يتبادلون الخبرات ويدعمون بعضهم البعض." data-en="We build a community of service providers and event planners who share experiences and support each other.">نبني مجتمعاً من مزودي الخدمات ومنظمي المناسبات يتبادلون الخبرات ويدعمون بعضهم البعض.</p>
+          </div>
+
+          <!-- Simplicity -->
+          <div class="value-card fade-in-up stagger-5">
+            <div style="width:64px;height:64px;background:rgba(245,158,11,0.06);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5);">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="6" y="8" width="20" height="16" rx="3" stroke="#F59E0B" stroke-width="2" fill="none"/><path d="M6 14h20" stroke="#F59E0B" stroke-width="2"/><circle cx="11" cy="20" r="1.5" fill="#F59E0B"/><circle cx="16" cy="20" r="1.5" fill="#F59E0B"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-lg);font-weight:700;color:var(--text-primary);margin-bottom:var(--space-2);" data-ar="البساطة" data-en="Simplicity">البساطة</h3>
+            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:1.8;" data-ar="نصمم كل شيء ليكون سهل الاستخدام. من أول زيارة إلى إتمام الحجز، التجربة بسيطة وواضحة." data-en="We design everything to be easy to use. From first visit to completed booking, the experience is simple and clear.">نصمم كل شيء ليكون سهل الاستخدام. من أول زيارة إلى إتمام الحجز، التجربة بسيطة وواضحة.</p>
+          </div>
+
+          <!-- Saudi Pride -->
+          <div class="value-card fade-in-up stagger-5">
+            <div style="width:64px;height:64px;background:rgba(22,33,62,0.06);border-radius:var(--radius-xl);display:flex;align-items:center;justify-content:center;margin:0 auto var(--space-5);">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 4l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6z" fill="#16213E"/><path d="M8 26h16" stroke="#16213E" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </div>
+            <h3 style="font-size:var(--text-lg);font-weight:700;color:var(--text-primary);margin-bottom:var(--space-2);" data-ar="فخر سعودي" data-en="Saudi Pride">فخر سعودي</h3>
+            <p style="font-size:var(--text-sm);color:var(--text-muted);line-height:1.8;" data-ar="منتج سعودي 100% مصمم للسوق السعودي. نفهم ثقافة المناسبات المحلية ونحتفي بها في كل تفصيلة." data-en="A 100% Saudi product designed for the Saudi market. We understand local event culture and celebrate it in every detail.">منتج سعودي 100% مصمم للسوق السعودي. نفهم ثقافة المناسبات المحلية ونحتفي بها في كل تفصيلة.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 6: TEAM / FOUNDED
+         ============================================================ -->
+    <section class="vendors section-padding section--dark">
+      <div class="container" style="text-align:center;position:relative;z-index:1;">
+        <span class="section-label fade-in-up" data-ar="فريقنا" data-en="OUR TEAM">فريقنا</span>
+        <h2 class="section-title fade-in-up" style="max-width:600px;margin-inline:auto;" data-ar="تأسست في الرياض، 2026" data-en="Founded in Riyadh, 2026">تأسست في الرياض، 2026</h2>
+
+        <div style="max-width:640px;margin:var(--space-8) auto 0;" class="fade-in-up">
+          <p style="font-size:var(--text-base);color:var(--text-light);line-height:2;margin-bottom:var(--space-6);" data-ar="حفلتي تأسست في قلب الرياض على يد فريق سعودي شغوف بتقنية المناسبات. نعمل حالياً على بناء المنصة بالشراكة مع أفضل المطورين ومصممي التجربة لتقديم منتج يليق بالسوق السعودي." data-en="Haflati was founded in the heart of Riyadh by a Saudi team passionate about event technology. We're currently building the platform in partnership with the best developers and UX designers to deliver a product worthy of the Saudi market.">حفلتي تأسست في قلب الرياض على يد فريق سعودي شغوف بتقنية المناسبات. نعمل حالياً على بناء المنصة بالشراكة مع أفضل المطورين ومصممي التجربة لتقديم منتج يليق بالسوق السعودي.</p>
+          <p style="font-size:var(--text-base);color:var(--text-light);line-height:2;" data-ar="نبحث دائماً عن أشخاص موهوبين يشاركوننا الرؤية. إذا كنت مهتماً بالانضمام لفريقنا، تواصل معنا!" data-en="We're always looking for talented people who share our vision. If you're interested in joining our team, reach out!">نبحث دائماً عن أشخاص موهوبين يشاركوننا الرؤية. إذا كنت مهتماً بالانضمام لفريقنا، تواصل معنا!</p>
+        </div>
+
+        <div class="fade-in-up" style="margin-top:var(--space-10);display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center;">
+          <a href="mailto:hello@haflati.app" class="btn btn-vendor" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SECTION 7: CTA — JOIN WAITLIST
+         ============================================================ -->
+    <section class="waitlist section-padding" id="waitlist">
+      <div class="container" style="text-align:center;position:relative;z-index:2;">
+        <h2 style="font-size:var(--text-3xl);font-weight:900;color:var(--text-white);margin-bottom:var(--space-4);" class="fade-in-up" data-ar="جاهز تجرب حفلتي؟" data-en="Ready to Try Haflati?">جاهز تجرب حفلتي؟</h2>
+        <p style="font-size:var(--text-lg);color:rgba(255,255,255,0.85);max-width:500px;margin:0 auto var(--space-8);line-height:1.8;" class="fade-in-up" data-ar="سجّل في قائمة الانتظار وكن من أوائل المستخدمين عند الإطلاق" data-en="Join the waitlist and be among the first users at launch">سجّل في قائمة الانتظار وكن من أوائل المستخدمين عند الإطلاق</p>
+        <div class="fade-in-up" style="display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center;">
+          <a href="index.html#waitlist" class="btn btn-primary btn--lg" data-ar="سجّل في قائمة الانتظار" data-en="Join the Waitlist">سجّل في قائمة الانتظار</a>
+          <a href="vendors.html" class="btn btn-outline btn--lg" data-ar="انضم كمزود" data-en="Join as Vendor">انضم كمزود</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <!-- Brand Column -->
+        <div>
+          <div class="footer__brand-name" data-ar="حفلتي" data-en="Haflati">حفلتي <span>Haflati</span></div>
+          <p class="footer__brand-desc" data-ar="أول منصة سعودية لتنظيم المناسبات. نربط بينك وبين أفضل مزودي الخدمات الموثّقين." data-en="Saudi Arabia's first event planning marketplace. Connecting you with verified service providers.">أول منصة سعودية لتنظيم المناسبات. نربط بينك وبين أفضل مزودي الخدمات الموثّقين.</p>
+          <div class="footer__social">
+            <a href="https://x.com/Haflati_app" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="footer__social-icon">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M11.9 8.45L18.35 1h-1.52l-5.6 6.47L6.56 1H1l6.77 9.8L1 18.36h1.52l5.92-6.84 4.73 6.84H19L11.9 8.45zm-2.1 2.42l-.69-.98L3.17 2.22h2.35l4.4 6.26.69.98 5.73 8.15h-2.35l-4.68-6.64z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://instagram.com/haflati.app" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="footer__social-icon">
+              <svg viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="5" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="14.5" cy="5.5" r="1" fill="currentColor"/></svg>
+            </a>
+            <a href="https://tiktok.com/@haflati.app" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="footer__social-icon">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M14 2v8a4 4 0 11-4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M14 2c1.5 0 3 1 3.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </a>
+            <a href="https://snapchat.com/add/haflati.app" target="_blank" rel="noopener noreferrer" aria-label="Snapchat" class="footer__social-icon">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M10 3c2.2 0 4 1.8 4 4v2c1 .3 2 .8 2 1.5s-1.2 1-2 1.2c-.3 1.8-1.8 3.3-4 3.3s-3.7-1.5-4-3.3c-.8-.2-2-.5-2-1.2S5 9.3 6 9V7c0-2.2 1.8-4 4-4z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </a>
+            <a href="https://wa.me/966XXXXXXXXX" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="footer__social-icon">
+              <svg viewBox="0 0 20 20" fill="none"><path d="M10 2a8 8 0 00-6.9 12l-.9 3.2 3.3-.9A8 8 0 1010 2z" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="footer__col-title" data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+          <a href="about.html" class="footer__link" data-ar="عن حفلتي" data-en="About">عن حفلتي</a>
+          <a href="index.html#events" class="footer__link" data-ar="المناسبات" data-en="Events">المناسبات</a>
+          <a href="vendors.html" class="footer__link" data-ar="للمزودين" data-en="For Vendors">للمزودين</a>
+          <a href="index.html#features" class="footer__link" data-ar="المميزات" data-en="Features">المميزات</a>
+          <a href="blog/index.html" class="footer__link" data-ar="المدونة" data-en="Blog">المدونة</a>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="footer__col-title" data-ar="الدعم" data-en="Support">الدعم</h4>
+          <a href="index.html#faq" class="footer__link" data-ar="الأسئلة الشائعة" data-en="FAQ">الأسئلة الشائعة</a>
+          <a href="mailto:hello@haflati.app" class="footer__link" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</a>
+          <a href="#" class="footer__link" data-ar="سياسة الخصوصية" data-en="Privacy Policy">سياسة الخصوصية</a>
+          <a href="#" class="footer__link" data-ar="شروط الاستخدام" data-en="Terms of Use">شروط الاستخدام</a>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="footer__col-title" data-ar="تواصل" data-en="Contact">تواصل</h4>
+          <a href="mailto:hello@haflati.app" class="footer__link">hello@haflati.app</a>
+          <a href="https://wa.me/966XXXXXXXXX" class="footer__link" data-ar="واتساب" data-en="WhatsApp">واتساب</a>
+          <a href="https://x.com/Haflati_app" class="footer__link">@Haflati_app</a>
+          <a href="https://instagram.com/haflati.app" class="footer__link">@haflati.app</a>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copyright" data-ar="&copy; 2026 حفلتي. جميع الحقوق محفوظة." data-en="&copy; 2026 Haflati. All rights reserved.">&copy; 2026 حفلتي. جميع الحقوق محفوظة.</p>
+        <div class="footer__legal">
+          <a href="#" data-ar="سياسة الخصوصية" data-en="Privacy">سياسة الخصوصية</a>
+          <a href="#" data-ar="شروط الاستخدام" data-en="Terms">شروط الاستخدام</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp Button -->
+  <a href="https://wa.me/966XXXXXXXXX" target="_blank" rel="noopener noreferrer" class="fab-whatsapp" aria-label="تواصل عبر واتساب">
+    <svg viewBox="0 0 28 28" fill="none">
+      <path d="M14 2.5C7.65 2.5 2.5 7.65 2.5 14c0 2.02.52 3.92 1.44 5.57L2.5 25.5l6.1-1.4A11.44 11.44 0 0014 25.5c6.35 0 11.5-5.15 11.5-11.5S20.35 2.5 14 2.5z" fill="#25D366"/>
+      <path d="M10.08 8.5c-.28-.63-.57-.64-.83-.65h-.43c-.26 0-.68.1-1.03.49-.35.39-1.35 1.32-1.35 3.22s1.38 3.73 1.57 3.99c.2.26 2.66 4.24 6.56 5.78.91.34 1.63.55 2.18.7.92.25 1.75.22 2.41.13.74-.1 2.26-.92 2.58-1.81.32-.89.32-1.65.22-1.81-.1-.16-.35-.25-.74-.45-.39-.2-2.3-1.14-2.65-1.27-.35-.13-.61-.19-.87.2-.26.39-1 1.27-1.23 1.53-.23.26-.45.29-.84.1-.39-.2-1.64-.6-3.12-1.93-1.15-1.03-1.93-2.3-2.16-2.69-.22-.39-.02-.6.17-.8.17-.17.39-.45.58-.68.2-.23.26-.39.39-.65.13-.26.07-.49-.03-.68-.1-.2-.87-2.1-1.2-2.87z" fill="#FFF"/>
+    </svg>
+  </a>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E8636B"/>
+      <stop offset="100%" stop-color="#D4A05A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="512" height="512" rx="96" ry="96" fill="#1A1A2E"/>
+
+  <!-- Celebration sparkle mark -->
+  <g transform="translate(256, 240)">
+    <path d="M0,-100 C15,-40 40,-15 100,0 C40,15 15,40 0,100 C-15,40 -40,15 -100,0 C-40,-15 -15,-40 0,-100Z"
+          fill="url(#brandGradient)" opacity="0.95"/>
+    <path d="M0,-60 C8,-24 24,-8 60,0 C24,8 8,24 0,60 C-8,24 -24,8 -60,0 C-24,-8 -8,-24 0,-60Z"
+          fill="url(#brandGradient)" opacity="0.25" transform="rotate(45)"/>
+  </g>
+
+  <!-- Small sparkles -->
+  <g transform="translate(370, 130)">
+    <path d="M0,-18 C3,-7 7,-3 18,0 C7,3 3,7 0,18 C-3,7 -7,3 -18,0 C-7,-3 -3,-7 0,-18Z"
+          fill="#D4A05A" opacity="0.8"/>
+  </g>
+  <g transform="translate(148, 150)">
+    <path d="M0,-12 C2,-5 5,-2 12,0 C5,2 2,5 0,12 C-2,5 -5,2 -12,0 C-5,-2 -2,-5 0,-12Z"
+          fill="#E8636B" opacity="0.6"/>
+  </g>
+  <g transform="translate(390, 310)">
+    <path d="M0,-14 C2.5,-5.5 5.5,-2.5 14,0 C5.5,2.5 2.5,5.5 0,14 C-2.5,5.5 -5.5,2.5 -14,0 C-5.5,-2.5 -2.5,-5.5 0,-14Z"
+          fill="#D4A05A" opacity="0.7"/>
+  </g>
+
+  <circle cx="420" cy="200" r="5" fill="#E8636B" opacity="0.4"/>
+  <circle cx="110" cy="260" r="4" fill="#D4A05A" opacity="0.35"/>
+
+  <!-- Decorative arc -->
+  <path d="M200,380 Q256,420 312,380" stroke="url(#brandGradient)" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <circle cx="290" cy="400" r="5" fill="#D4A05A" opacity="0.7"/>
+</svg>

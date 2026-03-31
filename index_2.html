@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حفلتي — مرح وبساطة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--coral:#FF6B7A;--coral2:#FF8E9A;--coral3:#FFD0D5;--purple:#7C5CBF;--purple2:#9F7FD4;--purple3:#EDE8F8;--yellow:#FFD166;--green:#06D6A0;--white:#FFFFFF;--bg:#F7F8FC;--dark:#1A1A2E;--gray:#64748B;--font-ar:'Tajawal',sans-serif;--font-en:'Inter',sans-serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-ar);background:var(--white);color:var(--dark);overflow-x:hidden;line-height:1.7}
+html[lang="en"] body{font-family:var(--font-en)}
+a{text-decoration:none;color:inherit}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,.06);padding:16px 0;transition:.3s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.6rem;font-weight:900;background:linear-gradient(135deg,var(--coral),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:.9rem;color:var(--gray);font-weight:500;transition:.3s}
+.nav-links a:hover{color:var(--coral)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang-btn{background:var(--bg);border:2px solid transparent;color:var(--gray);padding:6px 16px;border-radius:50px;cursor:pointer;font-size:.82rem;font-weight:600;transition:.3s;font-family:inherit}
+.lang-btn:hover{border-color:var(--coral);color:var(--coral)}
+.nav-cta{background:linear-gradient(135deg,var(--coral),var(--coral2));color:#fff;padding:10px 28px;border-radius:50px;font-weight:700;font-size:.88rem;transition:.3s;box-shadow:0 4px 16px rgba(255,107,122,.3)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(255,107,122,.4)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.ham span{width:24px;height:2px;background:var(--dark);border-radius:2px;display:block;transition:.3s}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;position:relative;overflow:hidden;background:linear-gradient(160deg,#fff 60%,#FFF0F2 100%)}
+.hero-blob1{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,107,122,.12),transparent 70%);top:-100px;left:-100px;animation:blob 8s ease-in-out infinite alternate}
+.hero-blob2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,191,.1),transparent 70%);bottom:-80px;right:-80px;animation:blob 10s ease-in-out infinite alternate-reverse}
+@keyframes blob{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.2) translate(20px,-20px)}}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(255,107,122,.1),rgba(124,92,191,.1));border:1.5px solid rgba(255,107,122,.2);color:var(--coral);padding:7px 18px;border-radius:50px;font-size:.8rem;font-weight:700;margin-bottom:24px}
+.hero-badge-dot{width:8px;height:8px;background:var(--coral);border-radius:50%;animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero-title{font-size:clamp(2.4rem,5vw,4rem);font-weight:900;line-height:1.15;margin-bottom:20px;color:var(--dark)}
+.hero-title .gradient{background:linear-gradient(135deg,var(--coral),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:1.05rem;color:var(--gray);line-height:1.85;margin-bottom:36px;max-width:480px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.btn-primary{background:linear-gradient(135deg,var(--coral),var(--coral2));color:#fff;padding:15px 36px;border-radius:50px;font-weight:700;font-size:.95rem;transition:.3s;box-shadow:0 6px 20px rgba(255,107,122,.3);display:inline-block;border:none;cursor:pointer;font-family:inherit}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,107,122,.4)}
+.btn-secondary{background:var(--white);color:var(--purple);padding:15px 36px;border-radius:50px;font-weight:700;font-size:.95rem;transition:.3s;border:2px solid var(--purple3);display:inline-block}
+.btn-secondary:hover{border-color:var(--purple);background:var(--purple3)}
+.hero-trust{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--gray)}
+.trust-item::before{content:'✓';color:var(--green);font-weight:800;font-size:.9rem}
+
+/* HERO VISUAL */
+.hero-visual{position:relative}
+.phone-card{background:#fff;border-radius:24px;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,.12);border:1px solid rgba(0,0,0,.06);max-width:320px;margin:0 auto}
+.phone-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #f0f0f0}
+.phone-logo{width:40px;height:40px;background:linear-gradient(135deg,var(--coral),var(--purple));border-radius:12px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem}
+.phone-title{font-weight:700;font-size:.9rem;color:var(--dark)}
+.phone-sub{font-size:.75rem;color:var(--gray)}
+.vendor-mini{background:var(--bg);border-radius:16px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;transition:.3s}
+.vendor-mini:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.vm-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.vm-name{font-size:.82rem;font-weight:700;color:var(--dark)}
+.vm-cat{font-size:.72rem;color:var(--gray)}
+.vm-rating{font-size:.75rem;color:var(--yellow);font-weight:700;margin-top:2px}
+.vm-price{margin-right:auto;font-size:.8rem;font-weight:800;color:var(--coral)}
+.floating-badge{position:absolute;background:#fff;border-radius:16px;padding:10px 16px;box-shadow:0 8px 24px rgba(0,0,0,.12);font-size:.78rem;font-weight:700;display:flex;align-items:center;gap:6px;white-space:nowrap;animation:float 3s ease-in-out infinite alternate}
+@keyframes float{0%{transform:translateY(0)}100%{transform:translateY(-10px)}}
+.fb1{top:-20px;right:-20px;color:var(--green)}
+.fb2{bottom:20px;left:-30px;color:var(--coral);animation-delay:1.5s}
+
+/* CATEGORIES */
+.cats{background:var(--bg);padding:90px 0}
+.sec-tag{display:inline-block;background:linear-gradient(135deg,rgba(255,107,122,.12),rgba(124,92,191,.12));color:var(--coral);padding:5px 16px;border-radius:50px;font-size:.78rem;font-weight:700;margin-bottom:14px;letter-spacing:.5px}
+.sec-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;margin-bottom:12px;color:var(--dark);line-height:1.2}
+.sec-title .accent{background:linear-gradient(135deg,var(--coral),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sec-sub{font-size:.98rem;color:var(--gray);line-height:1.85;max-width:500px}
+.sec-header{margin-bottom:52px}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.cat-card{background:#fff;border-radius:20px;padding:32px 16px;text-align:center;border:2px solid transparent;transition:.35s;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.cat-card:hover{border-color:var(--coral);transform:translateY(-6px);box-shadow:0 16px 40px rgba(255,107,122,.15)}
+.cat-emoji{font-size:2.8rem;display:block;margin-bottom:14px}
+.cat-name{font-size:.85rem;font-weight:800;color:var(--dark)}
+.cat-count{font-size:.72rem;color:var(--gray);margin-top:5px;display:block}
+.cat-pill{display:inline-block;margin-top:10px;background:var(--coral3);color:var(--coral);font-size:.68rem;font-weight:700;padding:2px 10px;border-radius:50px}
+
+/* HOW */
+.how{background:#fff;padding:90px 0}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:52px;position:relative}
+.steps::before{content:'';position:absolute;top:52px;left:16%;right:16%;height:2px;background:linear-gradient(90deg,var(--coral3),var(--purple3));z-index:0}
+.step{text-align:center;position:relative;z-index:1}
+.step-num{width:56px;height:56px;background:linear-gradient(135deg,var(--coral),var(--purple));color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;font-weight:900;margin:0 auto 20px;box-shadow:0 8px 24px rgba(255,107,122,.3)}
+.step-title{font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:10px}
+.step-text{font-size:.88rem;color:var(--gray);line-height:1.85}
+
+/* TRUST */
+.trust{background:linear-gradient(160deg,var(--purple),#5B3FA8);padding:90px 0;color:#fff}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:52px}
+.tcard{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:20px;padding:32px 24px;text-align:center;backdrop-filter:blur(8px);transition:.3s}
+.tcard:hover{background:rgba(255,255,255,.18);transform:translateY(-4px)}
+.tcard-icon{font-size:2.4rem;display:block;margin-bottom:16px}
+.tcard-title{font-size:.95rem;font-weight:800;margin-bottom:8px}
+.tcard-text{font-size:.82rem;opacity:.8;line-height:1.85}
+
+/* VENDOR */
+.vendor-section{background:var(--bg);padding:90px 0}
+.vendor-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.vendor-perks{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:14px}
+.vendor-perks li{display:flex;align-items:flex-start;gap:12px;font-size:.92rem;color:var(--gray)}
+.perk-check{width:22px;height:22px;background:linear-gradient(135deg,var(--green),#04A37C);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.7rem;font-weight:800;flex-shrink:0;margin-top:1px}
+.vendor-card{background:#fff;border-radius:28px;padding:40px;box-shadow:0 16px 48px rgba(0,0,0,.1);text-align:center}
+.vc-tag{font-size:.72rem;font-weight:700;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;display:block}
+.vc-free{font-size:3rem;font-weight:900;background:linear-gradient(135deg,var(--coral),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.vc-note{font-size:.85rem;color:var(--gray);margin-top:6px}
+.vc-div{height:1px;background:#f0f0f0;margin:28px 0}
+.vc-comm{background:linear-gradient(135deg,var(--coral3),var(--purple3));border-radius:16px;padding:16px;margin-top:4px}
+.vc-comm-num{font-size:2rem;font-weight:900;color:var(--coral)}
+.vc-comm-lbl{font-size:.78rem;color:var(--gray);font-weight:600}
+
+/* WAITLIST */
+.waitlist{background:linear-gradient(135deg,var(--coral),var(--purple));padding:90px 0;color:#fff;text-align:center}
+.wl-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:12px}
+.wl-sub{font-size:1rem;opacity:.9;max-width:480px;margin:0 auto 40px;line-height:1.8}
+.wl-form{max-width:480px;margin:0 auto;display:flex;gap:0;border-radius:50px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,.2)}
+.wl-input{flex:1;background:#fff;border:none;color:var(--dark);padding:16px 24px;font-size:.92rem;font-family:inherit;outline:none}
+.wl-input::placeholder{color:#aaa}
+.wl-btn{background:var(--dark);color:#fff;border:none;padding:16px 28px;font-weight:800;cursor:pointer;font-family:inherit;font-size:.88rem;white-space:nowrap;transition:.3s}
+.wl-btn:hover{background:#000}
+.wl-ok{display:none;margin-top:20px;font-size:1rem;font-weight:700;opacity:.9}
+
+/* FOOTER */
+.footer{background:var(--dark);color:#fff;padding:52px 0 28px}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px}
+.footer-logo{font-size:1.5rem;font-weight:900;background:linear-gradient(135deg,var(--coral),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-bottom:6px}
+.footer-tag{font-size:.78rem;color:rgba(255,255,255,.4)}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:40px;height:40px;background:rgba(255,255,255,.07);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.82rem;transition:.3s}
+.footer-social a:hover{background:var(--coral);color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;justify-content:space-between}
+.footer-copy{font-size:.75rem;color:rgba(255,255,255,.25)}
+
+/* DRAWER */
+.drawer{position:fixed;top:0;right:-320px;width:300px;height:100%;background:#fff;z-index:2000;padding:80px 28px;box-shadow:-8px 0 40px rgba(0,0,0,.12);transition:right .4s cubic-bezier(.4,0,.2,1)}
+.drawer.open{right:0}
+.drawer-close{position:absolute;top:24px;left:24px;background:none;border:none;color:var(--dark);font-size:1.4rem;cursor:pointer}
+.drawer-links{list-style:none;display:flex;flex-direction:column;gap:24px}
+.drawer-links a{font-size:1rem;color:var(--gray);font-weight:600;transition:.3s}
+.drawer-links a:hover{color:var(--coral)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:1500;opacity:0;pointer-events:none;transition:opacity .4s}
+.overlay.open{opacity:1;pointer-events:all}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+
+@media(max-width:960px){.nav-links{display:none}.ham{display:flex}.hero-inner{grid-template-columns:1fr}.hero-visual{display:none}.cat-grid{grid-template-columns:repeat(3,1fr)}.trust-grid{grid-template-columns:repeat(2,1fr)}.vendor-inner{grid-template-columns:1fr}.steps::before{display:none}.footer-inner{flex-direction:column;gap:24px}}
+@media(max-width:600px){.cat-grid{grid-template-columns:repeat(2,1fr)}.wl-form{flex-direction:column;border-radius:16px}.wl-btn{border-radius:0 0 16px 16px}.hero-btns{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="overlay" id="ov" onclick="closeD()"></div>
+<div class="drawer" id="dr">
+  <button class="drawer-close" onclick="closeD()">✕</button>
+  <ul class="drawer-links">
+    <li><a href="#cats" data-ar="المناسبات" data-en="Events" onclick="closeD()">المناسبات</a></li>
+    <li><a href="#how" data-ar="كيف تعمل" data-en="How It Works" onclick="closeD()">كيف تعمل</a></li>
+    <li><a href="#vendors" data-ar="للمزودين" data-en="For Vendors" onclick="closeD()">للمزودين</a></li>
+    <li><a href="#waitlist" data-ar="قائمة الانتظار" data-en="Waitlist" onclick="closeD()">قائمة الانتظار</a></li>
+  </ul>
+</div>
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo">حفلتي</a>
+    <ul class="nav-links">
+      <li><a href="#cats" data-ar="المناسبات" data-en="Events">المناسبات</a></li>
+      <li><a href="#how" data-ar="كيف تعمل" data-en="How It Works">كيف تعمل</a></li>
+      <li><a href="#vendors" data-ar="للمزودين" data-en="For Vendors">للمزودين</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-btn" id="lbtn" onclick="toggleLang()">EN</button>
+      <a href="#waitlist" class="nav-cta" data-ar="سجّل الآن" data-en="Join Now">سجّل الآن</a>
+      <button class="ham" onclick="openD()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-blob1"></div>
+  <div class="hero-blob2"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge rv"><div class="hero-badge-dot"></div><span data-ar="أول منصة سعودية للمناسبات 🎉" data-en="Saudi Arabia's First Event Platform 🎉">أول منصة سعودية للمناسبات 🎉</span></div>
+        <h1 class="hero-title rv d1"><span data-ar="خطّط لمناسبتك" data-en="Plan Your Event">خطّط لمناسبتك</span><br><span class="gradient" data-ar="باحترافية وسهولة" data-en="Professionally & Easily">باحترافية وسهولة</span></h1>
+        <p class="hero-sub rv d2" data-ar="حفلتي تربطك بأفضل مزودي الخدمات الموثّقين. ابحث، قارن، واحجز بثقة — مالك محفوظ حتى تنتهي مناسبتك." data-en="Haflati connects you with the best verified vendors. Search, compare, and book with confidence — your money is protected until your event is done.">حفلتي تربطك بأفضل مزودي الخدمات الموثّقين. ابحث، قارن، واحجز بثقة — مالك محفوظ حتى تنتهي مناسبتك.</p>
+        <div class="hero-btns rv d3">
+          <a href="#cats" class="btn-primary" data-ar="ابحث عن مزودين" data-en="Find Vendors">ابحث عن مزودين</a>
+          <a href="#vendors" class="btn-secondary" data-ar="انضم كمزود" data-en="Join as Vendor">انضم كمزود</a>
+        </div>
+        <div class="hero-trust rv d3">
+          <span class="trust-item" data-ar="مزودون موثّقون" data-en="Verified Vendors">مزودون موثّقون</span>
+          <span class="trust-item" data-ar="دفع آمن" data-en="Secure Payment">دفع آمن</span>
+          <span class="trust-item" data-ar="استرداد مضمون" data-en="Guaranteed Refund">استرداد مضمون</span>
+        </div>
+      </div>
+      <div class="hero-visual rv d2">
+        <div class="floating-badge fb1">✅ <span data-ar="مزود موثّق" data-en="Verified Vendor">مزود موثّق</span></div>
+        <div class="phone-card">
+          <div class="phone-header">
+            <div class="phone-logo">✨</div>
+            <div><div class="phone-title" data-ar="حفلتي" data-en="Haflati">حفلتي</div><div class="phone-sub" data-ar="اكتشف المزودين" data-en="Discover Vendors">اكتشف المزودين</div></div>
+          </div>
+          <div class="vendor-mini"><div class="vm-icon" style="background:#FFF0F0">📸</div><div><div class="vm-name" data-ar="استوديو نور" data-en="Noor Studio">استوديو نور</div><div class="vm-cat" data-ar="تصوير مناسبات" data-en="Event Photography">تصوير مناسبات</div><div class="vm-rating">★★★★★ 4.9</div></div><div class="vm-price">1,200 ر.س</div></div>
+          <div class="vendor-mini"><div class="vm-icon" style="background:#F0FFF8">🎂</div><div><div class="vm-name" data-ar="حلويات الرياض" data-en="Riyadh Sweets">حلويات الرياض</div><div class="vm-cat" data-ar="كيك وحلويات" data-en="Cakes & Sweets">كيك وحلويات</div><div class="vm-rating">★★★★★ 4.8</div></div><div class="vm-price">450 ر.س</div></div>
+          <div class="vendor-mini"><div class="vm-icon" style="background:#F5F0FF">🎵</div><div><div class="vm-name" data-ar="فرقة الأنغام" data-en="Al-Angham Band">فرقة الأنغام</div><div class="vm-cat" data-ar="موسيقى وترفيه" data-en="Music & Entertainment">موسيقى وترفيه</div><div class="vm-rating">★★★★☆ 4.7</div></div><div class="vm-price">2,500 ر.س</div></div>
+        </div>
+        <div class="floating-badge fb2">🛡️ <span data-ar="حماية حفلتي" data-en="Haflati Protection">حماية حفلتي</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cats" id="cats">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-tag rv" data-ar="🎊 المناسبات" data-en="🎊 OCCASIONS">🎊 المناسبات</span>
+      <h2 class="sec-title rv d1"><span class="accent" data-ar="كل مناسبة" data-en="Every Occasion">كل مناسبة</span> <span data-ar="في مكان واحد" data-en="In One Place">في مكان واحد</span></h2>
+      <p class="sec-sub rv d2" data-ar="اختر نوع مناسبتك وابدأ البحث عن أفضل المزودين في مدينتك" data-en="Choose your event type and start finding the best vendors in your city">اختر نوع مناسبتك وابدأ البحث عن أفضل المزودين في مدينتك</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card rv"><span class="cat-emoji">💍</span><span class="cat-name" data-ar="الأعراس" data-en="Weddings">الأعراس</span><span class="cat-count" data-ar="40+ خدمة" data-en="40+ Services">40+ خدمة</span><span class="cat-pill" data-ar="الأكثر طلباً" data-en="Most Popular">الأكثر طلباً</span></div>
+      <div class="cat-card rv d1"><span class="cat-emoji">🎂</span><span class="cat-name" data-ar="أعياد الميلاد" data-en="Birthdays">أعياد الميلاد</span><span class="cat-count" data-ar="25+ خدمة" data-en="25+ Services">25+ خدمة</span></div>
+      <div class="cat-card rv d2"><span class="cat-emoji">🎓</span><span class="cat-name" data-ar="التخرج" data-en="Graduation">التخرج</span><span class="cat-count" data-ar="20+ خدمة" data-en="20+ Services">20+ خدمة</span></div>
+      <div class="cat-card rv d2"><span class="cat-emoji">👶</span><span class="cat-name" data-ar="استقبال المولود" data-en="Baby Shower">استقبال المولود</span><span class="cat-count" data-ar="15+ خدمة" data-en="15+ Services">15+ خدمة</span></div>
+      <div class="cat-card rv d3"><span class="cat-emoji">🏢</span><span class="cat-name" data-ar="فعاليات الشركات" data-en="Corporate">فعاليات الشركات</span><span class="cat-count" data-ar="30+ خدمة" data-en="30+ Services">30+ خدمة</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-tag rv" data-ar="⚡ كيف تعمل" data-en="⚡ HOW IT WORKS">⚡ كيف تعمل</span>
+      <h2 class="sec-title rv d1"><span data-ar="احجز مناسبتك في" data-en="Book Your Event in"></span> <span class="accent" data-ar="3 خطوات بسيطة" data-en="3 Easy Steps">3 خطوات بسيطة</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step rv"><div class="step-num">١</div><h3 class="step-title" data-ar="ابحث وقارن" data-en="Search & Compare">ابحث وقارن</h3><p class="step-text" data-ar="تصفح مئات المزودين الموثّقين وقارن الأسعار والتقييمات واختر الأنسب" data-en="Browse hundreds of verified vendors, compare prices and reviews, choose the best fit">تصفح مئات المزودين الموثّقين وقارن الأسعار والتقييمات واختر الأنسب</p></div>
+      <div class="step rv d1"><div class="step-num">٢</div><h3 class="step-title" data-ar="احجز بأمان" data-en="Book Securely">احجز بأمان</h3><p class="step-text" data-ar="ادفع من خلال نظام حماية حفلتي — مالك محفوظ حتى تنتهي مناسبتك" data-en="Pay through Haflati Protection — your money is held safely until your event is done">ادفع من خلال نظام حماية حفلتي — مالك محفوظ حتى تنتهي مناسبتك</p></div>
+      <div class="step rv d2"><div class="step-num">٣</div><h3 class="step-title" data-ar="استمتع وأكّد" data-en="Enjoy & Confirm">استمتع وأكّد</h3><p class="step-text" data-ar="بعد المناسبة أكّد رضاك وسيحصل المزود على مستحقاته تلقائياً" data-en="After the event confirm your satisfaction and the vendor gets paid automatically">بعد المناسبة أكّد رضاك وسيحصل المزود على مستحقاته تلقائياً</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="container">
+    <div class="sec-header" style="color:#fff">
+      <span class="sec-tag rv" style="background:rgba(255,255,255,.15);color:#fff" data-ar="🔒 الأمان والثقة" data-en="🔒 SAFETY & TRUST">🔒 الأمان والثقة</span>
+      <h2 class="sec-title rv d1" style="color:#fff"><span data-ar="لماذا حفلتي" data-en="Why Haflati">لماذا حفلتي</span></h2>
+    </div>
+    <div class="trust-grid">
+      <div class="tcard rv"><span class="tcard-icon">🛡️</span><h3 class="tcard-title" data-ar="حماية الدفع" data-en="Payment Protection">حماية الدفع</h3><p class="tcard-text" data-ar="مالك محفوظ في نظام الضمان — لا يصل للمزود إلا بعد تأكيدك" data-en="Your money in escrow — vendor only gets paid after your confirmation">مالك محفوظ في نظام الضمان — لا يصل للمزود إلا بعد تأكيدك</p></div>
+      <div class="tcard rv d1"><span class="tcard-icon">✅</span><h3 class="tcard-title" data-ar="مزودون موثّقون" data-en="Verified Vendors">مزودون موثّقون</h3><p class="tcard-text" data-ar="كل مزود يمر بتحقق صارم قبل الظهور في المنصة" data-en="Every vendor undergoes strict verification before appearing on the platform">كل مزود يمر بتحقق صارم قبل الظهور في المنصة</p></div>
+      <div class="tcard rv d2"><span class="tcard-icon">↩️</span><h3 class="tcard-title" data-ar="استرداد فوري" data-en="Instant Refund">استرداد فوري</h3><p class="tcard-text" data-ar="إذا ألغى المزود تسترد كامل مبلغك فوراً بدون تعقيدات" data-en="If vendor cancels you get a full refund immediately with no hassle">إذا ألغى المزود تسترد كامل مبلغك فوراً بدون تعقيدات</p></div>
+      <div class="tcard rv d3"><span class="tcard-icon">💬</span><h3 class="tcard-title" data-ar="دعم متواصل" data-en="Ongoing Support">دعم متواصل</h3><p class="tcard-text" data-ar="فريق حفلتي دائماً موجود لحل أي مشكلة بشكل عادل وسريع" data-en="Haflati team is always there to resolve any issue fairly and quickly">فريق حفلتي دائماً موجود لحل أي مشكلة بشكل عادل وسريع</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="vendor-section" id="vendors">
+  <div class="container">
+    <div class="vendor-inner">
+      <div>
+        <span class="sec-tag rv" data-ar="🚀 للمزودين" data-en="🚀 FOR VENDORS">🚀 للمزودين</span>
+        <h2 class="sec-title rv d1"><span class="accent" data-ar="نمّي نشاطك" data-en="Grow Your Business">نمّي نشاطك</span> <span data-ar="مع حفلتي" data-en="with Haflati">مع حفلتي</span></h2>
+        <p class="sec-sub rv d2" data-ar="انضم مجاناً — لا رسوم شهرية. عمولة بسيطة فقط عند إتمام الحجز الناجح" data-en="Join free — no monthly fees. A small commission only when a booking is completed">انضم مجاناً — لا رسوم شهرية. عمولة بسيطة فقط عند إتمام الحجز الناجح</p>
+        <ul class="vendor-perks rv d2">
+          <li><div class="perk-check">✓</div><span data-ar="وصول مباشر لآلاف العملاء الجاهزين للحجز" data-en="Direct access to thousands of ready-to-book clients">وصول مباشر لآلاف العملاء الجاهزين للحجز</span></li>
+          <li><div class="perk-check">✓</div><span data-ar="صفحة احترافية تعرض خدماتك وأعمالك" data-en="Professional page showcasing your services and portfolio">صفحة احترافية تعرض خدماتك وأعمالك</span></li>
+          <li><div class="perk-check">✓</div><span data-ar="نظام حجوزات ذكي مع تقويم الأتاحة" data-en="Smart booking system with availability calendar">نظام حجوزات ذكي مع تقويم الأتاحة</span></li>
+          <li><div class="perk-check">✓</div><span data-ar="مدفوعاتك مضمونة عبر نظام الضمان" data-en="Payments guaranteed through escrow">مدفوعاتك مضمونة عبر نظام الضمان</span></li>
+        </ul>
+        <div style="margin-top:36px" class="rv d3"><a href="#waitlist" class="btn-primary" data-ar="سجّل كمزود — مجاناً" data-en="Register as Vendor — Free">سجّل كمزود — مجاناً</a></div>
+      </div>
+      <div class="vendor-card rv d1">
+        <span class="vc-tag" data-ar="نموذج الأرباح" data-en="EARNINGS MODEL">نموذج الأرباح</span>
+        <div class="vc-free" data-ar="مجاناً" data-en="Free">مجاناً</div>
+        <div class="vc-note" data-ar="للانضمام — لا رسوم شهرية إلزامية" data-en="to join — no mandatory monthly fees">للانضمام — لا رسوم شهرية إلزامية</div>
+        <div class="vc-div"></div>
+        <div class="vc-comm">
+          <div class="vc-comm-num">5%</div>
+          <div class="vc-comm-lbl" data-ar="عمولة فقط عند إتمام الحجز" data-en="commission only on completed bookings">عمولة فقط عند إتمام الحجز</div>
+        </div>
+        <div style="margin-top:12px;font-size:.78rem;color:var(--gray)" data-ar="2.5% مع الاشتراك المميز" data-en="2.5% with Premium subscription">2.5% مع الاشتراك المميز</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="waitlist" id="waitlist">
+  <div class="container">
+    <h2 class="wl-title rv" data-ar="🎉 كن من الأوائل!" data-en="🎉 Be Among the First!">🎉 كن من الأوائل!</h2>
+    <p class="wl-sub rv d1" data-ar="سجّل في قائمة الانتظار الآن واحصل على 3 أشهر بريميوم مجاناً عند الإطلاق" data-en="Join the waitlist now and get 3 months Premium free at launch">سجّل في قائمة الانتظار الآن واحصل على 3 أشهر بريميوم مجاناً عند الإطلاق</p>
+    <form class="wl-form rv d2" id="wlf" onsubmit="submitWL(event)">
+      <input class="wl-input" id="wlEmail" type="email" placeholder="بريدك الإلكتروني" required>
+      <button class="wl-btn" type="submit" data-ar="أبلغني عند الإطلاق" data-en="Notify Me">أبلغني عند الإطلاق</button>
+    </form>
+    <div class="wl-ok" id="wlOk" data-ar="🎊 شكراً! سنبلغك عند الإطلاق" data-en="🎊 Thank you! We'll notify you at launch">🎊 شكراً! سنبلغك عند الإطلاق</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div><span class="footer-logo">حفلتي</span><span class="footer-tag" data-ar="أول منصة سعودية لتنظيم المناسبات" data-en="Saudi Arabia's First Event Platform">أول منصة سعودية لتنظيم المناسبات</span></div>
+      <div class="footer-social">
+        <a href="https://x.com/Haflati_app" target="_blank" rel="noopener">𝕏</a>
+        <a href="https://instagram.com/haflati.app" target="_blank" rel="noopener">IG</a>
+        <a href="https://tiktok.com/@haflati.app" target="_blank" rel="noopener">TK</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy" data-ar="© 2026 حفلتي" data-en="© 2026 Haflati">© 2026 حفلتي</span>
+      <span class="footer-copy" data-ar="صُنع بـ ♥ في السعودية" data-en="Made with ♥ in Saudi Arabia">صُنع بـ ♥ في السعودية</span>
+    </div>
+  </div>
+</footer>
+<script>
+let lang='ar';
+function toggleLang(){lang=lang==='ar'?'en':'ar';document.documentElement.setAttribute('lang',lang);document.documentElement.setAttribute('dir',lang==='ar'?'rtl':'ltr');document.getElementById('lbtn').textContent=lang==='ar'?'EN':'عر';document.querySelectorAll('[data-ar]').forEach(el=>{if(el.tagName!=='INPUT')el.textContent=lang==='ar'?el.dataset.ar:el.dataset.en});const ei=document.getElementById('wlEmail');if(ei)ei.placeholder=lang==='ar'?'بريدك الإلكتروني':'Your email address';}
+function openD(){document.getElementById('dr').classList.add('open');document.getElementById('ov').classList.add('open')}
+function closeD(){document.getElementById('dr').classList.remove('open');document.getElementById('ov').classList.remove('open')}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+function submitWL(e){e.preventDefault();fetch('https://script.google.com/macros/s/AKfycbzfTFDzExqClMJMXMV4FPLSGb0tkB9mKLEePCVfRkBaHEMaM6xDO1K5rM0GOl4RDv4/exec',{method:'POST',mode:'no-cors',body:JSON.stringify({email:document.getElementById('wlEmail').value,source:'index_2_bright',lang,timestamp:new Date().toISOString()})});document.getElementById('wlf').style.display='none';document.getElementById('wlOk').style.display='block';}
+</script>
+</body>
+</html>

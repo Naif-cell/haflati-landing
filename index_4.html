@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حفلتي — أصالة سعودية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--sand:#F5EDD8;--sand2:#EEE0C0;--cream:#FDFAF4;--terra:#C15C3A;--terra2:#D97B5A;--teal:#0D5C63;--teal2:#127A84;--gold:#D4A05A;--gold2:#E8C07A;--dark:#2C1810;--gray:#7A6A5A;--font-ar:'Tajawal',sans-serif;--font-en:'Lora',serif}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-ar);background:var(--cream);color:var(--dark);overflow-x:hidden;line-height:1.75}
+html[lang="en"] body{font-family:var(--font-en)}
+a{text-decoration:none;color:inherit}
+.container{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* GEOMETRIC PATTERN SVG */
+.geo-pattern{position:absolute;opacity:.06;pointer-events:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:18px 0;background:rgba(253,250,244,.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(212,160,90,.2);transition:.3s}
+.nav-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.6rem;font-weight:900;color:var(--terra);letter-spacing:1px}
+.logo span{color:var(--teal)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:.88rem;color:var(--gray);font-weight:500;transition:.3s}
+.nav-links a:hover{color:var(--terra)}
+.nav-right{display:flex;align-items:center;gap:12px}
+.lang-btn{background:transparent;border:1.5px solid rgba(193,92,58,.3);color:var(--terra);padding:6px 16px;border-radius:4px;cursor:pointer;font-size:.8rem;font-weight:600;transition:.3s;font-family:inherit}
+.lang-btn:hover{background:var(--terra);color:#fff}
+.nav-cta{background:var(--terra);color:#fff;padding:10px 28px;border-radius:4px;font-weight:700;font-size:.88rem;transition:.3s;box-shadow:0 4px 16px rgba(193,92,58,.3)}
+.nav-cta:hover{background:var(--terra2);transform:translateY(-1px)}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.ham span{width:24px;height:2px;background:var(--terra);border-radius:2px;display:block}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding-top:88px;position:relative;overflow:hidden;background:linear-gradient(160deg,var(--cream) 0%,var(--sand) 60%,#EDD8B8 100%)}
+.hero-geo{position:absolute;top:-60px;left:-60px;width:400px;height:400px;opacity:.08}
+.hero-geo2{position:absolute;bottom:-40px;right:-40px;width:300px;height:300px;opacity:.06}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(193,92,58,.08);border:1.5px solid rgba(193,92,58,.2);color:var(--terra);padding:7px 18px;border-radius:4px;font-size:.78rem;font-weight:700;margin-bottom:28px;letter-spacing:.5px}
+.hero-badge-dot{width:7px;height:7px;background:var(--terra);border-radius:50%;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{font-size:clamp(2.4rem,5vw,4.2rem);font-weight:900;line-height:1.1;margin-bottom:20px;color:var(--dark)}
+.hero-title .terra{color:var(--terra)}
+.hero-title .teal{color:var(--teal)}
+.hero-sub{font-size:1rem;color:var(--gray);line-height:1.9;margin-bottom:36px;max-width:480px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+.btn-terra{background:var(--terra);color:#fff;padding:15px 38px;border-radius:4px;font-weight:700;font-size:.92rem;transition:.3s;box-shadow:0 6px 20px rgba(193,92,58,.3);display:inline-block;border:none;cursor:pointer;font-family:inherit}
+.btn-terra:hover{background:var(--terra2);transform:translateY(-2px);box-shadow:0 10px 28px rgba(193,92,58,.4)}
+.btn-teal{background:transparent;color:var(--teal);padding:15px 38px;border-radius:4px;font-weight:700;font-size:.92rem;transition:.3s;border:2px solid var(--teal);display:inline-block}
+.btn-teal:hover{background:var(--teal);color:#fff}
+.hero-trust{display:flex;gap:28px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:7px;font-size:.82rem;color:var(--gray)}
+.trust-item-icon{width:20px;height:20px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.65rem;font-weight:800}
+
+/* HERO VISUAL */
+.hero-visual{position:relative}
+.event-showcase{background:#fff;border-radius:16px;padding:28px;box-shadow:0 16px 48px rgba(44,24,16,.12);border:1px solid rgba(212,160,90,.15)}
+.showcase-header{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--sand)}
+.showcase-icon{width:44px;height:44px;background:linear-gradient(135deg,var(--terra),var(--gold));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.showcase-title{font-weight:700;color:var(--dark);font-size:.92rem}
+.showcase-sub{font-size:.75rem;color:var(--gray)}
+.vendor-item{display:flex;align-items:center;gap:12px;padding:12px;border-radius:10px;background:var(--sand);border:1px solid rgba(212,160,90,.2);margin-bottom:10px;transition:.3s}
+.vendor-item:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(44,24,16,.08)}
+.vi-icon{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+.vi-name{font-size:.82rem;font-weight:700;color:var(--dark)}
+.vi-cat{font-size:.72rem;color:var(--gray)}
+.vi-rating{font-size:.72rem;color:var(--gold);font-weight:700}
+.vi-price{margin-right:auto;font-size:.82rem;font-weight:800;color:var(--terra)}
+.float-badge{position:absolute;background:#fff;border-radius:10px;padding:10px 16px;box-shadow:0 8px 24px rgba(44,24,16,.12);font-size:.78rem;font-weight:700;display:flex;align-items:center;gap:6px;border:1px solid rgba(212,160,90,.2);animation:flt 3s ease-in-out infinite alternate;white-space:nowrap}
+@keyframes flt{0%{transform:translateY(0)}100%{transform:translateY(-10px)}}
+.fb1{top:-16px;right:-16px;color:var(--teal)}
+.fb2{bottom:10px;left:-24px;color:var(--terra);animation-delay:1.5s}
+
+/* ORNAMENT DIVIDER */
+.ornament{text-align:center;padding:20px 0;color:var(--gold);font-size:1.2rem;letter-spacing:8px;opacity:.6}
+
+/* CATS */
+.cats{background:var(--sand);padding:90px 0;position:relative;overflow:hidden}
+.sec-tag{display:inline-block;background:rgba(193,92,58,.1);color:var(--terra);padding:5px 16px;border-radius:4px;font-size:.76rem;font-weight:700;margin-bottom:14px;letter-spacing:1px}
+.sec-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:12px;color:var(--dark)}
+.sec-title .accent{color:var(--terra)}
+.sec-title .teal{color:var(--teal)}
+.sec-sub{font-size:.95rem;color:var(--gray);line-height:1.85;max-width:500px}
+.sec-header{margin-bottom:52px}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.cat-card{background:var(--cream);border-radius:14px;padding:36px 16px;text-align:center;border:2px solid transparent;transition:.35s;cursor:pointer;box-shadow:0 4px 16px rgba(44,24,16,.06)}
+.cat-card:hover{border-color:var(--terra);transform:translateY(-5px);box-shadow:0 16px 40px rgba(193,92,58,.15)}
+.cat-emoji{font-size:2.8rem;display:block;margin-bottom:14px}
+.cat-name{font-size:.85rem;font-weight:800;color:var(--dark)}
+.cat-count{display:block;font-size:.72rem;color:var(--gray);margin-top:5px}
+.cat-line{width:32px;height:2px;background:var(--terra);margin:8px auto 0;border-radius:1px;transform:scaleX(0);transition:.35s}
+.cat-card:hover .cat-line{transform:scaleX(1)}
+
+/* HOW */
+.how{background:var(--cream);padding:90px 0}
+.timeline{display:flex;flex-direction:column;gap:0;margin-top:52px;max-width:700px}
+.tl-item{display:grid;grid-template-columns:80px 1fr;gap:28px;padding-bottom:48px;position:relative}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{content:'';position:absolute;top:44px;right:40px;bottom:0;width:2px;background:linear-gradient(180deg,var(--terra),var(--sand));z-index:0}
+.tl-item:last-child::before{display:none}
+.tl-num{width:80px;height:80px;background:var(--terra);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:900;color:#fff;flex-shrink:0;position:relative;z-index:1;box-shadow:0 8px 24px rgba(193,92,58,.35)}
+.tl-content{padding-top:20px}
+.tl-title{font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:8px}
+.tl-text{font-size:.9rem;color:var(--gray);line-height:1.85}
+
+/* TRUST */
+.trust{background:var(--teal);padding:90px 0;color:#fff;position:relative;overflow:hidden}
+.trust-geo{position:absolute;top:-40px;left:-40px;opacity:.05}
+.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:52px}
+.tcard{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:32px 24px;text-align:center;transition:.3s}
+.tcard:hover{background:rgba(255,255,255,.14);transform:translateY(-4px)}
+.tcard-icon{font-size:2.4rem;margin-bottom:16px;display:block}
+.tcard-title{font-size:.95rem;font-weight:800;margin-bottom:8px;color:#fff}
+.tcard-text{font-size:.82rem;color:rgba(255,255,255,.7);line-height:1.85}
+
+/* VENDOR */
+.vendors{background:var(--sand);padding:90px 0;position:relative;overflow:hidden}
+.vendors-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.vendor-perks{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:14px}
+.vendor-perks li{display:flex;align-items:flex-start;gap:12px;font-size:.92rem;color:var(--gray)}
+.perk-icon{width:22px;height:22px;background:var(--terra);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.65rem;font-weight:800;flex-shrink:0;margin-top:2px}
+.vendor-card{background:var(--cream);border-radius:16px;padding:44px;box-shadow:0 16px 48px rgba(44,24,16,.1);border:1px solid rgba(212,160,90,.2);text-align:center}
+.vc-ornament{font-size:1.5rem;color:var(--gold);letter-spacing:8px;display:block;margin-bottom:20px}
+.vc-free{font-size:3rem;font-weight:900;color:var(--terra);line-height:1}
+.vc-note{font-size:.85rem;color:var(--gray);margin-top:6px}
+.vc-div{height:1px;background:var(--sand2);margin:28px 0}
+.vc-comm{background:linear-gradient(135deg,rgba(193,92,58,.08),rgba(13,92,99,.08));border:1px solid rgba(193,92,58,.15);border-radius:10px;padding:20px}
+.vc-num{font-size:2.4rem;font-weight:900;color:var(--terra)}
+.vc-lbl{font-size:.78rem;color:var(--gray);margin-top:4px}
+
+/* WAITLIST */
+.waitlist{background:linear-gradient(160deg,var(--terra),var(--terra2));padding:90px 0;color:#fff;text-align:center;position:relative;overflow:hidden}
+.wl-geo{position:absolute;top:-60px;right:-60px;opacity:.08}
+.wl-title{font-size:clamp(1.8rem,4vw,3rem);font-weight:900;margin-bottom:12px}
+.wl-sub{font-size:.98rem;opacity:.88;max-width:480px;margin:0 auto 40px;line-height:1.8}
+.wl-form{max-width:480px;margin:0 auto;display:flex;border-radius:4px;overflow:hidden;box-shadow:0 12px 36px rgba(0,0,0,.2)}
+.wl-input{flex:1;background:rgba(255,255,255,.15);border:none;color:#fff;padding:16px 22px;font-size:.92rem;font-family:inherit;outline:none}
+.wl-input::placeholder{color:rgba(255,255,255,.6)}
+.wl-btn{background:#fff;color:var(--terra);border:none;padding:16px 28px;font-weight:800;cursor:pointer;font-family:inherit;font-size:.88rem;white-space:nowrap;transition:.3s}
+.wl-btn:hover{background:var(--sand)}
+.wl-ok{display:none;margin-top:20px;font-size:.98rem;font-weight:700;color:rgba(255,255,255,.9)}
+
+/* FOOTER */
+.footer{background:var(--dark);color:#fff;padding:52px 0 28px}
+.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px}
+.footer-logo{font-size:1.5rem;font-weight:900;color:var(--gold);display:block;margin-bottom:6px}
+.footer-tag{font-size:.75rem;color:rgba(255,255,255,.3)}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:40px;height:40px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:4px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:.8rem;transition:.3s}
+.footer-social a:hover{background:var(--terra);border-color:var(--terra);color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:24px;display:flex;justify-content:space-between}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.2)}
+
+/* DRAWER */
+.drawer{position:fixed;top:0;right:-320px;width:300px;height:100%;background:var(--cream);z-index:2000;padding:80px 28px;box-shadow:-8px 0 40px rgba(44,24,16,.1);transition:right .4s cubic-bezier(.4,0,.2,1);border-left:1px solid var(--sand2)}
+.drawer.open{right:0}
+.drawer-close{position:absolute;top:24px;left:24px;background:none;border:none;color:var(--terra);font-size:1.4rem;cursor:pointer}
+.drawer-links{list-style:none;display:flex;flex-direction:column;gap:24px}
+.drawer-links a{font-size:1rem;color:var(--gray);font-weight:600;transition:.3s}
+.drawer-links a:hover{color:var(--terra)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:1500;opacity:0;pointer-events:none;transition:opacity .4s}
+.overlay.open{opacity:1;pointer-events:all}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+
+@media(max-width:960px){.nav-links{display:none}.ham{display:flex}.hero-inner{grid-template-columns:1fr}.hero-visual{display:none}.cat-grid{grid-template-columns:repeat(3,1fr)}.trust-grid{grid-template-columns:repeat(2,1fr)}.vendors-inner{grid-template-columns:1fr}.footer-inner{flex-direction:column;gap:24px}}
+@media(max-width:600px){.cat-grid{grid-template-columns:repeat(2,1fr)}.wl-form{flex-direction:column}.hero-btns{flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="overlay" id="ov" onclick="closeD()"></div>
+<div class="drawer" id="dr">
+  <button class="drawer-close" onclick="closeD()">✕</button>
+  <ul class="drawer-links">
+    <li><a href="#cats" data-ar="المناسبات" data-en="Events" onclick="closeD()">المناسبات</a></li>
+    <li><a href="#how" data-ar="كيف تعمل" data-en="How It Works" onclick="closeD()">كيف تعمل</a></li>
+    <li><a href="#vendors" data-ar="للمزودين" data-en="For Vendors" onclick="closeD()">للمزودين</a></li>
+    <li><a href="#waitlist" data-ar="قائمة الانتظار" data-en="Waitlist" onclick="closeD()">قائمة الانتظار</a></li>
+  </ul>
+</div>
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="logo"><span>ح</span>فلتي</a>
+    <ul class="nav-links">
+      <li><a href="#cats" data-ar="المناسبات" data-en="Events">المناسبات</a></li>
+      <li><a href="#how" data-ar="كيف تعمل" data-en="How It Works">كيف تعمل</a></li>
+      <li><a href="#vendors" data-ar="للمزودين" data-en="For Vendors">للمزودين</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-btn" id="lbtn" onclick="toggleLang()">EN</button>
+      <a href="#waitlist" class="nav-cta" data-ar="سجّل الآن" data-en="Join Now">سجّل الآن</a>
+      <button class="ham" onclick="openD()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="home">
+  <!-- Geometric SVG pattern -->
+  <svg class="hero-geo" viewBox="0 0 400 400" fill="none">
+    <polygon points="200,20 380,110 380,290 200,380 20,290 20,110" stroke="#C15C3A" stroke-width="2" fill="none"/>
+    <polygon points="200,60 340,130 340,270 200,340 60,270 60,130" stroke="#C15C3A" stroke-width="1.5" fill="none"/>
+    <polygon points="200,100 300,150 300,250 200,300 100,250 100,150" stroke="#C15C3A" stroke-width="1" fill="none"/>
+    <circle cx="200" cy="200" r="120" stroke="#D4A05A" stroke-width="1" fill="none"/>
+    <circle cx="200" cy="200" r="80" stroke="#D4A05A" stroke-width="1" fill="none"/>
+    <line x1="200" y1="80" x2="200" y2="320" stroke="#C15C3A" stroke-width=".8"/>
+    <line x1="80" y1="200" x2="320" y2="200" stroke="#C15C3A" stroke-width=".8"/>
+  </svg>
+  <svg class="hero-geo2" viewBox="0 0 300 300" fill="none" style="position:absolute;bottom:-40px;right:-40px;width:280px;height:280px;opacity:.06">
+    <polygon points="150,10 280,80 280,220 150,290 20,220 20,80" stroke="#0D5C63" stroke-width="2" fill="none"/>
+    <polygon points="150,40 250,100 250,200 150,260 50,200 50,100" stroke="#0D5C63" stroke-width="1.5" fill="none"/>
+    <circle cx="150" cy="150" r="90" stroke="#0D5C63" stroke-width="1" fill="none"/>
+  </svg>
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge rv"><div class="hero-badge-dot"></div><span data-ar="أول منصة سعودية للمناسبات" data-en="Saudi Arabia's First Event Platform">أول منصة سعودية للمناسبات</span></div>
+        <h1 class="hero-title rv d1"><span class="terra" data-ar="مناسبتك" data-en="Your Event">مناسبتك</span><br><span data-ar="تستحق" data-en="Deserves">تستحق</span><br><span class="teal" data-ar="الأفضل دائماً" data-en="The Very Best">الأفضل دائماً</span></h1>
+        <p class="hero-sub rv d2" data-ar="حفلتي تربطك بأفضل مزودي الخدمات الموثّقين في المملكة. ابحث، قارن، واحجز بثقة — مالك محفوظ حتى تنتهي مناسبتك." data-en="Haflati connects you with the finest verified vendors in the Kingdom. Search, compare, and book with confidence — your money is protected until your event is done.">حفلتي تربطك بأفضل مزودي الخدمات الموثّقين في المملكة. ابحث، قارن، واحجز بثقة — مالك محفوظ حتى تنتهي مناسبتك.</p>
+        <div class="hero-btns rv d3">
+          <a href="#cats" class="btn-terra" data-ar="ابحث عن مزودين" data-en="Find Vendors">ابحث عن مزودين</a>
+          <a href="#vendors" class="btn-teal" data-ar="انضم كمزود" data-en="Join as Vendor">انضم كمزود</a>
+        </div>
+        <div class="hero-trust rv d3">
+          <span class="trust-item"><div class="trust-item-icon">✓</div><span data-ar="مزودون موثّقون" data-en="Verified Vendors">مزودون موثّقون</span></span>
+          <span class="trust-item"><div class="trust-item-icon">✓</div><span data-ar="دفع آمن" data-en="Secure Payment">دفع آمن</span></span>
+          <span class="trust-item"><div class="trust-item-icon">✓</div><span data-ar="استرداد مضمون" data-en="Refund Guarantee">استرداد مضمون</span></span>
+        </div>
+      </div>
+      <div class="hero-visual rv d2">
+        <div class="float-badge fb1">✅ <span data-ar="مزود موثّق" data-en="Verified Vendor">مزود موثّق</span></div>
+        <div class="event-showcase">
+          <div class="showcase-header">
+            <div class="showcase-icon">✨</div>
+            <div><div class="showcase-title" data-ar="حفلتي" data-en="Haflati">حفلتي</div><div class="showcase-sub" data-ar="اكتشف المزودين" data-en="Discover Vendors">اكتشف المزودين</div></div>
+          </div>
+          <div class="vendor-item"><div class="vi-icon" style="background:#FFF5EE">📸</div><div><div class="vi-name" data-ar="استوديو الذكريات" data-en="Memories Studio">استوديو الذكريات</div><div class="vi-cat" data-ar="تصوير مناسبات" data-en="Photography">تصوير مناسبات</div><div class="vi-rating">★★★★★</div></div><div class="vi-price">1,500 ر.س</div></div>
+          <div class="vendor-item"><div class="vi-icon" style="background:#F0FBF5">🌸</div><div><div class="vi-name" data-ar="بستان الأفراح" data-en="Joy Garden">بستان الأفراح</div><div class="vi-cat" data-ar="تزيين وورود" data-en="Decor & Flowers">تزيين وورود</div><div class="vi-rating">★★★★★</div></div><div class="vi-price">4,200 ر.س</div></div>
+          <div class="vendor-item"><div class="vi-icon" style="background:#FFFBF0">🍽️</div><div><div class="vi-name" data-ar="مطبخ الأصالة" data-en="Heritage Kitchen">مطبخ الأصالة</div><div class="vi-cat" data-ar="ضيافة وكاترينج" data-en="Catering">ضيافة وكاترينج</div><div class="vi-rating">★★★★☆</div></div><div class="vi-price">8,000 ر.س</div></div>
+        </div>
+        <div class="float-badge fb2">🛡️ <span data-ar="حماية حفلتي" data-en="Haflati Protection">حماية حفلتي</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ornament">✦ ✦ ✦</div>
+
+<section class="cats" id="cats">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-tag rv" data-ar="المناسبات" data-en="OCCASIONS">المناسبات</span>
+      <h2 class="sec-title rv d1"><span class="accent" data-ar="كل مناسبة" data-en="Every Occasion">كل مناسبة</span> <span data-ar="لها مكانها" data-en="Has Its Place">لها مكانها</span></h2>
+      <p class="sec-sub rv d2" data-ar="من الأعراس الفاخرة إلى حفلات التخرج — حفلتي يجمع لك أفضل مزودي الخدمات" data-en="From luxury weddings to graduation parties — Haflati brings together the finest vendors">من الأعراس الفاخرة إلى حفلات التخرج — حفلتي يجمع لك أفضل مزودي الخدمات</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat-card rv"><span class="cat-emoji">💍</span><span class="cat-name" data-ar="الأعراس" data-en="Weddings">الأعراس</span><span class="cat-count" data-ar="40+ خدمة" data-en="40+ Services">40+ خدمة</span><div class="cat-line"></div></div>
+      <div class="cat-card rv d1"><span class="cat-emoji">🎂</span><span class="cat-name" data-ar="أعياد الميلاد" data-en="Birthdays">أعياد الميلاد</span><span class="cat-count" data-ar="25+ خدمة" data-en="25+ Services">25+ خدمة</span><div class="cat-line"></div></div>
+      <div class="cat-card rv d2"><span class="cat-emoji">🎓</span><span class="cat-name" data-ar="التخرج" data-en="Graduation">التخرج</span><span class="cat-count" data-ar="20+ خدمة" data-en="20+ Services">20+ خدمة</span><div class="cat-line"></div></div>
+      <div class="cat-card rv d2"><span class="cat-emoji">👶</span><span class="cat-name" data-ar="استقبال المولود" data-en="Baby Shower">استقبال المولود</span><span class="cat-count" data-ar="15+ خدمة" data-en="15+ Services">15+ خدمة</span><div class="cat-line"></div></div>
+      <div class="cat-card rv d3"><span class="cat-emoji">🏢</span><span class="cat-name" data-ar="فعاليات الشركات" data-en="Corporate">فعاليات الشركات</span><span class="cat-count" data-ar="30+ خدمة" data-en="30+ Services">30+ خدمة</span><div class="cat-line"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="container">
+    <div class="sec-header">
+      <span class="sec-tag rv" data-ar="كيف تعمل" data-en="HOW IT WORKS">كيف تعمل</span>
+      <h2 class="sec-title rv d1"><span class="accent" data-ar="رحلتك" data-en="Your Journey">رحلتك</span> <span data-ar="نحو مناسبة مثالية" data-en="to a Perfect Event">نحو مناسبة مثالية</span></h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item rv"><div class="tl-num">١</div><div class="tl-content"><h3 class="tl-title" data-ar="ابحث وقارن" data-en="Search & Compare">ابحث وقارن</h3><p class="tl-text" data-ar="تصفح مئات المزودين الموثّقين، قارن الأسعار والتقييمات واختر ما يناسبك" data-en="Browse hundreds of verified vendors, compare prices and reviews, choose what suits you">تصفح مئات المزودين الموثّقين، قارن الأسعار والتقييمات واختر ما يناسبك</p></div></div>
+      <div class="tl-item rv d1"><div class="tl-num">٢</div><div class="tl-content"><h3 class="tl-title" data-ar="احجز بثقة" data-en="Book with Confidence">احجز بثقة</h3><p class="tl-text" data-ar="ادفع من خلال نظام حماية حفلتي — مالك محفوظ في نظام الضمان حتى تنتهي مناسبتك بنجاح" data-en="Pay through Haflati Protection — your money is held in escrow until your event is successfully completed">ادفع من خلال نظام حماية حفلتي — مالك محفوظ في نظام الضمان حتى تنتهي مناسبتك بنجاح</p></div></div>
+      <div class="tl-item rv d2"><div class="tl-num">٣</div><div class="tl-content"><h3 class="tl-title" data-ar="استمتع بمناسبتك" data-en="Enjoy Your Event">استمتع بمناسبتك</h3><p class="tl-text" data-ar="بعد المناسبة أكّد رضاك وسيحصل المزود على مستحقاته — بسيط وآمن" data-en="After the event confirm your satisfaction and the vendor gets paid — simple and secure">بعد المناسبة أكّد رضاك وسيحصل المزود على مستحقاته — بسيط وآمن</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="container">
+    <div class="sec-header" style="color:#fff">
+      <span class="sec-tag rv" style="background:rgba(255,255,255,.12);color:#fff" data-ar="الأمان والثقة" data-en="SAFETY & TRUST">الأمان والثقة</span>
+      <h2 class="sec-title rv d1" style="color:#fff"><span data-ar="لماذا تختار" data-en="Why Choose"></span> <span style="color:var(--gold2)" data-ar="حفلتي" data-en="Haflati">حفلتي</span></h2>
+    </div>
+    <div class="trust-grid">
+      <div class="tcard rv"><span class="tcard-icon">🛡️</span><h3 class="tcard-title" data-ar="حماية الدفع" data-en="Payment Protection">حماية الدفع</h3><p class="tcard-text" data-ar="مالك في نظام الضمان — لا يصل للمزود إلا بعد تأكيدك" data-en="Your money in escrow — vendor only gets it after your confirmation">مالك في نظام الضمان — لا يصل للمزود إلا بعد تأكيدك</p></div>
+      <div class="tcard rv d1"><span class="tcard-icon">✅</span><h3 class="tcard-title" data-ar="مزودون موثّقون" data-en="Verified Vendors">مزودون موثّقون</h3><p class="tcard-text" data-ar="كل مزود يخضع لتحقق صارم قبل الظهور في المنصة" data-en="Every vendor undergoes strict verification before appearing">كل مزود يخضع لتحقق صارم قبل الظهور في المنصة</p></div>
+      <div class="tcard rv d2"><span class="tcard-icon">↩️</span><h3 class="tcard-title" data-ar="استرداد فوري" data-en="Instant Refund">استرداد فوري</h3><p class="tcard-text" data-ar="إذا ألغى المزود تسترد مبلغك كاملاً فوراً" data-en="If vendor cancels you get a full refund immediately">إذا ألغى المزود تسترد مبلغك كاملاً فوراً</p></div>
+      <div class="tcard rv d3"><span class="tcard-icon">⚖️</span><h3 class="tcard-title" data-ar="حل النزاعات" data-en="Dispute Resolution">حل النزاعات</h3><p class="tcard-text" data-ar="فريق حفلتي يحل أي خلاف بشكل عادل وسريع" data-en="Haflati team resolves disputes fairly and quickly">فريق حفلتي يحل أي خلاف بشكل عادل وسريع</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="vendors" id="vendors">
+  <div class="container">
+    <div class="vendors-inner">
+      <div>
+        <span class="sec-tag rv" data-ar="للمزودين" data-en="FOR VENDORS">للمزودين</span>
+        <h2 class="sec-title rv d1"><span class="accent" data-ar="نمّي نشاطك" data-en="Grow Your Business">نمّي نشاطك</span> <span class="teal" data-ar="مع حفلتي" data-en="with Haflati">مع حفلتي</span></h2>
+        <p class="sec-sub rv d2" data-ar="انضم مجاناً — لا رسوم شهرية. عمولة بسيطة فقط عند إتمام الحجز" data-en="Join free — no monthly fees. Small commission only when a booking is completed">انضم مجاناً — لا رسوم شهرية. عمولة بسيطة فقط عند إتمام الحجز</p>
+        <ul class="vendor-perks rv d2">
+          <li><div class="perk-icon">✓</div><span data-ar="وصول لآلاف العملاء الجاهزين للحجز" data-en="Access to thousands of ready-to-book clients">وصول لآلاف العملاء الجاهزين للحجز</span></li>
+          <li><div class="perk-icon">✓</div><span data-ar="صفحة احترافية لعرض خدماتك" data-en="Professional page to showcase your services">صفحة احترافية لعرض خدماتك</span></li>
+          <li><div class="perk-icon">✓</div><span data-ar="نظام حجوزات ذكي مع تقويم الأتاحة" data-en="Smart booking system with availability calendar">نظام حجوزات ذكي مع تقويم الأتاحة</span></li>
+          <li><div class="perk-icon">✓</div><span data-ar="مدفوعاتك مضمونة عبر نظام الضمان" data-en="Payments guaranteed through escrow">مدفوعاتك مضمونة عبر نظام الضمان</span></li>
+        </ul>
+        <div style="margin-top:36px" class="rv d3"><a href="#waitlist" class="btn-terra" data-ar="سجّل كمزود — مجاناً" data-en="Register as Vendor — Free">سجّل كمزود — مجاناً</a></div>
+      </div>
+      <div class="vendor-card rv d1">
+        <span class="vc-ornament">✦ ✦ ✦</span>
+        <div class="vc-free" data-ar="مجاناً" data-en="Free">مجاناً</div>
+        <div class="vc-note" data-ar="للانضمام — لا رسوم شهرية إلزامية" data-en="to join — no mandatory monthly fees">للانضمام — لا رسوم شهرية إلزامية</div>
+        <div class="vc-div"></div>
+        <div class="vc-comm">
+          <div class="vc-num">5%</div>
+          <div class="vc-lbl" data-ar="عمولة فقط عند إتمام الحجز" data-en="commission only on completed bookings">عمولة فقط عند إتمام الحجز</div>
+        </div>
+        <div style="margin-top:10px;font-size:.78rem;color:var(--gray)" data-ar="2.5% مع الاشتراك المميز" data-en="2.5% with Premium subscription">2.5% مع الاشتراك المميز</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="waitlist" id="waitlist">
+  <svg class="wl-geo" viewBox="0 0 300 300" width="300" height="300" fill="none">
+    <polygon points="150,10 280,80 280,220 150,290 20,220 20,80" stroke="#fff" stroke-width="2" fill="none"/>
+    <circle cx="150" cy="150" r="100" stroke="#fff" stroke-width="1.5" fill="none"/>
+    <circle cx="150" cy="150" r="60" stroke="#fff" stroke-width="1" fill="none"/>
+  </svg>
+  <div class="container" style="position:relative;z-index:2">
+    <h2 class="wl-title rv" data-ar="كن من الأوائل" data-en="Be Among the First">كن من الأوائل</h2>
+    <p class="wl-sub rv d1" data-ar="سجّل في قائمة الانتظار واحصل على 3 أشهر بريميوم مجاناً عند الإطلاق" data-en="Join the waitlist and get 3 months Premium free at launch">سجّل في قائمة الانتظار واحصل على 3 أشهر بريميوم مجاناً عند الإطلاق</p>
+    <form class="wl-form rv d2" id="wlf" onsubmit="submitWL(event)">
+      <input class="wl-input" id="wlEmail" type="email" placeholder="بريدك الإلكتروني" required>
+      <button class="wl-btn" type="submit" data-ar="أبلغني عند الإطلاق" data-en="Notify Me at Launch">أبلغني عند الإطلاق</button>
+    </form>
+    <div class="wl-ok" id="wlOk" data-ar="✦ شكراً! سنبلغك عند الإطلاق" data-en="✦ Thank you! We'll notify you at launch">✦ شكراً! سنبلغك عند الإطلاق</div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div><span class="footer-logo" data-ar="حفلتي" data-en="Haflati">حفلتي</span><span class="footer-tag" data-ar="أول منصة سعودية لتنظيم المناسبات" data-en="Saudi Arabia's First Event Platform">أول منصة سعودية لتنظيم المناسبات</span></div>
+      <div class="footer-social">
+        <a href="https://x.com/Haflati_app" target="_blank" rel="noopener">𝕏</a>
+        <a href="https://instagram.com/haflati.app" target="_blank" rel="noopener">IG</a>
+        <a href="https://tiktok.com/@haflati.app" target="_blank" rel="noopener">TK</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy" data-ar="© 2026 حفلتي. جميع الحقوق محفوظة." data-en="© 2026 Haflati. All rights reserved.">© 2026 حفلتي. جميع الحقوق محفوظة.</span>
+      <span class="footer-copy" data-ar="صُنع بـ ♥ في السعودية" data-en="Made with ♥ in Saudi Arabia">صُنع بـ ♥ في السعودية</span>
+    </div>
+  </div>
+</footer>
+<script>
+let lang='ar';
+function toggleLang(){lang=lang==='ar'?'en':'ar';document.documentElement.setAttribute('lang',lang);document.documentElement.setAttribute('dir',lang==='ar'?'rtl':'ltr');document.getElementById('lbtn').textContent=lang==='ar'?'EN':'عر';document.querySelectorAll('[data-ar]').forEach(el=>{if(el.tagName!=='INPUT')el.textContent=lang==='ar'?el.dataset.ar:el.dataset.en});const ei=document.getElementById('wlEmail');if(ei)ei.placeholder=lang==='ar'?'بريدك الإلكتروني':'Your email address';}
+function openD(){document.getElementById('dr').classList.add('open');document.getElementById('ov').classList.add('open')}
+function closeD(){document.getElementById('dr').classList.remove('open');document.getElementById('ov').classList.remove('open')}
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+function submitWL(e){e.preventDefault();fetch('https://script.google.com/macros/s/AKfycbzfTFDzExqClMJMXMV4FPLSGb0tkB9mKLEePCVfRkBaHEMaM6xDO1K5rM0GOl4RDv4/exec',{method:'POST',mode:'no-cors',body:JSON.stringify({email:document.getElementById('wlEmail').value,source:'index_4_cultural',lang,timestamp:new Date().toISOString()})});document.getElementById('wlf').style.display='none';document.getElementById('wlOk').style.display='block';}
+</script>
+</body>
+</html>
