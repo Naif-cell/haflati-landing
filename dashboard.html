@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Airbnb Dashboard — Naif · Hassan · Mojahid</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0f14;--surface:#161b26;--surface2:#1e2535;--border:#2a3145;
+  --accent:#ff5a5f;--accent2:#00c9a7;--accent3:#4e80ee;
+  --text:#e8ecf4;--muted:#7b8299;--warn:#f59e0b;--green:#10b981;--red:#ef4444;
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* ── Lock Screen ── */
+#lockScreen{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;}
+.lock-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px 36px;width:100%;max-width:380px;text-align:center;}
+.lock-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--accent),#c0392b);border-radius:14px;display:grid;place-items:center;font-size:26px;margin:0 auto 16px;}
+.lock-title{font-size:1.2rem;font-weight:700;margin-bottom:4px}
+.lock-sub{font-size:.8rem;color:var(--muted);margin-bottom:28px}
+.lock-section-label{font-size:.68rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;text-align:left}
+.partner-btns{display:flex;gap:8px;margin-bottom:22px}
+.partner-btn{flex:1;padding:10px 6px;background:var(--surface2);border:2px solid var(--border);color:var(--muted);border-radius:10px;cursor:pointer;font-size:.85rem;font-weight:600;transition:all .2s;}
+.partner-btn.selected{border-color:var(--accent3);color:var(--accent3);background:rgba(78,128,238,.1)}
+.pin-input{width:100%;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:12px 16px;font-size:1.2rem;text-align:center;letter-spacing:6px;font-family:inherit;margin-bottom:6px;transition:border-color .2s;}
+.pin-input:focus{outline:none;border-color:var(--accent3);}
+.lock-error{color:var(--red);font-size:.78rem;min-height:18px;margin-bottom:10px}
+.unlock-btn{width:100%;background:var(--accent3);border:none;color:#fff;border-radius:10px;padding:12px;font-size:.9rem;font-weight:700;cursor:pointer;transition:background .2s;margin-top:4px;}
+.unlock-btn:hover{background:#3a6fd8}
+.unlock-btn:disabled{background:var(--surface2);color:var(--muted);cursor:not-allowed}
+
+/* ── Header ── */
+.header{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:100;}
+.logo{display:flex;align-items:center;gap:12px}
+.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--accent),#c0392b);border-radius:10px;display:grid;place-items:center;font-size:19px;flex-shrink:0}
+.logo h1{font-size:1.05rem;font-weight:700}
+.logo p{font-size:.73rem;color:var(--muted);margin-top:1px}
+.header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.save-badge{background:rgba(16,185,129,.12);border:1px solid var(--green);border-radius:20px;padding:4px 11px;font-size:.73rem;color:var(--green);opacity:0;transition:opacity .3s}
+.save-badge.show{opacity:1}
+.partner-badge{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:4px 11px;font-size:.73rem;color:var(--muted);display:none}
+.updated-badge{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:4px 11px;font-size:.73rem;color:var(--muted)}
+.updated-badge span{color:var(--accent2)}
+.export-btn{background:rgba(0,201,167,.12);border:1px solid rgba(0,201,167,.4);color:var(--accent2);border-radius:20px;padding:4px 12px;font-size:.73rem;font-weight:600;cursor:pointer;transition:all .2s;}
+.export-btn:hover{background:rgba(0,201,167,.22)}
+.logout-btn{background:none;border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:4px 11px;font-size:.73rem;cursor:pointer;transition:color .2s,border-color .2s;}
+.logout-btn:hover{color:var(--red);border-color:var(--red)}
+
+/* ── Tabs ── */
+.tabs{background:var(--surface);border-bottom:1px solid var(--border);display:flex;overflow-x:auto}
+.tab{padding:11px 18px;font-size:.8rem;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s;}
+.tab:hover{color:var(--text)}
+.tab.active{color:var(--accent3);border-bottom-color:var(--accent3)}
+
+/* ── Filter bar ── */
+.filter-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:9px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;position:sticky;top:57px;z-index:90;}
+.filter-label{font-size:.73rem;color:var(--muted);white-space:nowrap}
+.filter-sep{color:var(--border);font-size:1.2rem}
+.filter-btn{background:var(--surface2);border:1px solid var(--border);color:var(--muted);border-radius:6px;padding:4px 11px;font-size:.75rem;font-weight:600;cursor:pointer;transition:all .2s;}
+.filter-btn.active{background:rgba(78,128,238,.15);border-color:var(--accent3);color:var(--accent3)}
+.filter-btn:hover{color:var(--text)}
+
+/* ── Content ── */
+.tab-content{display:none;padding:22px;max-width:1300px;margin:0 auto}
+.tab-content.active{display:block}
+.edit-hint{background:rgba(78,128,238,.08);border:1px solid rgba(78,128,238,.25);border-radius:9px;padding:8px 13px;font-size:.76rem;color:#8fa8f5;margin-bottom:18px}
+.section-label{font-size:.67rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:11px;margin-top:26px}
+.section-label:first-child{margin-top:0}
+
+/* ── KPI ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:13px}
+.kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:17px 19px;position:relative;overflow:hidden}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--c,var(--accent));border-radius:13px 13px 0 0}
+.kpi-label{font-size:.71rem;color:var(--muted);margin-bottom:5px;font-weight:600;letter-spacing:.3px}
+.kpi-value{font-size:1.45rem;font-weight:800;line-height:1}
+.kpi-value.neg{color:var(--red)}.kpi-value.pos{color:var(--green)}.kpi-value.neu{color:var(--text)}
+.kpi-sub{font-size:.69rem;color:var(--muted);margin-top:4px}
+.kpi-unit{font-size:.85rem;font-weight:600;opacity:.7}
+
+/* ── Editable ── */
+.e{display:inline-block;outline:none;border-radius:4px;cursor:text;min-width:18px;transition:background .15s,box-shadow .15s;}
+.e:hover{background:rgba(78,128,238,.12)}
+.e:focus{background:rgba(78,128,238,.2);box-shadow:0 0 0 2px rgba(78,128,238,.45)}
+
+/* ── Edit badge ── */
+.edit-badge{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;font-size:.58rem;font-weight:800;color:#fff;margin-left:5px;vertical-align:middle;cursor:default;flex-shrink:0;line-height:1;}
+td .edit-badge{position:relative;top:-1px}
+
+/* ── Layout ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px}
+@media(max-width:750px){.two-col,.three-col{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:19px}
+.card h3{font-size:.76rem;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:13px}
+.chart-wrap{position:relative;height:210px}
+
+/* ── Table ── */
+.table-card{background:var(--surface);border:1px solid var(--border);border-radius:13px;overflow:hidden}
+.table-toolbar{padding:13px 17px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.table-toolbar h3{font-size:.76rem;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.btn-add{background:rgba(78,128,238,.15);border:1px solid rgba(78,128,238,.4);color:var(--accent3);border-radius:7px;padding:4px 12px;font-size:.76rem;font-weight:600;cursor:pointer;transition:background .2s;}
+.btn-add:hover{background:rgba(78,128,238,.25)}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.8rem;min-width:600px}
+thead th{text-align:left;padding:8px 13px;font-size:.67rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);background:var(--surface2);white-space:nowrap}
+tbody td{padding:8px 13px;border-top:1px solid var(--border);vertical-align:middle}
+tbody tr:hover td{background:rgba(255,255,255,.018)}
+tbody tr.dimmed{opacity:.3}
+.del-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.85rem;padding:3px 6px;border-radius:4px;transition:color .2s,background .2s;}
+.del-btn:hover{color:var(--red);background:rgba(239,68,68,.1)}
+.tbl-select{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:5px;padding:3px 6px;font-size:.76rem;width:100%;cursor:pointer;font-family:inherit}
+.tbl-date{background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:5px;padding:3px 6px;font-size:.76rem;font-family:inherit;cursor:pointer;width:130px}
+.tbl-date::-webkit-calendar-picker-indicator{filter:invert(.65);cursor:pointer}
+.tbl-date:focus{outline:none;border-color:var(--accent3)}
+.rev-cell{color:var(--accent2);font-weight:700;white-space:nowrap}
+
+/* ── Summary bar ── */
+.summary-bar{background:var(--surface2);border:1px solid var(--border);border-radius:9px;padding:11px 17px;display:flex;gap:22px;flex-wrap:wrap;margin-bottom:14px}
+.summary-bar .item .lbl{font-size:.67rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.summary-bar .item .val{font-size:.95rem;font-weight:700;margin-top:1px}
+
+/* ── Input rows ── */
+.input-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:.83rem}
+.input-row:last-child{border:none}
+.input-row .lbl{color:var(--muted);font-size:.8rem}
+.input-row .val{font-weight:600}
+.input-row.total-row{background:var(--surface2);margin:8px -19px -19px;padding:11px 19px;border-radius:0 0 13px 13px}
+.input-row.total-row .lbl{color:var(--text);font-weight:600}
+.input-row.total-row .val{color:var(--warn);font-size:.95rem}
+.computed-val{color:var(--accent2);font-style:italic}
+
+/* ── Partner cards ── */
+.partner-card{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:19px}
+.p-header{display:flex;align-items:center;gap:9px;margin-bottom:15px}
+.p-avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:700;flex-shrink:0}
+.p-name{font-weight:700;font-size:.95rem}
+.p-role{font-size:.7rem;color:var(--muted)}
+.stat-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;font-size:.8rem}
+.stat-row .lbl{color:var(--muted)}
+.prog-wrap{margin:11px 0 4px}
+.prog-labels{display:flex;justify-content:space-between;font-size:.69rem;color:var(--muted);margin-bottom:5px}
+.prog-bar{height:6px;background:var(--surface2);border-radius:20px;overflow:hidden}
+.prog-fill{height:100%;border-radius:20px;transition:width .6s}
+.pill{display:inline-block;margin-top:9px;padding:3px 10px;border-radius:20px;font-size:.69rem;font-weight:700;letter-spacing:.3px}
+.pill-g{background:rgba(16,185,129,.15);color:var(--green)}
+.pill-r{background:rgba(239,68,68,.15);color:var(--red)}
+.pill-w{background:rgba(245,158,11,.15);color:var(--warn)}
+
+/* ── Projections ── */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+@media(max-width:700px){.proj-grid{grid-template-columns:1fr}}
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:11px}
+.scenario-card{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:13px}
+.scenario-card h4{font-size:.73rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px}
+.scenario-card .big{font-size:1.2rem;font-weight:800;margin-bottom:3px}
+.scenario-card .big.pos{color:var(--green)}.scenario-card .big.neg{color:var(--red)}
+.scenario-card .small{font-size:.7rem;color:var(--muted)}
+
+/* ── Upcoming bookings widget ── */
+.upcoming-item{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--border)}
+.upcoming-item:last-child{border:none}
+.upcoming-days{min-width:42px;text-align:center;font-size:1.1rem;font-weight:800;color:var(--accent3)}
+.upcoming-days .day-label{font-size:.6rem;color:var(--muted);font-weight:400;display:block;margin-top:-2px}
+.upcoming-info .name{font-size:.83rem;font-weight:600}
+.upcoming-info .dates{font-size:.7rem;color:var(--muted);margin-top:2px}
+.upcoming-badge{margin-left:auto;font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:20px}
+.badge-confirmed{background:rgba(16,185,129,.15);color:var(--green)}
+.badge-pending{background:rgba(245,158,11,.15);color:var(--warn)}
+
+/* ── Activity log ── */
+.activity-feed{display:flex;flex-direction:column;gap:2px;max-height:600px;overflow-y:auto}
+.activity-item{display:flex;align-items:flex-start;gap:11px;padding:11px 0;border-bottom:1px solid var(--border)}
+.activity-item:last-child{border:none}
+.act-avatar{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:#fff;flex-shrink:0}
+.act-content{flex:1;min-width:0}
+.act-header{display:flex;align-items:center;gap:8px;margin-bottom:3px}
+.act-partner{font-size:.78rem;font-weight:700;text-transform:capitalize}
+.act-time{font-size:.7rem;color:var(--muted)}
+.act-detail{font-size:.78rem;color:var(--muted);line-height:1.4}
+.act-detail b{color:var(--text)}
+.act-empty{color:var(--muted);font-size:.8rem;text-align:center;padding:30px 0}
+
+@media(max-width:600px){.kpi-value{font-size:1.2rem}.logo h1{font-size:.9rem}}
+</style>
+</head>
+<body>
+
+<!-- ══ LOCK SCREEN ══ -->
+<div id="lockScreen">
+  <div class="lock-card">
+    <div class="lock-icon">🏠</div>
+    <div class="lock-title">Airbnb Dashboard</div>
+    <div class="lock-sub">Riyadh · Naif · Hassan · Mojahid</div>
+    <div class="lock-section-label">Who are you?</div>
+    <div class="partner-btns">
+      <button class="partner-btn" data-partner="naif">Naif</button>
+      <button class="partner-btn" data-partner="hassan">Hassan</button>
+      <button class="partner-btn" data-partner="mojahid">Mojahid</button>
+    </div>
+    <div class="lock-section-label">Enter PIN</div>
+    <input class="pin-input" id="pinInput" type="password" inputmode="numeric" maxlength="8" placeholder="••••" autocomplete="off"/>
+    <div class="lock-error" id="lockError">&nbsp;</div>
+    <button class="unlock-btn" id="unlockBtn" disabled>Unlock</button>
+  </div>
+</div>
+
+<!-- ══ HEADER ══ -->
+<div class="header">
+  <div class="logo">
+    <div class="logo-icon">🏠</div>
+    <div>
+      <h1>Airbnb Business Dashboard</h1>
+      <p>Riyadh, Saudi Arabia — Furnished Apartment &nbsp;|&nbsp; Naif · Hassan · Mojahid</p>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="save-badge" id="saveBadge">Saved ✓</div>
+    <div class="partner-badge" id="partnerBadge"></div>
+    <button class="export-btn" id="exportBtn">⬇ Export Excel</button>
+    <div class="updated-badge">Updated <span class="e" data-k="updateDate" contenteditable>Nov 2, 2026</span></div>
+    <button class="logout-btn" id="logoutBtn">Log out</button>
+  </div>
+</div>
+
+<!-- ══ TABS ══ -->
+<div class="tabs">
+  <div class="tab active" data-tab="overview">Overview</div>
+  <div class="tab" data-tab="bookings">Bookings</div>
+  <div class="tab" data-tab="expenses">Expenses</div>
+  <div class="tab" data-tab="projections">Projections</div>
+  <div class="tab" data-tab="partners">Partners</div>
+  <div class="tab" data-tab="activity">Activity Log</div>
+</div>
+
+<!-- ══ FILTER BAR ══ -->
+<div class="filter-bar">
+  <button class="filter-btn active" id="filterAll">All Time</button>
+  <select class="tbl-select" id="filterMonth" style="width:140px"><option value="">Month...</option></select>
+  <span class="filter-sep">|</span>
+  <span class="filter-label">From:</span>
+  <input type="date" class="tbl-date" id="filterFrom">
+  <span class="filter-label">To:</span>
+  <input type="date" class="tbl-date" id="filterTo">
+  <button class="filter-btn" id="filterClear" style="display:none">✕ Clear</button>
+</div>
+
+<!-- ══════════ OVERVIEW ══════════ -->
+<div class="tab-content active" id="tab-overview">
+  <div class="edit-hint">✏️ Click any number or text to edit — changes save automatically to the cloud.</div>
+  <p class="section-label">Key Metrics</p>
+  <div class="kpi-grid">
+    <div class="kpi-card" style="--c:#ef4444">
+      <p class="kpi-label">Net Profit / Loss (YTD)</p>
+      <p class="kpi-value" id="o-netpl">—</p>
+      <p class="kpi-sub" id="o-netpl-sub">—</p>
+    </div>
+    <div class="kpi-card" style="--c:#4e80ee">
+      <p class="kpi-label">Total Initial Investment</p>
+      <p class="kpi-value neu" id="o-totalinv">—</p>
+      <p class="kpi-sub">Annual rent + setup costs</p>
+    </div>
+    <div class="kpi-card" style="--c:#f59e0b">
+      <p class="kpi-label">Monthly Break-Even Target</p>
+      <p class="kpi-value neu"><span class="e" data-k="breakEven" data-n contenteditable>12000</span> <span class="kpi-unit">SR</span></p>
+      <p class="kpi-sub">Current month: <span class="e" data-k="curMonthRev" data-n contenteditable>0</span> SR</p>
+    </div>
+    <div class="kpi-card" style="--c:#00c9a7">
+      <p class="kpi-label">Total Bookings (YTD)</p>
+      <p class="kpi-value neu" id="o-bookings">—</p>
+      <p class="kpi-sub">Avg nightly: <span id="o-avgnightly">—</span> SR</p>
+    </div>
+    <div class="kpi-card" style="--c:#a855f7">
+      <p class="kpi-label">Monthly Fixed Costs</p>
+      <p class="kpi-value neu" id="o-fixedmonthly">—</p>
+      <p class="kpi-sub">Rent + management</p>
+    </div>
+    <div class="kpi-card" style="--c:#f97316">
+      <p class="kpi-label">Annual Rent</p>
+      <p class="kpi-value neu"><span class="e" data-k="annualRent" data-n contenteditable>90000</span> <span class="kpi-unit">SR</span></p>
+      <p class="kpi-sub"><span id="o-monthlyrent">—</span> SR / month</p>
+    </div>
+    <div class="kpi-card" style="--c:#10b981">
+      <p class="kpi-label">Capital Recovery</p>
+      <p class="kpi-value neu" id="o-caprecov">—</p>
+      <p class="kpi-sub">Revenue earned vs. investment</p>
+    </div>
+    <div class="kpi-card" style="--c:#6366f1">
+      <p class="kpi-label">Occupancy Rate (YTD)</p>
+      <p class="kpi-value neu" id="o-occupancy">—</p>
+      <p class="kpi-sub" id="o-occupancy-sub">Nights booked vs. days elapsed</p>
+    </div>
+  </div>
+
+  <p class="section-label">Upcoming Bookings</p>
+  <div class="card" style="padding:14px 19px">
+    <div id="upcomingList"><div class="act-empty">No upcoming bookings</div></div>
+  </div>
+
+  <p class="section-label">Financials</p>
+  <div class="two-col">
+    <div class="card"><h3>Revenue vs Expenses</h3><div class="chart-wrap"><canvas id="chartRevExp"></canvas></div></div>
+    <div class="card"><h3>Partner Contributions</h3><div class="chart-wrap"><canvas id="chartPartners"></canvas></div></div>
+  </div>
+  <p class="section-label">Monthly Operating Costs</p>
+  <div class="card">
+    <div class="input-row"><span class="lbl">Annual Rent</span><span class="val"><span class="e" data-k="annualRent" data-n contenteditable>90000</span> SR</span></div>
+    <div class="input-row"><span class="lbl">Monthly Rent (÷12)</span><span class="val computed-val" id="o-monthlyrentrow">—</span></div>
+    <div class="input-row"><span class="lbl">Management Fee (monthly)</span><span class="val"><span class="e" data-k="mgmtFee" data-n contenteditable>2400</span> SR</span></div>
+    <div class="input-row"><span class="lbl">Setup / Furniture Costs</span><span class="val"><span class="e" data-k="setupCosts" data-n contenteditable>30000</span> SR</span></div>
+    <div class="input-row total-row"><span class="lbl">Total Monthly Fixed</span><span class="val" id="o-fixedrow">—</span></div>
+  </div>
+</div>
+
+<!-- ══════════ BOOKINGS ══════════ -->
+<div class="tab-content" id="tab-bookings">
+  <p class="section-label">Bookings Log</p>
+  <div class="summary-bar">
+    <div class="item"><div class="lbl">Bookings</div><div class="val" id="b-count">—</div></div>
+    <div class="item"><div class="lbl">Total Nights</div><div class="val" id="b-nights">—</div></div>
+    <div class="item"><div class="lbl">Total Revenue</div><div class="val" id="b-rev">—</div></div>
+    <div class="item"><div class="lbl">Avg Nightly Rate</div><div class="val" id="b-avg">—</div></div>
+  </div>
+  <div class="table-card">
+    <div class="table-toolbar">
+      <h3>Individual Bookings</h3>
+      <button class="btn-add" id="addBookingBtn">+ Add Booking</button>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>#</th><th>Guest / Note</th><th>Check-in</th><th>Check-out</th>
+          <th>Nights</th><th>Source</th><th>Nightly Rate (SR)</th>
+          <th>Total Revenue (SR)</th><th>Status</th><th>Notes</th><th></th>
+        </tr></thead>
+        <tbody id="bookingsBody"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ EXPENSES ══════════ -->
+<div class="tab-content" id="tab-expenses">
+  <p class="section-label">Expense Tracker</p>
+  <div class="summary-bar">
+    <div class="item"><div class="lbl">Total Expenses</div><div class="val" id="exp-total">—</div></div>
+    <div class="item"><div class="lbl">Top Category</div><div class="val" id="exp-top-cat">—</div></div>
+    <div class="item"><div class="lbl">Hassan Paid</div><div class="val" id="exp-hassan">—</div></div>
+    <div class="item"><div class="lbl">From Revenue</div><div class="val" id="exp-rev">—</div></div>
+  </div>
+  <div class="table-card">
+    <div class="table-toolbar">
+      <h3>All Expenses</h3>
+      <button class="btn-add" id="addExpenseBtn">+ Add Expense</button>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr>
+          <th>#</th><th>Date</th><th>Category</th><th>Description</th>
+          <th>Paid By</th><th>Amount (SR)</th><th>Notes</th><th></th>
+        </tr></thead>
+        <tbody id="expensesBody"></tbody>
+      </table>
+    </div>
+  </div>
+  <p class="section-label">Breakdown</p>
+  <div class="two-col">
+    <div class="card"><h3>By Category</h3><div class="chart-wrap"><canvas id="chartExpCat"></canvas></div></div>
+    <div class="card"><h3>By Payer</h3><div class="chart-wrap"><canvas id="chartExpPayer"></canvas></div></div>
+  </div>
+</div>
+
+<!-- ══════════ PROJECTIONS ══════════ -->
+<div class="tab-content" id="tab-projections">
+  <p class="section-label">Monthly Assumptions</p>
+  <div class="proj-grid">
+    <div class="card">
+      <h3>Revenue Assumptions</h3>
+      <div class="input-row"><span class="lbl">Target Nightly Rate</span><span class="val"><span class="e" data-k="p_rate" data-n contenteditable>650</span> SR</span></div>
+      <div class="input-row"><span class="lbl">Target Occupancy (%)</span><span class="val"><span class="e" data-k="p_occ" data-n contenteditable>50</span>%</span></div>
+      <div class="input-row"><span class="lbl">Days in Month</span><span class="val"><span class="e" data-k="p_days" data-n contenteditable>30</span></span></div>
+      <div class="input-row"><span class="lbl">Projected Nights Booked</span><span class="val computed-val" id="p-nights">—</span></div>
+      <div class="input-row total-row"><span class="lbl">Projected Monthly Revenue</span><span class="val" id="p-projRev">—</span></div>
+    </div>
+    <div class="card">
+      <h3>Variable Costs</h3>
+      <div class="input-row"><span class="lbl">Electricity &amp; Water</span><span class="val"><span class="e" data-k="p_elec" data-n contenteditable>700</span> SR</span></div>
+      <div class="input-row"><span class="lbl">Internet</span><span class="val"><span class="e" data-k="p_net" data-n contenteditable>250</span> SR</span></div>
+      <div class="input-row"><span class="lbl">Cleaning (per turnover)</span><span class="val"><span class="e" data-k="p_clean" data-n contenteditable>150</span> SR</span></div>
+      <div class="input-row"><span class="lbl">Est. Turnovers / Month</span><span class="val"><span class="e" data-k="p_turns" data-n contenteditable>4</span></span></div>
+      <div class="input-row"><span class="lbl">Guest Amenities</span><span class="val"><span class="e" data-k="p_amen" data-n contenteditable>300</span> SR</span></div>
+      <div class="input-row"><span class="lbl">Airbnb Service Fee (3%)</span><span class="val computed-val" id="p-airbnbFee">—</span></div>
+      <div class="input-row"><span class="lbl">Maintenance Reserve</span><span class="val"><span class="e" data-k="p_maint" data-n contenteditable>400</span> SR</span></div>
+      <div class="input-row"><span class="lbl">Linens &amp; Replacements</span><span class="val"><span class="e" data-k="p_linens" data-n contenteditable>200</span> SR</span></div>
+      <div class="input-row total-row"><span class="lbl">Total Variable</span><span class="val" id="p-totalVar">—</span></div>
+    </div>
+  </div>
+  <p class="section-label">Monthly P&amp;L Summary</p>
+  <div class="card">
+    <div class="input-row"><span class="lbl">Projected Revenue</span><span class="val" id="ps-rev" style="color:var(--green)">—</span></div>
+    <div class="input-row"><span class="lbl">Fixed Costs (Rent + Mgmt)</span><span class="val" id="ps-fixed" style="color:var(--red)">—</span></div>
+    <div class="input-row"><span class="lbl">Variable Costs</span><span class="val" id="ps-var" style="color:var(--red)">—</span></div>
+    <div class="input-row"><span class="lbl">Total Costs</span><span class="val" id="ps-totalCosts" style="color:var(--red)">—</span></div>
+    <div class="input-row total-row"><span class="lbl">Net Monthly Profit / Loss</span><span class="val" id="ps-net">—</span></div>
+  </div>
+  <p class="section-label">Scenario Analysis</p>
+  <div class="scenario-grid">
+    <div class="scenario-card">
+      <h4>Conservative</h4>
+      <div style="font-size:.73rem;color:var(--muted);margin-bottom:7px"><span class="e" data-k="s1_rate" data-n contenteditable>500</span> SR · <span class="e" data-k="s1_occ" data-n contenteditable>20</span>% occ.</div>
+      <div class="big" id="s1-net">—</div><div class="small">Monthly net</div>
+      <div style="font-size:.7rem;color:var(--muted);margin-top:5px">Revenue: <span id="s1-rev">—</span> SR</div>
+    </div>
+    <div class="scenario-card">
+      <h4>Target</h4>
+      <div style="font-size:.73rem;color:var(--muted);margin-bottom:7px"><span class="e" data-k="s2_rate" data-n contenteditable>650</span> SR · <span class="e" data-k="s2_occ" data-n contenteditable>30</span>% occ.</div>
+      <div class="big" id="s2-net">—</div><div class="small">Monthly net</div>
+      <div style="font-size:.7rem;color:var(--muted);margin-top:5px">Revenue: <span id="s2-rev">—</span> SR</div>
+    </div>
+    <div class="scenario-card">
+      <h4>Profitable</h4>
+      <div style="font-size:.73rem;color:var(--muted);margin-bottom:7px"><span class="e" data-k="s3_rate" data-n contenteditable>700</span> SR · <span class="e" data-k="s3_occ" data-n contenteditable>50</span>% occ.</div>
+      <div class="big" id="s3-net">—</div><div class="small">Monthly net</div>
+      <div style="font-size:.7rem;color:var(--muted);margin-top:5px">Revenue: <span id="s3-rev">—</span> SR</div>
+    </div>
+    <div class="scenario-card">
+      <h4>Optimal</h4>
+      <div style="font-size:.73rem;color:var(--muted);margin-bottom:7px"><span class="e" data-k="s4_rate" data-n contenteditable>800</span> SR · <span class="e" data-k="s4_occ" data-n contenteditable>55</span>% occ.</div>
+      <div class="big" id="s4-net">—</div><div class="small">Monthly net</div>
+      <div style="font-size:.7rem;color:var(--muted);margin-top:5px">Revenue: <span id="s4-rev">—</span> SR</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PARTNERS ══════════ -->
+<div class="tab-content" id="tab-partners">
+  <p class="section-label">Investment Status</p>
+  <div class="three-col">
+    <div class="partner-card">
+      <div class="p-header">
+        <div class="p-avatar" style="background:rgba(16,185,129,.15);color:#10b981">H</div>
+        <div><p class="p-name">Hassan</p><p class="p-role">Partner · Due: <span class="e" data-k="hassan_due" contenteditable>May 10, 2026</span></p></div>
+      </div>
+      <div class="stat-row"><span class="lbl">Required Share</span><span><span class="e" data-k="hassan_req" data-n contenteditable>25000</span> SR</span></div>
+      <div class="stat-row"><span class="lbl">Paid to Date</span><span style="color:#10b981"><span class="e" data-k="hassan_paid" data-n contenteditable>77250</span> SR</span></div>
+      <div class="stat-row"><span class="lbl">Still to Pay</span><span id="hassan_owed" style="font-weight:600">—</span></div>
+      <div class="prog-wrap"><div class="prog-labels"><span>Progress</span><span id="hassan_pct">—</span></div><div class="prog-bar"><div class="prog-fill" id="hassan_bar" style="background:#10b981"></div></div></div>
+      <span class="pill" id="hassan_pill">—</span>
+    </div>
+    <div class="partner-card">
+      <div class="p-header">
+        <div class="p-avatar" style="background:rgba(239,68,68,.15);color:#ef4444">N</div>
+        <div><p class="p-name">Naif</p><p class="p-role">Partner · Due: <span class="e" data-k="naif_due" contenteditable>May 10, 2026</span></p></div>
+      </div>
+      <div class="stat-row"><span class="lbl">Required Share</span><span><span class="e" data-k="naif_req" data-n contenteditable>25000</span> SR</span></div>
+      <div class="stat-row"><span class="lbl">Paid to Date</span><span style="color:#ef4444"><span class="e" data-k="naif_paid" data-n contenteditable>0</span> SR</span></div>
+      <div class="stat-row"><span class="lbl">Still to Pay</span><span id="naif_owed" style="font-weight:600">—</span></div>
+      <div class="prog-wrap"><div class="prog-labels"><span>Progress</span><span id="naif_pct">—</span></div><div class="prog-bar"><div class="prog-fill" id="naif_bar" style="background:#ef4444"></div></div></div>
+      <span class="pill" id="naif_pill">—</span>
+    </div>
+    <div class="partner-card">
+      <div class="p-header">
+        <div class="p-avatar" style="background:rgba(239,68,68,.15);color:#ef4444">M</div>
+        <div><p class="p-name">Mojahid</p><p class="p-role">Partner · Due: <span class="e" data-k="mojahid_due" contenteditable>May 10, 2026</span></p></div>
+      </div>
+      <div class="stat-row"><span class="lbl">Required Share</span><span><span class="e" data-k="mojahid_req" data-n contenteditable>25000</span> SR</span></div>
+      <div class="stat-row"><span class="lbl">Paid to Date</span><span style="color:#ef4444"><span class="e" data-k="mojahid_paid" data-n contenteditable>0</span> SR</span></div>
+      <div class="stat-row"><span class="lbl">Still to Pay</span><span id="mojahid_owed" style="font-weight:600">—</span></div>
+      <div class="prog-wrap"><div class="prog-labels"><span>Progress</span><span id="mojahid_pct">—</span></div><div class="prog-bar"><div class="prog-fill" id="mojahid_bar" style="background:#ef4444"></div></div></div>
+      <span class="pill" id="mojahid_pill">—</span>
+    </div>
+  </div>
+  <p class="section-label">Revenue Pool</p>
+  <div class="partner-card" style="max-width:380px">
+    <div class="p-header">
+      <div class="p-avatar" style="background:rgba(245,158,11,.15);color:#f59e0b;font-size:19px">💰</div>
+      <div><p class="p-name">Paid from Revenue</p><p class="p-role">Shared pool contributions</p></div>
+    </div>
+    <div class="stat-row"><span class="lbl">Total Allocated</span><span><span class="e" data-k="rev_alloc" data-n contenteditable>11700</span> SR</span></div>
+    <div class="stat-row"><span class="lbl">Paid to Date</span><span style="color:#f59e0b"><span class="e" data-k="rev_paid" data-n contenteditable>9900</span> SR</span></div>
+    <div class="stat-row"><span class="lbl">Still to Pay</span><span id="rev_owed" style="font-weight:600">—</span></div>
+    <div class="prog-wrap"><div class="prog-labels"><span>Progress</span><span id="rev_pct">—</span></div><div class="prog-bar"><div class="prog-fill" id="rev_bar" style="background:#f59e0b"></div></div></div>
+    <span class="pill" id="rev_pill">—</span>
+  </div>
+  <p class="section-label">Agreement</p>
+  <div class="card">
+    <div class="input-row"><span class="lbl">Total Initial Investment</span><span class="val computed-val" id="pt-totalinv">—</span></div>
+    <div class="input-row"><span class="lbl">Equal Share (1/3 each)</span><span class="val computed-val" id="pt-share">—</span></div>
+    <div class="input-row"><span class="lbl">Notes</span><span class="val"><span class="e" data-k="partnerNotes" contenteditable style="min-width:180px;display:inline-block">Equal 1/3 ownership. Hassan paid upfront. Naif & Mojahid due May 10, 2026.</span></span></div>
+  </div>
+</div>
+
+<!-- ══════════ ACTIVITY LOG ══════════ -->
+<div class="tab-content" id="tab-activity">
+  <p class="section-label">Edit History</p>
+  <div class="card" style="padding:0 19px">
+    <div class="activity-feed" id="activityFeed">
+      <div class="act-empty">No activity yet.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── Constants ────────────────────────────────────────────────
+const STORE = 'airbnb_v6_cache';
+const SHARED_PIN = '8521';
+const PARTNER_COLORS = { naif:'#ef4444', hassan:'#10b981', mojahid:'#4e80ee' };
+const EXPENSE_CATS = [
+  'Rent Payment','Management Fee (Monthly)','Airbnb Service Fee',
+  'Furniture - Beds','Furniture - Sofa','Kitchen Appliances','Decor & Art',
+  'Bedding & Linens','Toiletries & Amenities','Professional Cleaning',
+  'Electricity','Water','Internet & WiFi','Maintenance & Repairs',
+  'Photography','Marketing & Ads','Ministry of Tourism Permit','Insurance','Other'
+];
+const PAYERS  = ['Hassan','Naif','Mojahid','Hassan + Naif','Hassan + Mojahid','Naif + Mojahid','All Three Partners','Paid from Revenue','External/Other'];
+const SOURCES  = ['Airbnb','Direct','Booking.com','Other'];
+const STATUSES = ['Confirmed','Completed','Pending','Cancelled'];
+
+// ─── State ────────────────────────────────────────────────────
+let currentPartner = null;
+let sessionPin     = null;
+let selectedPartner = null;
+let lastEdits  = {};
+let activityLog = [];
+const filterState  = { mode:'all', month:'', from:'', to:'' };
+
+// ─── Lock screen ──────────────────────────────────────────────
+document.querySelectorAll('.partner-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.partner-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedPartner = btn.dataset.partner;
+    updateUnlockBtn();
+  });
+});
+document.getElementById('pinInput').addEventListener('input', updateUnlockBtn);
+document.getElementById('pinInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('unlockBtn').click();
+});
+function updateUnlockBtn() {
+  const pin = document.getElementById('pinInput').value.trim();
+  document.getElementById('unlockBtn').disabled = !selectedPartner || pin.length < 4;
+}
+document.getElementById('unlockBtn').addEventListener('click', async () => {
+  const pin = document.getElementById('pinInput').value.trim();
+  const btn = document.getElementById('unlockBtn');
+  const errEl = document.getElementById('lockError');
+  btn.disabled = true; btn.textContent = 'Checking…'; errEl.textContent = '\u00a0';
+  const ok = await attemptLogin(pin);
+  if (ok) {
+    hideLockScreen();
+    await restoreFromServer();
+    wireEditables();
+    showPartnerBadge();
+    recompute();
+  } else {
+    errEl.textContent = 'Incorrect PIN. Try again.';
+    document.getElementById('pinInput').value = '';
+    btn.textContent = 'Unlock';
+    updateUnlockBtn();
+  }
+});
+document.getElementById('logoutBtn').addEventListener('click', () => {
+  sessionStorage.removeItem('dash_partner');
+  sessionStorage.removeItem('dash_pin');
+  location.reload();
+});
+function hideLockScreen() { document.getElementById('lockScreen').style.display = 'none'; }
+function showPartnerBadge() {
+  const badge = document.getElementById('partnerBadge');
+  badge.textContent = currentPartner.charAt(0).toUpperCase() + currentPartner.slice(1);
+  badge.style.display = '';
+}
+function checkSession() {
+  const p = sessionStorage.getItem('dash_partner');
+  const k = sessionStorage.getItem('dash_pin');
+  if (p && k) { currentPartner = p; sessionPin = k; return true; }
+  return false;
+}
+async function attemptLogin(pin) {
+  try {
+    const res = await fetch('/api/data', {
+      headers: { 'Authorization': 'Bearer ' + pin, 'X-Partner': selectedPartner }
+    });
+    if (!res.ok) return false;
+    const { partner } = await res.json();
+    currentPartner = partner; sessionPin = pin;
+    sessionStorage.setItem('dash_partner', partner);
+    sessionStorage.setItem('dash_pin', pin);
+    return true;
+  } catch {
+    if (pin === SHARED_PIN && selectedPartner) {
+      currentPartner = selectedPartner; sessionPin = pin;
+      sessionStorage.setItem('dash_partner', selectedPartner);
+      sessionStorage.setItem('dash_pin', pin);
+      return true;
+    }
+    return false;
+  }
+}
+
+// ─── Storage / sync ───────────────────────────────────────────
+async function loadFromServer() {
+  try {
+    const res = await fetch('/api/data', {
+      headers: { 'Authorization': 'Bearer ' + sessionPin, 'X-Partner': currentPartner }
+    });
+    if (!res.ok) throw new Error();
+    const { data } = await res.json();
+    if (data) localStorage.setItem(STORE, JSON.stringify(data));
+    return data || loadFromCache();
+  } catch { return loadFromCache(); }
+}
+function loadFromCache() {
+  try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch { return {}; }
+}
+let saveTimer;
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => saveToServer(collectAll()), 400);
+}
+async function saveToServer(d) {
+  localStorage.setItem(STORE, JSON.stringify(d));
+  flash();
+  try {
+    await fetch('/api/data', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + sessionPin, 'X-Partner': currentPartner, 'Content-Type': 'application/json' },
+      body: JSON.stringify(d),
+    });
+  } catch { /* silent */ }
+}
+function flash() {
+  const el = document.getElementById('saveBadge');
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 1800);
+}
+
+// ─── Activity log ─────────────────────────────────────────────
+function logEdit(field, from, to) {
+  if (!from && !to) return;
+  if (from === to) return;
+  activityLog.unshift({ ts: Date.now(), partner: currentPartner || 'unknown', action: 'edit', field, from, to });
+  if (activityLog.length > 300) activityLog.pop();
+}
+function logAction(action, detail) {
+  activityLog.unshift({ ts: Date.now(), partner: currentPartner || 'unknown', action, detail });
+  if (activityLog.length > 300) activityLog.pop();
+}
+function renderActivityLog() {
+  const feed = document.getElementById('activityFeed');
+  if (!feed) return;
+  if (!activityLog.length) {
+    feed.innerHTML = '<div class="act-empty">No activity yet. Start editing the dashboard!</div>';
+    return;
+  }
+  feed.innerHTML = activityLog.slice(0, 150).map(e => {
+    const col = PARTNER_COLORS[e.partner] || '#7b8299';
+    const ini = e.partner ? e.partner[0].toUpperCase() : '?';
+    const d = new Date(e.ts);
+    const t = d.toLocaleString('en-SA', { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+    let detail = '';
+    if (e.action === 'edit') detail = `Edited <b>${e.field}</b>: "${e.from}" → "${e.to}"`;
+    else if (e.action === 'add_booking') detail = `Added booking${e.detail ? ': ' + e.detail : ''}`;
+    else if (e.action === 'del_booking') detail = `Deleted booking${e.detail ? ': ' + e.detail : ''}`;
+    else if (e.action === 'add_expense') detail = `Added expense${e.detail ? ': ' + e.detail : ''}`;
+    else if (e.action === 'del_expense') detail = `Deleted expense${e.detail ? ': ' + e.detail : ''}`;
+    else detail = e.detail || '';
+    return `<div class="activity-item">
+      <div class="act-avatar" style="background:${col}">${ini}</div>
+      <div class="act-content">
+        <div class="act-header"><span class="act-partner" style="color:${col}">${e.partner}</span><span class="act-time">${t}</span></div>
+        <div class="act-detail">${detail}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ─── Edit badge ───────────────────────────────────────────────
+function renderBadge(container, partner, ts) {
+  let badge = container.querySelector('.edit-badge');
+  if (!badge) { badge = document.createElement('span'); badge.className = 'edit-badge'; container.appendChild(badge); }
+  const col = PARTNER_COLORS[partner] || '#7b8299';
+  badge.textContent = partner ? partner[0].toUpperCase() : '?';
+  badge.style.background = col;
+  const d = new Date(ts);
+  badge.title = `Last edited by ${partner} at ${d.toLocaleString()}`;
+}
+function restoreBadges() {
+  Object.entries(lastEdits).forEach(([key, info]) => {
+    if (key.startsWith('k:')) {
+      const k = key.slice(2);
+      const el = document.querySelector('.e[data-k="' + k + '"]');
+      if (el && el.parentElement) renderBadge(el.parentElement, info.partner, info.ts);
+    }
+    // table cell badges restored via addBookingRow / addExpenseRow
+  });
+}
+
+// ─── Collect ──────────────────────────────────────────────────
+function collectAll() {
+  const d = {}; const seen = new Set();
+  document.querySelectorAll('.e[data-k]').forEach(el => {
+    const k = el.dataset.k;
+    if (!seen.has(k)) { seen.add(k); d[k] = el.innerText.trim(); }
+  });
+  d.bookings = collectRows('bookingsBody', ['guest','checkin','checkout','nights','source','rate','status','notes','rowid']);
+  d.expenses = collectRows('expensesBody', ['date','cat','desc','paidby','amount','notes','rowid']);
+  d.lastEdits = lastEdits;
+  d.activityLog = activityLog;
+  return d;
+}
+function collectRows(tbodyId, fields) {
+  return [...document.querySelectorAll('#' + tbodyId + ' tr')].map(tr => {
+    const obj = {};
+    fields.forEach(f => {
+      if (f === 'rowid') { obj[f] = tr.dataset.rowid || ''; return; }
+      const el = tr.querySelector('[data-col="' + f + '"]');
+      if (!el) { obj[f] = ''; return; }
+      obj[f] = el.tagName === 'SELECT' ? el.value : el.tagName === 'INPUT' ? el.value : el.innerText.trim();
+    });
+    return obj;
+  });
+}
+
+// ─── Restore ──────────────────────────────────────────────────
+async function restoreFromServer() {
+  const d = await loadFromServer();
+  const seen = new Set();
+  document.querySelectorAll('.e[data-k]').forEach(el => {
+    const k = el.dataset.k;
+    if (!seen.has(k) && d[k] !== undefined) el.innerText = d[k];
+    seen.add(k);
+  });
+  lastEdits   = d.lastEdits   || {};
+  activityLog = d.activityLog || [];
+  (d.bookings || defaultBookings()).forEach(b => addBookingRow(b));
+  (d.expenses || defaultExpenses()).forEach(e => addExpenseRow(e));
+  restoreBadges();
+}
+
+// ─── Defaults ─────────────────────────────────────────────────
+function defaultBookings() {
+  return [
+    {guest:'Sample Guest',checkin:'2026-02-15',checkout:'2026-02-18',nights:'3',source:'Airbnb',rate:'650',status:'Completed',notes:'First booking'},
+    {guest:'',checkin:'2026-02-18',checkout:'2026-02-21',nights:'3',source:'Airbnb',rate:'650',status:'Completed',notes:''},
+    {guest:'',checkin:'2026-02-21',checkout:'2026-02-24',nights:'3',source:'Airbnb',rate:'650',status:'Completed',notes:''},
+    {guest:'',checkin:'2026-02-24',checkout:'2026-02-27',nights:'3',source:'Airbnb',rate:'650',status:'Completed',notes:''},
+    {guest:'',checkin:'2026-02-27',checkout:'2026-03-02',nights:'3',source:'Airbnb',rate:'650',status:'Completed',notes:''},
+    {guest:'',checkin:'2026-04-02',checkout:'2026-04-05',nights:'3',source:'Airbnb',rate:'650',status:'Completed',notes:''},
+  ];
+}
+function defaultExpenses() {
+  return [
+    {date:'2026-01-19',cat:'Rent Payment',            desc:'First 6 months rent (Feb–Jul 2026)',paidby:'Hassan',            amount:'45000',notes:'Initial payment'},
+    {date:'2026-01-19',cat:'Other',                   desc:'Rental office commission',          paidby:'Hassan',            amount:'2250', notes:'One time'},
+    {date:'2026-01-19',cat:'Insurance',               desc:'Apartment insurance',               paidby:'Hassan',            amount:'3000', notes:'One time'},
+    {date:'2026-02-11',cat:'Furniture - Beds',        desc:'Furniture (first half)',            paidby:'Hassan',            amount:'9000', notes:''},
+    {date:'2026-02-16',cat:'Furniture - Sofa',        desc:'Furniture',                         paidby:'Hassan',            amount:'9000', notes:'To Mojahid'},
+    {date:'2026-02-19',cat:'Furniture - Beds',        desc:'Furniture (second half)',           paidby:'Hassan',            amount:'9000', notes:''},
+    {date:'2026-03-01',cat:'Management Fee (Monthly)',desc:'February 2026 management',          paidby:'Paid from Revenue', amount:'2400', notes:'Monthly recurring'},
+    {date:'2026-03-01',cat:'Rent Payment',            desc:'March 2026 rent',                  paidby:'Paid from Revenue', amount:'7500', notes:'Monthly recurring'},
+  ];
+}
+
+// ─── Row ID ───────────────────────────────────────────────────
+function genRowId() { return Math.random().toString(36).slice(2, 10); }
+
+// ─── Table helpers ────────────────────────────────────────────
+function makeEditableTd(val, col, isNum, trackKey) {
+  const td = document.createElement('td');
+  const span = document.createElement('span');
+  span.className = 'e'; span.dataset.col = col;
+  if (isNum) span.dataset.n = '';
+  span.contentEditable = 'true'; span.innerText = val || '';
+  let prevVal = val || '';
+  span.addEventListener('focus', () => {
+    prevVal = span.innerText.trim();
+    const r = document.createRange(); r.selectNodeContents(span);
+    const s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  });
+  span.addEventListener('blur', () => {
+    const cur = span.innerText.trim();
+    if (trackKey && cur !== prevVal) {
+      logEdit(trackKey, prevVal, cur);
+      lastEdits['t:' + trackKey] = { partner: currentPartner, ts: Date.now() };
+      renderBadge(td, currentPartner, lastEdits['t:' + trackKey].ts);
+      scheduleSave();
+    }
+  });
+  span.addEventListener('input', () => { recompute(); scheduleSave(); });
+  span.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); span.blur(); } });
+  td.appendChild(span);
+  // restore existing badge
+  if (trackKey && lastEdits['t:' + trackKey]) {
+    renderBadge(td, lastEdits['t:' + trackKey].partner, lastEdits['t:' + trackKey].ts);
+  }
+  return td;
+}
+function makeDateTd(val, col, onChange) {
+  const td = document.createElement('td');
+  const input = document.createElement('input');
+  input.type = 'date'; input.className = 'tbl-date'; input.dataset.col = col; input.value = val || '';
+  input.addEventListener('change', () => {
+    if (onChange) onChange();
+    populateMonthDropdown(); recompute(); scheduleSave();
+  });
+  td.appendChild(input); return td;
+}
+function makeRevTd() {
+  const td = document.createElement('td');
+  td.dataset.col = 'revenue'; td.className = 'rev-cell'; td.textContent = '0';
+  return td;
+}
+function makeSelectTd(options, selected, col) {
+  const td = document.createElement('td');
+  const sel = document.createElement('select');
+  sel.className = 'tbl-select'; sel.dataset.col = col;
+  options.forEach(o => {
+    const opt = document.createElement('option');
+    opt.value = o; opt.textContent = o;
+    if (o === selected) opt.selected = true;
+    sel.appendChild(opt);
+  });
+  sel.addEventListener('change', () => { recompute(); scheduleSave(); });
+  td.appendChild(sel); return td;
+}
+function makeDelTd(tr, tbody, onDelete) {
+  const td = document.createElement('td');
+  const btn = document.createElement('button');
+  btn.className = 'del-btn'; btn.textContent = '✕';
+  btn.addEventListener('click', () => {
+    if (onDelete) onDelete();
+    tr.remove(); renumber(tbody); populateMonthDropdown(); recompute(); scheduleSave();
+  });
+  td.appendChild(btn); return td;
+}
+function renumber(tbody) {
+  [...tbody.rows].forEach((tr, i) => { tr.cells[0].textContent = i + 1; });
+}
+
+// ─── Auto-calc nights ─────────────────────────────────────────
+function calcNights(tr) {
+  const cin  = tr.querySelector('[data-col="checkin"]')?.value;
+  const cout = tr.querySelector('[data-col="checkout"]')?.value;
+  if (cin && cout) {
+    const ni = Math.max(0, Math.round((new Date(cout) - new Date(cin)) / 86400000));
+    const sp = tr.querySelector('[data-col="nights"]');
+    if (sp) sp.innerText = String(ni);
+  }
+}
+
+// ─── Add rows ─────────────────────────────────────────────────
+function addBookingRow(b = {}) {
+  const tbody = document.getElementById('bookingsBody');
+  const tr = document.createElement('tr');
+  const rowid = b.rowid || genRowId();
+  tr.dataset.rowid = rowid;
+  const numTd = document.createElement('td');
+  numTd.style.color = 'var(--muted)'; numTd.textContent = tbody.rows.length + 1;
+  tr.appendChild(numTd);
+  tr.appendChild(makeEditableTd(b.guest || '', 'guest', false, 'b_' + rowid + '_guest'));
+  tr.appendChild(makeDateTd(b.checkin || '', 'checkin', () => calcNights(tr)));
+  tr.appendChild(makeDateTd(b.checkout || '', 'checkout', () => calcNights(tr)));
+  tr.appendChild(makeEditableTd(b.nights || '1', 'nights', true, 'b_' + rowid + '_nights'));
+  tr.appendChild(makeSelectTd(SOURCES, b.source || 'Airbnb', 'source'));
+  tr.appendChild(makeEditableTd(b.rate || '650', 'rate', true, 'b_' + rowid + '_rate'));
+  tr.appendChild(makeRevTd());
+  tr.appendChild(makeSelectTd(STATUSES, b.status || 'Confirmed', 'status'));
+  tr.appendChild(makeEditableTd(b.notes || '', 'notes', false, 'b_' + rowid + '_notes'));
+  tr.appendChild(makeDelTd(tr, tbody, () => {
+    const g = tr.querySelector('[data-col="guest"]')?.innerText || '';
+    logAction('del_booking', g || tr.querySelector('[data-col="checkin"]')?.value || '');
+    renderActivityLog();
+  }));
+  tbody.appendChild(tr);
+}
+function addExpenseRow(e = {}) {
+  const tbody = document.getElementById('expensesBody');
+  const tr = document.createElement('tr');
+  const rowid = e.rowid || genRowId();
+  tr.dataset.rowid = rowid;
+  const numTd = document.createElement('td');
+  numTd.style.color = 'var(--muted)'; numTd.textContent = tbody.rows.length + 1;
+  tr.appendChild(numTd);
+  tr.appendChild(makeDateTd(e.date || '', 'date'));
+  tr.appendChild(makeSelectTd(EXPENSE_CATS, e.cat || 'Other', 'cat'));
+  tr.appendChild(makeEditableTd(e.desc || '', 'desc', false, 'e_' + rowid + '_desc'));
+  tr.appendChild(makeSelectTd(PAYERS, e.paidby || 'Hassan', 'paidby'));
+  tr.appendChild(makeEditableTd(e.amount || '0', 'amount', true, 'e_' + rowid + '_amount'));
+  tr.appendChild(makeEditableTd(e.notes || '', 'notes', false, 'e_' + rowid + '_notes'));
+  tr.appendChild(makeDelTd(tr, tbody, () => {
+    const desc = tr.querySelector('[data-col="desc"]')?.innerText || '';
+    const amt  = tr.querySelector('[data-col="amount"]')?.innerText || '';
+    logAction('del_expense', (desc || 'Expense') + ' — ' + amt + ' SR');
+    renderActivityLog();
+  }));
+  tbody.appendChild(tr);
+}
+document.getElementById('addBookingBtn').addEventListener('click', () => {
+  addBookingRow();
+  logAction('add_booking', '');
+  renderActivityLog();
+  populateMonthDropdown(); recompute(); scheduleSave();
+});
+document.getElementById('addExpenseBtn').addEventListener('click', () => {
+  addExpenseRow();
+  logAction('add_expense', '');
+  renderActivityLog();
+  populateMonthDropdown(); recompute(); scheduleSave();
+});
+
+// ─── Filter ───────────────────────────────────────────────────
+function isInFilter(d) {
+  if (filterState.mode === 'all') return true;
+  if (!d) return false;
+  if (filterState.mode === 'month') return d.startsWith(filterState.month);
+  if (filterState.mode === 'custom') {
+    if (filterState.from && d < filterState.from) return false;
+    if (filterState.to   && d > filterState.to)   return false;
+    return true;
+  }
+  return true;
+}
+function filteredRows(tbodyId, dateCol) {
+  return [...document.querySelectorAll('#' + tbodyId + ' tr')].filter(tr => {
+    const el = tr.querySelector('[data-col="' + dateCol + '"]');
+    return isInFilter(el ? (el.tagName === 'INPUT' ? el.value : el.innerText.trim()) : '');
+  });
+}
+function sumFiltered(rows, col) {
+  return rows.reduce((s, tr) => {
+    const el = tr.querySelector('[data-col="' + col + '"]');
+    if (!el) return s;
+    const v = el.tagName === 'INPUT' ? el.value : (el.textContent || '0');
+    return s + (parseFloat((v + '').replace(/,/g, '')) || 0);
+  }, 0);
+}
+function applyDimming(tbodyId, dateCol) {
+  document.querySelectorAll('#' + tbodyId + ' tr').forEach(tr => {
+    const el = tr.querySelector('[data-col="' + dateCol + '"]');
+    const v = el ? (el.tagName === 'INPUT' ? el.value : el.innerText.trim()) : '';
+    tr.classList.toggle('dimmed', !isInFilter(v));
+  });
+}
+function populateMonthDropdown() {
+  const months = new Set();
+  document.querySelectorAll('#bookingsBody [data-col="checkin"],#expensesBody [data-col="date"]').forEach(el => {
+    const v = el.tagName === 'INPUT' ? el.value : el.innerText.trim();
+    if (v && v.length >= 7) months.add(v.slice(0, 7));
+  });
+  const sel = document.getElementById('filterMonth');
+  while (sel.options.length > 1) sel.remove(1);
+  [...months].sort().forEach(m => {
+    const opt = document.createElement('option');
+    opt.value = m;
+    try { opt.textContent = new Date(m + '-02').toLocaleString('en-SA', { month: 'long', year: 'numeric' }); }
+    catch { opt.textContent = m; }
+    if (m === filterState.month) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+function clearFilter() {
+  filterState.mode = 'all'; filterState.month = ''; filterState.from = ''; filterState.to = '';
+  document.getElementById('filterMonth').value = '';
+  document.getElementById('filterFrom').value = '';
+  document.getElementById('filterTo').value = '';
+  document.getElementById('filterClear').style.display = 'none';
+  document.getElementById('filterAll').classList.add('active');
+}
+document.getElementById('filterAll').addEventListener('click', () => { clearFilter(); recompute(); });
+document.getElementById('filterClear').addEventListener('click', () => { clearFilter(); recompute(); });
+document.getElementById('filterMonth').addEventListener('change', e => {
+  if (!e.target.value) { clearFilter(); recompute(); return; }
+  filterState.mode = 'month'; filterState.month = e.target.value;
+  filterState.from = ''; filterState.to = '';
+  document.getElementById('filterFrom').value = ''; document.getElementById('filterTo').value = '';
+  document.getElementById('filterClear').style.display = '';
+  document.getElementById('filterAll').classList.remove('active');
+  recompute();
+});
+['filterFrom','filterTo'].forEach(id => {
+  document.getElementById(id).addEventListener('change', () => {
+    filterState.mode = 'custom';
+    filterState.from = document.getElementById('filterFrom').value;
+    filterState.to   = document.getElementById('filterTo').value;
+    filterState.month = ''; document.getElementById('filterMonth').value = '';
+    document.getElementById('filterClear').style.display = '';
+    document.getElementById('filterAll').classList.remove('active');
+    recompute();
+  });
+});
+
+// ─── Charts ───────────────────────────────────────────────────
+Chart.defaults.color = '#7b8299'; Chart.defaults.borderColor = '#2a3145';
+Chart.defaults.font.family = "'Segoe UI',system-ui,sans-serif";
+const chartRevExp = new Chart(document.getElementById('chartRevExp'), {
+  type:'bar', data:{ labels:['Revenue','Expenses'], datasets:[{ data:[0,0],
+    backgroundColor:['rgba(0,201,167,.7)','rgba(239,68,68,.7)'],
+    borderColor:['#00c9a7','#ef4444'], borderWidth:2, borderRadius:7 }] },
+  options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+    scales:{ x:{grid:{display:false}}, y:{ticks:{callback:v=>fmt(v)+' SR'}} } }
+});
+const chartPartners = new Chart(document.getElementById('chartPartners'), {
+  type:'doughnut', data:{ labels:['Hassan (paid)','Revenue (paid)','Naif (owed)','Mojahid (owed)','Revenue (owed)'],
+    datasets:[{ data:[0,0,0,0,0],
+      backgroundColor:['rgba(16,185,129,.8)','rgba(245,158,11,.8)','rgba(239,68,68,.5)','rgba(239,68,68,.3)','rgba(245,158,11,.3)'],
+      borderColor:['#10b981','#f59e0b','#ef4444','#ef4444','#f59e0b'], borderWidth:2 }] },
+  options:{ responsive:true, maintainAspectRatio:false, cutout:'60%',
+    plugins:{ legend:{ position:'right', labels:{ boxWidth:10, padding:11, font:{size:10} } } } }
+});
+const chartExpCat = new Chart(document.getElementById('chartExpCat'), {
+  type:'doughnut', data:{ labels:[], datasets:[{ data:[],
+    backgroundColor:['#ef4444','#f97316','#f59e0b','#10b981','#00c9a7','#4e80ee','#a855f7','#ec4899','#6366f1','#14b8a6'],
+    borderWidth:2, borderColor:'#161b26' }] },
+  options:{ responsive:true, maintainAspectRatio:false, cutout:'55%',
+    plugins:{ legend:{ position:'right', labels:{ boxWidth:10, padding:10, font:{size:10} } } } }
+});
+const chartExpPayer = new Chart(document.getElementById('chartExpPayer'), {
+  type:'bar', data:{ labels:[], datasets:[{ data:[],
+    backgroundColor:'rgba(78,128,238,.7)', borderColor:'#4e80ee', borderWidth:2, borderRadius:6 }] },
+  options:{ responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}},
+    scales:{ x:{grid:{display:false}}, y:{ticks:{callback:v=>fmt(v)+' SR'}} } }
+});
+
+// ─── Helpers ──────────────────────────────────────────────────
+function n(k) { const el = document.querySelector('.e[data-k="'+k+'"]'); return parseFloat((el?.innerText||'0').replace(/,/g,''))||0; }
+function fmt(v) { return Math.abs(v).toLocaleString('en-SA',{maximumFractionDigits:0}); }
+function fmtSigned(v) { return (v<0?'−':'+')+fmt(v)+' SR'; }
+function setText(id,val) { const el=document.getElementById(id); if(el)el.textContent=val; }
+function pillInfo(p) {
+  if (p>=100) return ['pill pill-g','FULLY FUNDED ✓'];
+  if (p>0)    return ['pill pill-w','IN PROGRESS'];
+  return ['pill pill-r','PENDING PAYMENT'];
+}
+
+// ─── Upcoming bookings ────────────────────────────────────────
+function renderUpcoming() {
+  const today = new Date().toISOString().slice(0, 10);
+  const rows = [...document.querySelectorAll('#bookingsBody tr')].map(tr => ({
+    checkin:  tr.querySelector('[data-col="checkin"]')?.value || '',
+    checkout: tr.querySelector('[data-col="checkout"]')?.value || '',
+    guest:    tr.querySelector('[data-col="guest"]')?.innerText.trim() || '',
+    status:   tr.querySelector('[data-col="status"]')?.value || '',
+    nights:   tr.querySelector('[data-col="nights"]')?.innerText.trim() || '',
+  })).filter(r => r.checkin >= today && r.status !== 'Cancelled')
+    .sort((a, b) => a.checkin.localeCompare(b.checkin))
+    .slice(0, 4);
+  const el = document.getElementById('upcomingList');
+  if (!el) return;
+  if (!rows.length) { el.innerHTML = '<div class="act-empty" style="padding:14px 0">No upcoming bookings</div>'; return; }
+  el.innerHTML = rows.map(r => {
+    const days = Math.round((new Date(r.checkin) - new Date(today)) / 86400000);
+    const daysLabel = days === 0 ? 'today' : days === 1 ? '1 day' : days + ' days';
+    const cls = r.status === 'Confirmed' ? 'badge-confirmed' : 'badge-pending';
+    return `<div class="upcoming-item">
+      <div class="upcoming-days">${days === 0 ? '🟢' : days}<span class="day-label">${days === 0 ? '' : 'days'}</span></div>
+      <div class="upcoming-info">
+        <div class="name">${r.guest || 'Guest'}</div>
+        <div class="dates">${r.checkin} → ${r.checkout} &nbsp;·&nbsp; ${r.nights} nights</div>
+      </div>
+      <span class="upcoming-badge ${cls}">${r.status}</span>
+    </div>`;
+  }).join('');
+}
+
+// ─── Recompute ────────────────────────────────────────────────
+function recompute() {
+  // Auto-calc booking revenue
+  document.querySelectorAll('#bookingsBody tr').forEach(tr => {
+    const ni = parseFloat(tr.querySelector('[data-col="nights"]')?.innerText)||0;
+    const ra = parseFloat(tr.querySelector('[data-col="rate"]')?.innerText)||0;
+    const rv = tr.querySelector('[data-col="revenue"]');
+    if (rv) rv.textContent = String(ni * ra);
+  });
+
+  const filtB = filteredRows('bookingsBody','checkin');
+  const filtE = filteredRows('expensesBody','date');
+  applyDimming('bookingsBody','checkin');
+  applyDimming('expensesBody','date');
+
+  const annualRent  = n('annualRent');
+  const mgmtFee     = n('mgmtFee');
+  const setupCosts  = n('setupCosts');
+  const monthlyRent = annualRent/12;
+  const fixedMo     = monthlyRent + mgmtFee;
+  const totalInv    = annualRent + setupCosts;
+
+  document.querySelectorAll('.e[data-k="annualRent"]').forEach(el => {
+    if (el.innerText.trim() !== String(annualRent)) el.innerText = String(annualRent);
+  });
+
+  const revYTD  = sumFiltered(filtB,'revenue');
+  const expYTD  = sumFiltered(filtE,'amount');
+  const totalNi = sumFiltered(filtB,'nights');
+  const totalBk = filtB.length;
+  const netPL   = revYTD - expYTD;
+  const avgNi   = totalNi>0 ? revYTD/totalNi : 0;
+
+  // Capital recovery
+  const capRecov = totalInv > 0 ? (revYTD / totalInv) * 100 : 0;
+  setText('o-caprecov', capRecov.toFixed(1) + '%');
+
+  // Occupancy rate: nights booked / days since first booking (or today)
+  const allCheckins = [...document.querySelectorAll('#bookingsBody [data-col="checkin"]')].map(el => el.value).filter(Boolean).sort();
+  let occupancyStr = '—';
+  if (allCheckins.length && totalNi > 0) {
+    const first = new Date(allCheckins[0]);
+    const daysElapsed = Math.max(1, Math.round((new Date() - first) / 86400000));
+    const occ = (totalNi / daysElapsed) * 100;
+    occupancyStr = Math.min(occ, 100).toFixed(1) + '%';
+    setText('o-occupancy-sub', fmt(totalNi) + ' nights / ' + daysElapsed + ' days elapsed');
+  }
+  setText('o-occupancy', occupancyStr);
+
+  const netEl = document.getElementById('o-netpl');
+  if (netEl) { netEl.textContent=(netPL<0?'−':'+')+fmt(Math.abs(netPL))+' SR'; netEl.className='kpi-value '+(netPL<0?'neg':'pos'); }
+  setText('o-netpl-sub','Revenue '+fmt(revYTD)+' SR — Expenses '+fmt(expYTD)+' SR');
+  setText('o-totalinv', fmt(totalInv)+' SR');
+  setText('o-bookings', String(totalBk));
+  setText('o-avgnightly', fmt(avgNi));
+  setText('o-fixedmonthly', fmt(fixedMo)+' SR');
+  setText('o-monthlyrent', fmt(monthlyRent));
+  setText('o-monthlyrentrow', fmt(monthlyRent)+' SR');
+  setText('o-fixedrow', fmt(fixedMo)+' SR');
+
+  setText('b-count', String(totalBk));
+  setText('b-nights', fmt(totalNi));
+  setText('b-rev', fmt(revYTD)+' SR');
+  setText('b-avg', (totalNi>0?fmt(avgNi):'0')+' SR');
+
+  const catMap={}, payerMap={};
+  filtE.forEach(tr => {
+    const cat  = tr.querySelector('[data-col="cat"]')?.value||'Other';
+    const pay  = tr.querySelector('[data-col="paidby"]')?.value||'';
+    const amt  = parseFloat((tr.querySelector('[data-col="amount"]')?.innerText||'0').replace(/,/g,''))||0;
+    catMap[cat]  = (catMap[cat]||0)+amt;
+    payerMap[pay]= (payerMap[pay]||0)+amt;
+  });
+  setText('exp-total', fmt(expYTD)+' SR');
+  const top = Object.entries(catMap).sort((a,b)=>b[1]-a[1])[0];
+  setText('exp-top-cat', top?top[0]:'—');
+  setText('exp-hassan', fmt(payerMap['Hassan']||0)+' SR');
+  setText('exp-rev', fmt(payerMap['Paid from Revenue']||0)+' SR');
+  chartExpCat.data.labels=Object.keys(catMap); chartExpCat.data.datasets[0].data=Object.values(catMap); chartExpCat.update('none');
+  chartExpPayer.data.labels=Object.keys(payerMap); chartExpPayer.data.datasets[0].data=Object.values(payerMap); chartExpPayer.update('none');
+  chartRevExp.data.datasets[0].data=[revYTD,expYTD]; chartRevExp.update('none');
+
+  const pRate=n('p_rate'),pOcc=n('p_occ'),pDays=n('p_days');
+  const pElec=n('p_elec'),pNet=n('p_net'),pClean=n('p_clean'),pTurns=n('p_turns');
+  const pAmen=n('p_amen'),pMaint=n('p_maint'),pLinens=n('p_linens');
+  const pNi   = Math.round((pOcc/100)*pDays);
+  const projRev= pNi*pRate;
+  const airFee = projRev*0.03;
+  const totVar = pElec+pNet+(pClean*pTurns)+pAmen+airFee+pMaint+pLinens;
+  const totCosts= fixedMo+totVar;
+  const netMo  = projRev-totCosts;
+  setText('p-nights', String(pNi)+' nights');
+  setText('p-projRev', fmt(projRev)+' SR');
+  setText('p-airbnbFee', fmt(airFee)+' SR');
+  setText('p-totalVar', fmt(totVar)+' SR');
+  setText('ps-rev', fmt(projRev)+' SR');
+  setText('ps-fixed', fmt(fixedMo)+' SR');
+  setText('ps-var', fmt(totVar)+' SR');
+  setText('ps-totalCosts', fmt(totCosts)+' SR');
+  const psNet=document.getElementById('ps-net');
+  if(psNet){psNet.textContent=fmtSigned(netMo);psNet.style.color=netMo>=0?'var(--green)':'var(--red)';}
+
+  function scenario(rK,oK,netId,revId) {
+    const sRev=Math.round((n(oK)/100)*pDays)*n(rK);
+    const sNet=sRev-totCosts;
+    const el=document.getElementById(netId);
+    if(el){el.textContent=fmtSigned(sNet);el.className='big '+(sNet>=0?'pos':'neg');}
+    setText(revId,fmt(sRev));
+  }
+  scenario('s1_rate','s1_occ','s1-net','s1-rev');
+  scenario('s2_rate','s2_occ','s2-net','s2-rev');
+  scenario('s3_rate','s3_occ','s3-net','s3-rev');
+  scenario('s4_rate','s4_occ','s4-net','s4-rev');
+
+  setText('pt-totalinv', fmt(totalInv)+' SR');
+  setText('pt-share', fmt(totalInv/3)+' SR');
+
+  [{id:'hassan',rK:'hassan_req',pK:'hassan_paid'},{id:'naif',rK:'naif_req',pK:'naif_paid'},{id:'mojahid',rK:'mojahid_req',pK:'mojahid_paid'}].forEach(p=>{
+    const req=n(p.rK),paid=n(p.pK),owed=Math.max(req-paid,0),pc=req>0?(paid/req)*100:0;
+    const owedEl=document.getElementById(p.id+'_owed');
+    if(owedEl){owedEl.textContent=fmt(owed)+' SR';owedEl.style.color=owed===0?'var(--green)':'var(--red)';}
+    setText(p.id+'_pct',pc.toFixed(1)+'%');
+    const bar=document.getElementById(p.id+'_bar'); if(bar)bar.style.width=Math.min(pc,100)+'%';
+    const pill=document.getElementById(p.id+'_pill'); if(pill){const[c,t]=pillInfo(pc);pill.className=c;pill.textContent=t;}
+  });
+  const rA=n('rev_alloc'),rP=n('rev_paid'),rO=Math.max(rA-rP,0),rPc=rA>0?(rP/rA)*100:0;
+  const revOwedEl=document.getElementById('rev_owed');
+  if(revOwedEl){revOwedEl.textContent=fmt(rO)+' SR';revOwedEl.style.color=rO===0?'var(--green)':'var(--red)';}
+  setText('rev_pct',rPc.toFixed(1)+'%');
+  const revBar=document.getElementById('rev_bar'); if(revBar)revBar.style.width=Math.min(rPc,100)+'%';
+  const revPill=document.getElementById('rev_pill'); if(revPill){const[c,t]=pillInfo(rPc);revPill.className=c;revPill.textContent=t;}
+  chartPartners.data.datasets[0].data=[n('hassan_paid'),rP,Math.max(n('naif_req')-n('naif_paid'),0),Math.max(n('mojahid_req')-n('mojahid_paid'),0),rO];
+  chartPartners.update('none');
+
+  populateMonthDropdown();
+  renderUpcoming();
+  renderActivityLog();
+}
+
+// ─── Wire editables ───────────────────────────────────────────
+function wireEditables() {
+  document.querySelectorAll('.e[data-k]').forEach(el => {
+    let prevVal = el.innerText.trim();
+    el.addEventListener('focus', () => {
+      prevVal = el.innerText.trim();
+      const r=document.createRange(); r.selectNodeContents(el);
+      const s=window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    });
+    el.addEventListener('blur', () => {
+      const cur = el.innerText.trim();
+      if (cur !== prevVal) {
+        const key = el.dataset.k;
+        logEdit(key, prevVal, cur);
+        lastEdits['k:' + key] = { partner: currentPartner, ts: Date.now() };
+        renderBadge(el.parentElement, currentPartner, lastEdits['k:' + key].ts);
+        renderActivityLog();
+        scheduleSave();
+      }
+    });
+    el.addEventListener('input', () => { recompute(); scheduleSave(); });
+    el.addEventListener('keydown', e => { if(e.key==='Enter'){e.preventDefault();el.blur();} });
+  });
+}
+
+// ─── Tabs ─────────────────────────────────────────────────────
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-'+tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ─── Excel Export ─────────────────────────────────────────────
+document.getElementById('exportBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('exportBtn');
+  btn.textContent = '⏳ Preparing…'; btn.disabled = true;
+
+  if (!window.XLSX) {
+    await new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js';
+      s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+  }
+
+  const wb = XLSX.utils.book_new();
+  const bookings = collectRows('bookingsBody', ['guest','checkin','checkout','nights','source','rate','status','notes']);
+  const expenses  = collectRows('expensesBody', ['date','cat','desc','paidby','amount','notes']);
+
+  const annualRent   = n('annualRent');
+  const mgmtFee      = n('mgmtFee');
+  const setupCosts   = n('setupCosts');
+  const monthlyRent  = annualRent/12;
+  const fixedMo      = monthlyRent+mgmtFee;
+  const totalInv     = annualRent+setupCosts;
+  const revYTD       = bookings.reduce((s,b)=>{const ni=parseFloat(b.nights)||0;const ra=parseFloat(b.rate)||0;return s+ni*ra;},0);
+  const expYTD       = expenses.reduce((s,e)=>s+(parseFloat(e.amount)||0),0);
+  const totalNights  = bookings.reduce((s,b)=>s+(parseFloat(b.nights)||0),0);
+  const totalBk      = bookings.length;
+  const avgNi        = totalNights>0?revYTD/totalNights:0;
+  const hassanPaid   = n('hassan_paid'), naifPaid=n('naif_paid'), mojahidPaid=n('mojahid_paid');
+  const hassanReq    = n('hassan_req'),  naifReq=n('naif_req'),  mojahidReq=n('mojahid_req');
+  const revAlloc     = n('rev_alloc'),   revPaid=n('rev_paid');
+
+  function pct(a,b){return b===0?'0%':(a/b*100).toFixed(1)+'%';}
+
+  const dash = [
+    ['AIRBNB BUSINESS DASHBOARD'],
+    ['Partnership: Naif • Hassan • Mojahid'],
+    ['Riyadh, Saudi Arabia','','UPDATE DATE:',document.querySelector('.e[data-k="updateDate"]')?.innerText||''],
+    [],
+    ['Property Type:','Furnished Apartment'],
+    ['Annual Rent:', annualRent+' SR'],
+    ['Management Fee (Monthly):', mgmtFee+' SR','Critical monthly fixed cost!'],
+    [],
+    [],
+    ['KEY BUSINESS METRICS','','','','','PARTNER INVESTMENT STATUS'],
+    ['Metric','Amount','Formula/Source','Status','','Partner','Required Share','Paid to Date','% Complete','Amount to Pay'],
+    ['Total Capital Investment', annualRent+' SR','Annual Rent','Fixed','','Hassan', hassanReq+' SR', hassanPaid+' SR', pct(hassanPaid,hassanReq), Math.max(hassanReq-hassanPaid,0)+' SR'],
+    ['Setup Costs (Furniture, etc.)', setupCosts+' SR','Estimated','One-time','','Naif', naifReq+' SR', naifPaid+' SR', pct(naifPaid,naifReq), Math.max(naifReq-naifPaid,0)+' SR'],
+    ['Total Initial Investment', totalInv+' SR','Calculation','','','Mojahid', mojahidReq+' SR', mojahidPaid+' SR', pct(mojahidPaid,mojahidReq), Math.max(mojahidReq-mojahidPaid,0)+' SR'],
+    [],[],
+    ['MONTHLY FIXED COSTS:'],
+    ['Rent (Monthly)', monthlyRent+' SR','Annual/12'],
+    ['Management Fee', mgmtFee+' SR','Contract','Critical'],
+    ['Total Fixed Monthly', fixedMo+' SR','Must cover'],
+    [],[],
+    ['PERFORMANCE METRICS:'],
+    ['Total Bookings (YTD)', totalBk,'From Bookings'],
+    ['Total Revenue (YTD)', revYTD+' SR','From Bookings'],
+    ['Total Expenses (YTD)', expYTD+' SR','From Expenses'],
+    ['Net Profit/Loss', (revYTD-expYTD)+' SR','Revenue - Expenses'],
+    [],
+    ['Avg Nightly Rate', avgNi.toFixed(2)+' SR','Revenue/Nights'],
+    ['Monthly Break-Even Target', n('breakEven')+' SR','Estimate','Goal'],
+  ];
+  const wsDash = XLSX.utils.aoa_to_sheet(dash);
+  wsDash['!cols'] = [{wch:30},{wch:18},{wch:22},{wch:12},{wch:4},{wch:18},{wch:16},{wch:16},{wch:12},{wch:16}];
+  XLSX.utils.book_append_sheet(wb, wsDash, 'Dashboard');
+
+  const bHeader = ['Booking ID','Check-in','Check-out','Nights','Guest Name','Source','Nightly Rate (SR)','Total Revenue (SR)','Status','Notes'];
+  const bRows = bookings.map((b,i) => [
+    i+1, b.checkin, b.checkout, parseFloat(b.nights)||0, b.guest, b.source,
+    parseFloat(b.rate)||0, (parseFloat(b.nights)||0)*(parseFloat(b.rate)||0), b.status, b.notes
+  ]);
+  bRows.push([]); bRows.push(['BOOKING SUMMARY']);
+  bRows.push(['Total Bookings', totalBk]);
+  bRows.push(['Total Nights Booked', totalNights]);
+  bRows.push(['Total Revenue (SR)', revYTD]);
+  bRows.push(['Average Nightly Rate (SR)', parseFloat(avgNi.toFixed(2))]);
+  const wsBook = XLSX.utils.aoa_to_sheet([bHeader, ...bRows]);
+  wsBook['!cols'] = [{wch:12},{wch:13},{wch:13},{wch:8},{wch:22},{wch:14},{wch:18},{wch:20},{wch:13},{wch:30}];
+  XLSX.utils.book_append_sheet(wb, wsBook, 'Bookings');
+
+  const eHeader = ['#','Date','Category','Description','Paid By','Amount (SR)','Notes'];
+  const eRows = expenses.map((e,i) => [i+1, e.date, e.cat, e.desc, e.paidby, parseFloat(e.amount)||0, e.notes]);
+  eRows.push([]); eRows.push(['','','','','TOTAL EXPENSES', expYTD]);
+  const wsExp = XLSX.utils.aoa_to_sheet([eHeader, ...eRows]);
+  wsExp['!cols'] = [{wch:5},{wch:13},{wch:28},{wch:36},{wch:22},{wch:14},{wch:30}];
+  XLSX.utils.book_append_sheet(wb, wsExp, 'Expenses');
+
+  const pRate=n('p_rate'),pOcc=n('p_occ'),pDays=n('p_days');
+  const pElec=n('p_elec'),pNet=n('p_net'),pClean=n('p_clean'),pTurns=n('p_turns');
+  const pAmen=n('p_amen'),pMaint=n('p_maint'),pLinens=n('p_linens');
+  const pNi=Math.round((pOcc/100)*pDays);
+  const projRev=pNi*pRate;
+  const airFee=projRev*0.03;
+  const totVar=pElec+pNet+(pClean*pTurns)+pAmen+airFee+pMaint+pLinens;
+  const totCosts=fixedMo+totVar;
+  const netMo=projRev-totCosts;
+  const proj = [
+    ['MONTHLY PROJECTIONS'],[],
+    ['ASSUMPTIONS'],
+    ['Target Nightly Rate (SR)', pRate],
+    ['Target Occupancy Rate', pOcc+'%'],
+    ['Days in Month', pDays],[],
+    ['FIXED MONTHLY COSTS'],
+    ['Monthly Rent', monthlyRent,'Annual rent / 12 months'],
+    ['Management Fee', mgmtFee,'Professional Airbnb management'],
+    ['Total Fixed Costs', fixedMo],[],
+    ['VARIABLE MONTHLY COSTS'],
+    ['Electricity & Water', pElec],
+    ['Internet', pNet],
+    ['Professional Cleaning (per turnover)', pClean],
+    ['Estimated Turnovers per Month', pTurns],
+    ['Total Cleaning Costs', pClean*pTurns],
+    ['Guest Amenities', pAmen],
+    ['Airbnb Service Fee (3%)', parseFloat(airFee.toFixed(2))],
+    ['Maintenance Reserve', pMaint],
+    ['Linens & Towel Replacement', pLinens],
+    ['Total Variable Costs', parseFloat(totVar.toFixed(2))],[],
+    ['PROJECTED REVENUE'],
+    ['Projected Nights Booked', pNi],
+    ['Projected Monthly Revenue', projRev],[],
+    ['TOTAL MONTHLY COSTS', parseFloat(totCosts.toFixed(2))],
+    ['NET MONTHLY PROFIT/LOSS', parseFloat(netMo.toFixed(2))],[],
+    ['SCENARIO ANALYSIS'],
+    ['Scenario','Nightly Rate (SR)','Occupancy %','Monthly Revenue (SR)','Net Profit/Loss (SR)'],
+  ];
+  [['Conservative',n('s1_rate'),n('s1_occ')],['Target',n('s2_rate'),n('s2_occ')],
+   ['Profitable',n('s3_rate'),n('s3_occ')],['Optimal',n('s4_rate'),n('s4_occ')]].forEach(([name,rate,occ])=>{
+    const sRev=Math.round((occ/100)*pDays)*rate;
+    proj.push([name,rate,occ+'%',sRev,parseFloat((sRev-totCosts).toFixed(2))]);
+  });
+  const wsProj = XLSX.utils.aoa_to_sheet(proj);
+  wsProj['!cols'] = [{wch:36},{wch:18},{wch:16},{wch:22},{wch:22}];
+  XLSX.utils.book_append_sheet(wb, wsProj, 'Monthly Projections');
+
+  const ptData = [
+    ['PARTNER TRACKING'],[],
+    ['Total Initial Investment', totalInv+' SR'],
+    ['Equal Share (1/3 each)', (totalInv/3).toFixed(0)+' SR'],[],
+    ['Partner','Required Share (SR)','Paid to Date (SR)','Remaining Balance (SR)','% Complete','Notes'],
+    ['Hassan', hassanReq, hassanPaid, Math.max(hassanReq-hassanPaid,0), pct(hassanPaid,hassanReq), n('hassan_due')],
+    ['Naif',   naifReq,   naifPaid,   Math.max(naifReq-naifPaid,0),     pct(naifPaid,naifReq),   n('naif_due')],
+    ['Mojahid',mojahidReq,mojahidPaid,Math.max(mojahidReq-mojahidPaid,0),pct(mojahidPaid,mojahidReq),n('mojahid_due')],
+    [],['Revenue Pool'],
+    ['Total Allocated (SR)', revAlloc],
+    ['Paid to Date (SR)', revPaid],
+    ['Remaining (SR)', Math.max(revAlloc-revPaid,0)],
+    ['% Complete', pct(revPaid,revAlloc)],[],
+    ['NOTES:'],[document.querySelector('.e[data-k="partnerNotes"]')?.innerText||''],
+  ];
+  const wsPart = XLSX.utils.aoa_to_sheet(ptData);
+  wsPart['!cols'] = [{wch:20},{wch:20},{wch:18},{wch:22},{wch:14},{wch:30}];
+  XLSX.utils.book_append_sheet(wb, wsPart, 'Partner Tracking');
+
+  const mgmt = [
+    ['MANAGEMENT INFO'],[],
+    ['Monthly Management Fee:', mgmtFee+' SR'],[],
+    ['SERVICES INCLUDED:'],
+    ['24/7 Guest Communication & Support'],
+    ['Booking Inquiries & Reservations Management'],
+    ['Guest Screening & Identity Verification'],
+    ['Check-in & Check-out Coordination'],
+    ['Key Handover & Property Walkthrough'],
+    ['Listing Optimization (Photos, Description, Pricing)'],
+    ['Calendar Management & Multi-Platform Sync'],
+    ['Reviews Management & Response'],
+    ['Guest Support During Stays'],
+    ['Issue Resolution & Complaint Handling'],
+    ['Cleaning Coordination Between Guests'],
+    ['Maintenance Coordination & Reporting'],
+    ['Monthly Performance Reporting'],
+    ['Revenue & Occupancy Analytics'],[],
+    ['ESTIMATED MONTHLY OPERATING COSTS:'],
+    ['Cost Item','Monthly Amount (SR)','Notes'],
+    ['Rent (Fixed)', monthlyRent,'Annual rent / 12 months'],
+    ['Management Fee (Fixed)', mgmtFee,'Professional Airbnb management'],
+    ['Electricity & Water', '600–900','Variable with occupancy'],
+    ['Internet (High-Speed)', '200–300','Essential for guests'],
+    ['Professional Cleaning', '400–700','~150 SR per turnover'],
+    ['Guest Amenities', '200–400','Toiletries, coffee, snacks'],
+    ['Airbnb Service Fee (3%)', '150–300','3% of gross bookings'],
+    ['Maintenance & Repairs', '300–500','Monthly reserve fund'],
+    ['Linens & Towel Replacement', '150–250','Regular wear and tear'],
+    ['TOTAL ESTIMATED MONTHLY COSTS','11,900–13,250 SR'],
+  ];
+  const wsMgmt = XLSX.utils.aoa_to_sheet(mgmt);
+  wsMgmt['!cols'] = [{wch:40},{wch:22},{wch:34}];
+  XLSX.utils.book_append_sheet(wb, wsMgmt, 'Management Info');
+
+  XLSX.writeFile(wb, 'Airbnb_Business_Dashboard.xlsx');
+  btn.textContent = '⬇ Export Excel'; btn.disabled = false;
+});
+
+// ─── Boot ─────────────────────────────────────────────────────
+if (checkSession()) {
+  hideLockScreen();
+  restoreFromServer().then(() => {
+    wireEditables();
+    showPartnerBadge();
+    recompute();
+  });
+}
+</script>
+</body>
+</html>

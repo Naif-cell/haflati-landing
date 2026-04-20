@@ -1,0 +1,19 @@
+# Exclude large unused media files from Cloudflare Pages deploys
+*.mp4
+*.gif
+*.txt
+cinematic-*.jpeg
+haflati-cinematic-*.jpeg
+haflati-design-*.jpeg
+haflati-website-*.jpeg
+test-*.jpeg
+wedding-new-*.jpeg
+wedding-cinematic-*.jpeg
+wedding-bride.jpeg
+wedding-table.jpeg
+index_*.html
+index_new_draft.html
+index_draft_*.html
+index_cinematic.html
+wedding-preview.html
+Generated Image*.jpg
