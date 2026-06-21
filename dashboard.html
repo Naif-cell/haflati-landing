@@ -1477,24 +1477,24 @@ document.getElementById('hostawayFileInput').addEventListener('change', function
     if (lines.length < 2) return;
 
     const today = new Date().toISOString().split('T')[0];
-    let imported = 0, skipped = 0;
+    let imported = 0, skippedStatus = 0, skippedDup = 0;
 
     // Get existing bookings to avoid duplicates
     const existing = new Set();
     document.querySelectorAll('#bookingsBody tr').forEach(tr => {
       const g = (tr.querySelector('[data-col="guest"]')?.innerText || '').toLowerCase().trim();
       const ci = tr.querySelector('[data-col="checkin"]')?.value || '';
-      if (g && ci) existing.add(g + '|' + ci);
+      if (ci) existing.add(g + '|' + ci);
     });
 
     for (let i = 1; i < lines.length; i++) {
       const r = parseCSVRow(lines[i]);
       const status = (r[22] || '').trim().toLowerCase();
-      if (!['new', 'modified', 'cancelled'].includes(status)) { skipped++; continue; }
+      if (!['new', 'modified', 'cancelled'].includes(status)) { skippedStatus++; continue; }
 
       const checkin  = (r[3]  || '').trim();
       const checkout = (r[6]  || '').trim();
-      if (!checkin || !checkout) continue;
+      if (!checkin || !checkout) { skippedStatus++; continue; }
 
       const guestName  = (r[0]  || 'Unknown').trim();
       const nights     = parseInt(r[19]) || 1;
@@ -1504,9 +1504,9 @@ document.getElementById('hostawayFileInput').addEventListener('change', function
       const commission = parseFloat(r[28]) || 0;
       const basePrice  = parseFloat(r[59]) || 0;
 
-      // Skip duplicates
-      const dedupKey = guestName.toLowerCase() + '|' + checkin;
-      if (existing.has(dedupKey)) { skipped++; continue; }
+      // Skip duplicates (match on checkin date only, guest name can differ)
+      const dedupKey = checkin;
+      if (existing.has(dedupKey)) { skippedDup++; continue; }
 
       let source = 'Airbnb';
       if (channel === 'direct') source = 'Direct';
@@ -1524,7 +1524,7 @@ document.getElementById('hostawayFileInput').addEventListener('change', function
       const notes  = feeAmt ? `Airbnb fee: ${feeAmt} SR (${feePct}%) | Payout: ${net.toFixed(2)} SR` : '';
 
       addBookingRow({ guest: guestName, checkin, checkout, nights: String(nights), source, rate: String(rate), status: bStatus, notes });
-      existing.add(dedupKey);
+      existing.add(checkin);
       imported++;
     }
 
@@ -1535,7 +1535,16 @@ document.getElementById('hostawayFileInput').addEventListener('change', function
     // Show toast
     let toast = document.getElementById('importToast');
     if (!toast) { toast = document.createElement('div'); toast.id = 'importToast'; toast.className = 'import-toast'; document.body.appendChild(toast); }
-    toast.textContent = imported > 0 ? `✓ ${imported} bookings imported from Hostaway` : 'No new bookings found (duplicates skipped)';
+    let msg;
+    if (imported > 0) {
+      msg = `✓ ${imported} bookings imported`;
+      if (skippedDup > 0) msg += ` · ${skippedDup} already existed`;
+    } else if (skippedDup > 0) {
+      msg = `All ${skippedDup} bookings already in dashboard`;
+    } else {
+      msg = `No confirmed bookings found (${skippedStatus} rows skipped)`;
+    }
+    toast.textContent = msg;
     toast.classList.add('show');
     setTimeout(() => toast.classList.remove('show'), 4000);
 
