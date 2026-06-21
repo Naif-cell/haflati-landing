@@ -45,6 +45,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .updated-badge span{color:var(--accent2)}
 .export-btn{background:rgba(0,201,167,.12);border:1px solid rgba(0,201,167,.4);color:var(--accent2);border-radius:20px;padding:4px 12px;font-size:.73rem;font-weight:600;cursor:pointer;transition:all .2s;}
 .export-btn:hover{background:rgba(0,201,167,.22)}
+.import-btn{background:rgba(78,128,238,.12);border:1px solid rgba(78,128,238,.4);color:var(--accent3);border-radius:20px;padding:4px 12px;font-size:.73rem;font-weight:600;cursor:pointer;transition:all .2s;}
+.import-btn:hover{background:rgba(78,128,238,.22)}
+.import-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--surface);border:1px solid var(--accent3);color:var(--accent3);border-radius:10px;padding:9px 20px;font-size:.8rem;font-weight:600;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none}
+.import-toast.show{opacity:1}
 .logout-btn{background:none;border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:4px 11px;font-size:.73rem;cursor:pointer;transition:color .2s,border-color .2s;}
 .logout-btn:hover{color:var(--red);border-color:var(--red)}
 
@@ -218,6 +222,8 @@ tbody tr.dimmed{opacity:.3}
   <div class="header-right">
     <div class="save-badge" id="saveBadge">Saved ✓</div>
     <div class="partner-badge" id="partnerBadge"></div>
+    <input type="file" id="hostawayFileInput" accept=".csv" style="display:none">
+    <button class="import-btn" id="importHostawayBtn">⬆ Import Hostaway CSV</button>
     <button class="export-btn" id="exportBtn">⬇ Export Excel</button>
     <div class="updated-badge">Updated <span class="e" data-k="updateDate" contenteditable>Nov 2, 2026</span></div>
     <button class="logout-btn" id="logoutBtn">Log out</button>
@@ -1443,6 +1449,102 @@ if (checkSession()) {
     recompute();
   });
 }
+
+// ─── Hostaway CSV Import ──────────────────────────────────────
+function parseCSVRow(line) {
+  const fields = [];
+  let cur = '', inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { inQ = !inQ; }
+    else if (c === ',' && !inQ) { fields.push(cur.trim()); cur = ''; }
+    else { cur += c; }
+  }
+  fields.push(cur.trim());
+  return fields;
+}
+
+document.getElementById('importHostawayBtn').addEventListener('click', () => {
+  document.getElementById('hostawayFileInput').click();
+});
+
+document.getElementById('hostawayFileInput').addEventListener('change', function() {
+  const file = this.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const lines = e.target.result.split(/\r?\n/).filter(l => l.trim());
+    if (lines.length < 2) return;
+
+    const today = new Date().toISOString().split('T')[0];
+    let imported = 0, skipped = 0;
+
+    // Get existing bookings to avoid duplicates
+    const existing = new Set();
+    document.querySelectorAll('#bookingsBody tr').forEach(tr => {
+      const g = (tr.querySelector('[data-col="guest"]')?.innerText || '').toLowerCase().trim();
+      const ci = tr.querySelector('[data-col="checkin"]')?.value || '';
+      if (g && ci) existing.add(g + '|' + ci);
+    });
+
+    for (let i = 1; i < lines.length; i++) {
+      const r = parseCSVRow(lines[i]);
+      const status = (r[22] || '').trim().toLowerCase();
+      if (!['new', 'modified', 'cancelled'].includes(status)) { skipped++; continue; }
+
+      const checkin  = (r[3]  || '').trim();
+      const checkout = (r[6]  || '').trim();
+      if (!checkin || !checkout) continue;
+
+      const guestName  = (r[0]  || 'Unknown').trim();
+      const nights     = parseInt(r[19]) || 1;
+      const channel    = (r[9]  || '').trim().toLowerCase();
+      const totalPrice = parseFloat(r[11]) || 0;
+      const payout     = parseFloat(r[17]) || 0;
+      const commission = parseFloat(r[28]) || 0;
+      const basePrice  = parseFloat(r[59]) || 0;
+
+      // Skip duplicates
+      const dedupKey = guestName.toLowerCase() + '|' + checkin;
+      if (existing.has(dedupKey)) { skipped++; continue; }
+
+      let source = 'Airbnb';
+      if (channel === 'direct') source = 'Direct';
+      else if (channel.includes('booking')) source = 'Booking.com';
+
+      let bStatus = 'Confirmed';
+      if (status === 'cancelled') bStatus = 'Cancelled';
+      else if (checkout < today) bStatus = 'Completed';
+
+      const gross = basePrice > 0 ? basePrice : totalPrice;
+      const net   = source === 'Direct' ? totalPrice : (payout > 0 ? payout : totalPrice - commission);
+      const rate  = nights > 0 ? Math.round(gross / nights) : gross;
+      const feeAmt = commission > 0 ? commission.toFixed(2) : null;
+      const feePct = (gross > 0 && commission > 0) ? ((commission / gross) * 100).toFixed(1) : null;
+      const notes  = feeAmt ? `Airbnb fee: ${feeAmt} SR (${feePct}%) | Payout: ${net.toFixed(2)} SR` : '';
+
+      addBookingRow({ guest: guestName, checkin, checkout, nights: String(nights), source, rate: String(rate), status: bStatus, notes });
+      existing.add(dedupKey);
+      imported++;
+    }
+
+    populateMonthDropdown(); recompute(); scheduleSave();
+    logAction('import', `Hostaway CSV: ${imported} bookings imported`);
+    renderActivityLog();
+
+    // Show toast
+    let toast = document.getElementById('importToast');
+    if (!toast) { toast = document.createElement('div'); toast.id = 'importToast'; toast.className = 'import-toast'; document.body.appendChild(toast); }
+    toast.textContent = imported > 0 ? `✓ ${imported} bookings imported from Hostaway` : 'No new bookings found (duplicates skipped)';
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
+
+    // Switch to bookings tab
+    document.querySelector('[data-tab="bookings"]').click();
+  };
+  reader.readAsText(file);
+  this.value = '';
+});
 </script>
 </body>
 </html>
