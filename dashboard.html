@@ -1537,8 +1537,8 @@ document.getElementById('hostawayFileInput').addEventListener('change', function
       else if (checkout < today) bStatus = 'Completed';
 
       const gross  = basePrice > 0 ? basePrice : totalPrice;
-      const net    = payout > 0 ? payout : totalPrice - commission;
-      const rate   = nights > 0 ? Math.round(gross / nights) : gross;
+      const net    = payout > 0 ? payout : (commission > 0 ? totalPrice - commission : totalPrice);
+      const rate   = nights > 0 ? Math.round(net / nights) : net;
       const feeAmt = commission > 0 ? commission.toFixed(2) : null;
       const feePct = (gross > 0 && commission > 0) ? ((commission / gross) * 100).toFixed(1) : null;
       const notes  = feeAmt
