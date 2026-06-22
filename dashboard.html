@@ -51,6 +51,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .import-toast.show{opacity:1}
 .logout-btn{background:none;border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:4px 11px;font-size:.73rem;cursor:pointer;transition:color .2s,border-color .2s;}
 .logout-btn:hover{color:var(--red);border-color:var(--red)}
+/* ── Forecast / Expansion ── */
+.forecast-row{display:grid;grid-template-columns:90px 1fr 90px 90px 90px 90px;gap:0;font-size:.78rem;}
+.forecast-row>span{padding:9px 10px;border-bottom:1px solid var(--border);}
+.forecast-row.hdr>span{font-size:.67rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);padding-top:11px;}
+.forecast-row:last-child>span{border-bottom:none;}
+.cover-pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:.68rem;font-weight:700;}
+.cover-yes{background:rgba(16,185,129,.15);color:#10b981;}
+.cover-no{background:rgba(239,68,68,.12);color:#ef4444;}
+.cover-part{background:rgba(245,158,11,.12);color:#f59e0b;}
+.readiness-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:.82rem;}
+.readiness-item:last-child{border-bottom:none;}
+.ri-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;}
+.ri-ok{background:rgba(16,185,129,.18);color:#10b981;}
+.ri-warn{background:rgba(245,158,11,.15);color:#f59e0b;}
+.ri-no{background:rgba(239,68,68,.12);color:#ef4444;}
+.ri-label{flex:1;color:var(--text);}
+.ri-val{font-weight:700;color:var(--muted);font-size:.78rem;}
+.expansion-score{text-align:center;padding:18px 0 10px;font-size:2rem;font-weight:800;}
+.expansion-verdict{text-align:center;font-size:.82rem;color:var(--muted);margin-bottom:16px;}
 
 /* ── Tabs ── */
 .tabs{background:var(--surface);border-bottom:1px solid var(--border);display:flex;overflow-x:auto}
@@ -299,6 +318,30 @@ tbody tr.dimmed{opacity:.3}
     </div>
   </div>
 
+  <p class="section-label">Revenue Forecast</p>
+  <div class="kpi-grid">
+    <div class="kpi-card" style="--c:#00c9a7">
+      <p class="kpi-label">This Month Payout</p>
+      <p class="kpi-value neu" id="o-thismonth">—</p>
+      <p class="kpi-sub" id="o-thismonth-sub">confirmed bookings</p>
+    </div>
+    <div class="kpi-card" style="--c:#4e80ee">
+      <p class="kpi-label">Next Month Payout</p>
+      <p class="kpi-value neu" id="o-nextmonth">—</p>
+      <p class="kpi-sub" id="o-nextmonth-sub">confirmed bookings</p>
+    </div>
+    <div class="kpi-card" style="--c:#10b981">
+      <p class="kpi-label">Rent Covered This Month</p>
+      <p class="kpi-value neu" id="o-rentcover">—</p>
+      <p class="kpi-sub" id="o-rentcover-sub">vs monthly fixed costs</p>
+    </div>
+    <div class="kpi-card" style="--c:#f59e0b">
+      <p class="kpi-label">Investment Recovery</p>
+      <p class="kpi-value neu" id="o-recovery-eta">—</p>
+      <p class="kpi-sub" id="o-recovery-eta-sub">at current monthly pace</p>
+    </div>
+  </div>
+
   <p class="section-label">Upcoming Bookings</p>
   <div class="card" style="padding:14px 19px">
     <div id="upcomingList"><div class="act-empty">No upcoming bookings</div></div>
@@ -436,6 +479,21 @@ tbody tr.dimmed{opacity:.3}
       <div class="big" id="s4-net">—</div><div class="small">Monthly net</div>
       <div style="font-size:.7rem;color:var(--muted);margin-top:5px">Revenue: <span id="s4-rev">—</span> SR</div>
     </div>
+  </div>
+
+  <p class="section-label">Confirmed Future Revenue</p>
+  <div class="card" style="overflow-x:auto">
+    <div class="forecast-row hdr">
+      <span>Month</span><span>Bookings</span><span style="text-align:right">Expected Payout</span><span style="text-align:right">Fixed Costs</span><span style="text-align:right">Net</span><span style="text-align:center">Covers Rent?</span>
+    </div>
+    <div id="forecast-body"></div>
+  </div>
+
+  <p class="section-label">Expansion Readiness — Apartment 2</p>
+  <div class="card" style="padding:18px 22px">
+    <div class="expansion-score" id="exp-score">—</div>
+    <div class="expansion-verdict" id="exp-verdict">Calculating…</div>
+    <div id="exp-checklist"></div>
   </div>
 </div>
 
@@ -1208,6 +1266,174 @@ function recompute() {
   populateMonthDropdown();
   renderUpcoming();
   renderActivityLog();
+
+  // ─── Revenue Forecast & Expansion Readiness ───────────────────
+  (function() {
+    const now   = new Date();
+    const todayStr = now.toISOString().slice(0,7); // YYYY-MM
+    const nextMoDate = new Date(now.getFullYear(), now.getMonth()+1, 1);
+    const nextMoStr  = nextMoDate.toISOString().slice(0,7);
+
+    // Group all non-cancelled bookings by check-in month
+    const moData = {}; // YYYY-MM -> { rev, count, guests[] }
+    document.querySelectorAll('#bookingsBody tr').forEach(tr => {
+      const ci = tr.querySelector('[data-col="checkin"]')?.value || '';
+      const st = (tr.querySelector('[data-col="status"]')?.value || '').toLowerCase();
+      if (!ci || st === 'cancelled') return;
+      const rv  = parseFloat(tr.querySelector('[data-col="revenue"]')?.textContent || '0') || 0;
+      const g   = tr.querySelector('[data-col="guest"]')?.innerText.trim() || '';
+      const mo  = ci.slice(0,7);
+      if (!moData[mo]) moData[mo] = { rev:0, count:0, guests:[] };
+      moData[mo].rev   += rv;
+      moData[mo].count += 1;
+      moData[mo].guests.push(g);
+    });
+
+    const thisMo = moData[todayStr] || { rev:0, count:0 };
+    const nextMo = moData[nextMoStr] || { rev:0, count:0 };
+
+    // Overview KPIs
+    setText('o-thismonth', fmt(Math.round(thisMo.rev)) + ' SR');
+    setText('o-thismonth-sub', thisMo.count + ' booking' + (thisMo.count!==1?'s':''));
+    setText('o-nextmonth', fmt(Math.round(nextMo.rev)) + ' SR');
+    setText('o-nextmonth-sub', nextMo.count + ' booking' + (nextMo.count!==1?'s':''));
+
+    const coverPct = fixedMo > 0 ? (thisMo.rev / fixedMo) * 100 : 0;
+    const coverEl  = document.getElementById('o-rentcover');
+    if (coverEl) {
+      coverEl.textContent = coverPct.toFixed(0) + '%';
+      coverEl.style.color = coverPct >= 100 ? 'var(--green)' : coverPct >= 60 ? '#f59e0b' : 'var(--red)';
+    }
+    setText('o-rentcover-sub', fmt(Math.round(thisMo.rev)) + ' SR of ' + fmt(fixedMo) + ' SR costs');
+
+    // Investment recovery ETA — use average monthly revenue from last 3 months with data
+    const pastMonths = Object.keys(moData).filter(m => m <= todayStr).sort().slice(-3);
+    const avgRev = pastMonths.length
+      ? pastMonths.reduce((s,m) => s+moData[m].rev, 0) / pastMonths.length
+      : 0;
+    const remaining = Math.max(totalInv - revYTD, 0);
+    const recEl  = document.getElementById('o-recovery-eta');
+    const recSub = document.getElementById('o-recovery-eta-sub');
+    if (recEl) {
+      if (avgRev <= 0) { recEl.textContent = '—'; }
+      else if (remaining <= 0) { recEl.textContent = '✓ Done'; recEl.style.color='var(--green)'; }
+      else {
+        const moLeft = Math.ceil(remaining / avgRev);
+        const eta = new Date(now.getFullYear(), now.getMonth() + moLeft, 1);
+        recEl.textContent = eta.toLocaleDateString('en-SA',{month:'short',year:'numeric'});
+        recEl.style.color = moLeft <= 12 ? '#f59e0b' : 'var(--muted)';
+      }
+    }
+    if (recSub) recSub.textContent = remaining > 0
+      ? fmt(Math.round(remaining)) + ' SR left · avg ' + fmt(Math.round(avgRev)) + ' SR/mo'
+      : 'Full investment recovered';
+
+    // ── Confirmed Future Revenue Table ──────────────────────────
+    const futureMonths = Object.keys(moData).filter(m => m >= todayStr).sort().slice(0,6);
+    const fb = document.getElementById('forecast-body');
+    if (fb) {
+      if (!futureMonths.length) {
+        fb.innerHTML = '<div style="padding:16px;color:var(--muted);font-size:.82rem;text-align:center">No future confirmed bookings yet — import your CSV to populate this.</div>';
+      } else {
+        fb.innerHTML = futureMonths.map(mo => {
+          const d   = moData[mo];
+          const net = d.rev - fixedMo;
+          const moLabel = new Date(mo+'-15').toLocaleDateString('en-SA',{month:'short',year:'numeric'});
+          const coverCls = net >= 0 ? 'cover-yes' : d.rev >= fixedMo*0.6 ? 'cover-part' : 'cover-no';
+          const coverTxt = net >= 0 ? '✓ Yes' : d.rev >= fixedMo*0.6 ? '~ Partial' : '✗ No';
+          const guestList = d.guests.slice(0,2).join(', ') + (d.guests.length>2?' +' + (d.guests.length-2):'');
+          return `<div class="forecast-row">
+            <span style="font-weight:600;color:var(--text)">${moLabel}</span>
+            <span style="color:var(--muted);font-size:.74rem">${d.count} booking${d.count!==1?'s':''}<br><span style="font-size:.7rem">${guestList}</span></span>
+            <span style="text-align:right;color:var(--green);font-weight:600">${fmt(Math.round(d.rev))} SR</span>
+            <span style="text-align:right;color:var(--red)">${fmt(fixedMo)} SR</span>
+            <span style="text-align:right;font-weight:700;color:${net>=0?'var(--green)':'var(--red)'}">${net>=0?'+':''}${fmt(Math.round(net))} SR</span>
+            <span style="text-align:center"><span class="cover-pill ${coverCls}">${coverTxt}</span></span>
+          </div>`;
+        }).join('');
+      }
+    }
+
+    // ── Expansion Readiness ─────────────────────────────────────
+    const occ     = parseFloat(document.getElementById('o-occupancy')?.textContent) || 0;
+    const netMoNow = avgRev - fixedMo;
+    const capRecov = totalInv > 0 ? (revYTD / totalInv) * 100 : 0;
+
+    const checks = [
+      {
+        label: 'Monthly revenue covers all fixed costs',
+        detail: fmt(Math.round(avgRev)) + ' SR avg vs ' + fmt(fixedMo) + ' SR costs',
+        ok: avgRev >= fixedMo,
+        warn: avgRev >= fixedMo * 0.75
+      },
+      {
+        label: 'Generating monthly surplus ≥ 3,000 SR',
+        detail: 'Net: ' + (netMoNow>=0?'+':'') + fmt(Math.round(netMoNow)) + ' SR/mo',
+        ok: netMoNow >= 3000,
+        warn: netMoNow >= 0
+      },
+      {
+        label: 'Occupancy rate ≥ 60%',
+        detail: 'Current: ' + (occ>0 ? occ.toFixed(1)+'%' : 'calculating…'),
+        ok: occ >= 60,
+        warn: occ >= 40
+      },
+      {
+        label: 'Capital recovery ≥ 50%',
+        detail: fmt(Math.round(revYTD)) + ' SR of ' + fmt(totalInv) + ' SR recovered (' + capRecov.toFixed(1) + '%)',
+        ok: capRecov >= 50,
+        warn: capRecov >= 25
+      },
+      {
+        label: 'Next month bookings confirmed',
+        detail: nextMo.count + ' booking' + (nextMo.count!==1?'s':'') + ' · ' + fmt(Math.round(nextMo.rev)) + ' SR payout',
+        ok: nextMo.count >= 3,
+        warn: nextMo.count >= 1
+      }
+    ];
+
+    const okCount   = checks.filter(c=>c.ok).length;
+    const warnCount = checks.filter(c=>!c.ok&&c.warn).length;
+    const score     = okCount + warnCount*0.5;
+    const pct       = Math.round((score / checks.length) * 100);
+
+    const scoreEl   = document.getElementById('exp-score');
+    const verdictEl = document.getElementById('exp-verdict');
+    const listEl    = document.getElementById('exp-checklist');
+
+    if (scoreEl) {
+      if (okCount === checks.length) {
+        scoreEl.textContent = '🚀 Ready';
+        scoreEl.style.color = 'var(--green)';
+      } else if (pct >= 60) {
+        scoreEl.textContent = '⚡ Almost';
+        scoreEl.style.color = '#f59e0b';
+      } else {
+        scoreEl.textContent = '🏗️ Building';
+        scoreEl.style.color = 'var(--muted)';
+      }
+    }
+    if (verdictEl) {
+      if (okCount === checks.length) verdictEl.textContent = 'All conditions met — you can confidently open a second apartment.';
+      else if (pct >= 60) verdictEl.textContent = 'Almost there — address the remaining items before expanding.';
+      else {
+        const moToReady = avgRev > 0 ? Math.ceil((fixedMo * 2 - revYTD) / avgRev) : null;
+        verdictEl.textContent = moToReady && moToReady > 0
+          ? 'Estimated ' + moToReady + ' more months at current pace before expansion is safe.'
+          : 'Focus on increasing occupancy and monthly payout first.';
+      }
+    }
+    if (listEl) {
+      listEl.innerHTML = checks.map(c => {
+        const cls = c.ok ? 'ri-ok' : c.warn ? 'ri-warn' : 'ri-no';
+        const ico = c.ok ? '✓' : c.warn ? '~' : '✗';
+        return `<div class="readiness-item">
+          <div class="ri-icon ${cls}">${ico}</div>
+          <div class="ri-label">${c.label}<br><span style="font-size:.72rem;color:var(--muted)">${c.detail}</span></div>
+        </div>`;
+      }).join('');
+    }
+  })();
 }
 
 // ─── Wire editables ───────────────────────────────────────────
