@@ -1479,22 +1479,30 @@ document.getElementById('hostawayFileInput').addEventListener('change', function
     const today = new Date().toISOString().split('T')[0];
     let imported = 0, skippedStatus = 0, skippedDup = 0;
 
-    // Find column indices from header row dynamically
+    // Parse header to find columns by name (handles both Hostaway export formats)
     const header = parseCSVRow(lines[0]);
     const col = {};
     header.forEach((h, i) => { col[h.toLowerCase().trim()] = i; });
-    const iGuest    = col['guest name']            ?? 0;
-    const iCheckin  = col['check-in date']         ?? 3;
-    const iCheckout = col['check-out date']        ?? 6;
-    const iChannel  = col['channel']               ?? 9;
-    const iTotal    = col['total price']            ?? 11;
-    const iPayout   = col['airbnb expected payout amount'] ?? 17;
-    const iNights   = col['number of nights']      ?? 19;
-    const iStatus   = col['status']                ?? 22;
-    const iCommission = col['channel commission']  ?? 28;
-    const iBase     = col['airbnb listing base price'] ?? 59;
+    const iGuest    = col['guest'] ?? col['guest name'] ?? 2;
+    const iCheckin  = col['check-in date']  ?? 6;
+    const iCheckout = col['check-out date'] ?? 7;
+    const iChannel  = col['channel']        ?? 3;
+    const iTotal    = col['total price']    ?? 33;
+    const iPayout   = col['owner payout'] ?? col['airbnb expected payout amount'] ?? 19;
+    const iNights   = col['nights'] ?? col['number of nights'] ?? 103;
+    const iStatus   = col['reservation status'] ?? col['status'] ?? 4;
+    const iCommission = col['host channel fee'] ?? col['channel commission'] ?? 82;
+    const iBase     = col['base rate'] ?? col['airbnb listing base price'] ?? 39;
 
-    // Get existing bookings to avoid duplicates
+    // Convert M/D/YYYY → YYYY-MM-DD
+    function toISODate(d) {
+      if (!d || d === '0') return '';
+      const p = d.split('/');
+      if (p.length === 3) return p[2] + '-' + p[0].padStart(2,'0') + '-' + p[1].padStart(2,'0');
+      return d;
+    }
+
+    // Get existing check-in dates to avoid duplicates
     const existing = new Set();
     document.querySelectorAll('#bookingsBody tr').forEach(tr => {
       const ci = tr.querySelector('[data-col="checkin"]')?.value || '';
@@ -1506,21 +1514,19 @@ document.getElementById('hostawayFileInput').addEventListener('change', function
       const status = (r[iStatus] || '').trim().toLowerCase();
       if (!['new', 'modified', 'cancelled'].includes(status)) { skippedStatus++; continue; }
 
-      const checkin  = (r[iCheckin]  || '').trim();
-      const checkout = (r[iCheckout] || '').trim();
+      const checkin  = toISODate((r[iCheckin]  || '').trim());
+      const checkout = toISODate((r[iCheckout] || '').trim());
       if (!checkin || !checkout) { skippedStatus++; continue; }
 
-      const guestName  = (r[iGuest]      || 'Unknown').trim();
-      const nights     = parseInt(r[iNights]) || 1;
-      const channel    = (r[iChannel]    || '').trim().toLowerCase();
+      const guestName  = (r[iGuest]   || 'Unknown').trim();
+      const nights     = parseInt(r[iNights])     || 1;
+      const channel    = (r[iChannel] || '').trim().toLowerCase();
       const totalPrice = parseFloat(r[iTotal])      || 0;
       const payout     = parseFloat(r[iPayout])     || 0;
       const commission = parseFloat(r[iCommission]) || 0;
       const basePrice  = parseFloat(r[iBase])       || 0;
 
-      // Skip duplicates (match on checkin date only, guest name can differ)
-      const dedupKey = checkin;
-      if (existing.has(dedupKey)) { skippedDup++; continue; }
+      if (existing.has(checkin)) { skippedDup++; continue; }
 
       let source = 'Airbnb';
       if (channel === 'direct') source = 'Direct';
@@ -1530,12 +1536,14 @@ document.getElementById('hostawayFileInput').addEventListener('change', function
       if (status === 'cancelled') bStatus = 'Cancelled';
       else if (checkout < today) bStatus = 'Completed';
 
-      const gross = basePrice > 0 ? basePrice : totalPrice;
-      const net   = source === 'Direct' ? totalPrice : (payout > 0 ? payout : totalPrice - commission);
-      const rate  = nights > 0 ? Math.round(gross / nights) : gross;
+      const gross  = basePrice > 0 ? basePrice : totalPrice;
+      const net    = payout > 0 ? payout : totalPrice - commission;
+      const rate   = nights > 0 ? Math.round(gross / nights) : gross;
       const feeAmt = commission > 0 ? commission.toFixed(2) : null;
       const feePct = (gross > 0 && commission > 0) ? ((commission / gross) * 100).toFixed(1) : null;
-      const notes  = feeAmt ? `Airbnb fee: ${feeAmt} SR (${feePct}%) | Payout: ${net.toFixed(2)} SR` : '';
+      const notes  = feeAmt
+        ? 'Airbnb fee: ' + feeAmt + ' SR (' + feePct + '%) | Payout: ' + net.toFixed(2) + ' SR'
+        : (payout > 0 ? 'Payout: ' + payout.toFixed(2) + ' SR' : '');
 
       addBookingRow({ guest: guestName, checkin, checkout, nights: String(nights), source, rate: String(rate), status: bStatus, notes });
       existing.add(checkin);
