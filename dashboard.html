@@ -1479,30 +1479,44 @@ document.getElementById('hostawayFileInput').addEventListener('change', function
     const today = new Date().toISOString().split('T')[0];
     let imported = 0, skippedStatus = 0, skippedDup = 0;
 
+    // Find column indices from header row dynamically
+    const header = parseCSVRow(lines[0]);
+    const col = {};
+    header.forEach((h, i) => { col[h.toLowerCase().trim()] = i; });
+    const iGuest    = col['guest name']            ?? 0;
+    const iCheckin  = col['check-in date']         ?? 3;
+    const iCheckout = col['check-out date']        ?? 6;
+    const iChannel  = col['channel']               ?? 9;
+    const iTotal    = col['total price']            ?? 11;
+    const iPayout   = col['airbnb expected payout amount'] ?? 17;
+    const iNights   = col['number of nights']      ?? 19;
+    const iStatus   = col['status']                ?? 22;
+    const iCommission = col['channel commission']  ?? 28;
+    const iBase     = col['airbnb listing base price'] ?? 59;
+
     // Get existing bookings to avoid duplicates
     const existing = new Set();
     document.querySelectorAll('#bookingsBody tr').forEach(tr => {
-      const g = (tr.querySelector('[data-col="guest"]')?.innerText || '').toLowerCase().trim();
       const ci = tr.querySelector('[data-col="checkin"]')?.value || '';
-      if (ci) existing.add(g + '|' + ci);
+      if (ci) existing.add(ci);
     });
 
     for (let i = 1; i < lines.length; i++) {
       const r = parseCSVRow(lines[i]);
-      const status = (r[22] || '').trim().toLowerCase();
+      const status = (r[iStatus] || '').trim().toLowerCase();
       if (!['new', 'modified', 'cancelled'].includes(status)) { skippedStatus++; continue; }
 
-      const checkin  = (r[3]  || '').trim();
-      const checkout = (r[6]  || '').trim();
+      const checkin  = (r[iCheckin]  || '').trim();
+      const checkout = (r[iCheckout] || '').trim();
       if (!checkin || !checkout) { skippedStatus++; continue; }
 
-      const guestName  = (r[0]  || 'Unknown').trim();
-      const nights     = parseInt(r[19]) || 1;
-      const channel    = (r[9]  || '').trim().toLowerCase();
-      const totalPrice = parseFloat(r[11]) || 0;
-      const payout     = parseFloat(r[17]) || 0;
-      const commission = parseFloat(r[28]) || 0;
-      const basePrice  = parseFloat(r[59]) || 0;
+      const guestName  = (r[iGuest]      || 'Unknown').trim();
+      const nights     = parseInt(r[iNights]) || 1;
+      const channel    = (r[iChannel]    || '').trim().toLowerCase();
+      const totalPrice = parseFloat(r[iTotal])      || 0;
+      const payout     = parseFloat(r[iPayout])     || 0;
+      const commission = parseFloat(r[iCommission]) || 0;
+      const basePrice  = parseFloat(r[iBase])       || 0;
 
       // Skip duplicates (match on checkin date only, guest name can differ)
       const dedupKey = checkin;
