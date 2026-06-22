@@ -52,7 +52,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(
 .logout-btn{background:none;border:1px solid var(--border);color:var(--muted);border-radius:20px;padding:4px 11px;font-size:.73rem;cursor:pointer;transition:color .2s,border-color .2s;}
 .logout-btn:hover{color:var(--red);border-color:var(--red)}
 /* ── Forecast / Expansion ── */
-.forecast-row{display:grid;grid-template-columns:90px 1fr 90px 90px 90px 90px;gap:0;font-size:.78rem;}
+.forecast-row{display:grid;grid-template-columns:90px 1fr 90px 80px 90px 90px 90px;gap:0;font-size:.78rem;}
 .forecast-row>span{padding:9px 10px;border-bottom:1px solid var(--border);}
 .forecast-row.hdr>span{font-size:.67rem;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);padding-top:11px;}
 .forecast-row:last-child>span{border-bottom:none;}
@@ -356,7 +356,7 @@ tbody tr.dimmed{opacity:.3}
   <div class="card">
     <div class="input-row"><span class="lbl">Annual Rent</span><span class="val"><span class="e" data-k="annualRent" data-n contenteditable>90000</span> SR</span></div>
     <div class="input-row"><span class="lbl">Monthly Rent (÷12)</span><span class="val computed-val" id="o-monthlyrentrow">—</span></div>
-    <div class="input-row"><span class="lbl">Management Fee (monthly)</span><span class="val"><span class="e" data-k="mgmtFee" data-n contenteditable>2400</span> SR</span></div>
+    <div class="input-row"><span class="lbl">Cleaning &amp; Management (monthly)</span><span class="val"><span class="e" data-k="mgmtFee" data-n contenteditable>2220</span> SR</span></div>
     <div class="input-row"><span class="lbl">Setup / Furniture Costs</span><span class="val"><span class="e" data-k="setupCosts" data-n contenteditable>30000</span> SR</span></div>
     <div class="input-row total-row"><span class="lbl">Total Monthly Fixed</span><span class="val" id="o-fixedrow">—</span></div>
   </div>
@@ -439,7 +439,6 @@ tbody tr.dimmed{opacity:.3}
       <div class="input-row"><span class="lbl">Cleaning (per turnover)</span><span class="val"><span class="e" data-k="p_clean" data-n contenteditable>150</span> SR</span></div>
       <div class="input-row"><span class="lbl">Est. Turnovers / Month</span><span class="val"><span class="e" data-k="p_turns" data-n contenteditable>4</span></span></div>
       <div class="input-row"><span class="lbl">Guest Amenities</span><span class="val"><span class="e" data-k="p_amen" data-n contenteditable>300</span> SR</span></div>
-      <div class="input-row"><span class="lbl">Airbnb Service Fee (3%)</span><span class="val computed-val" id="p-airbnbFee">—</span></div>
       <div class="input-row"><span class="lbl">Maintenance Reserve</span><span class="val"><span class="e" data-k="p_maint" data-n contenteditable>400</span> SR</span></div>
       <div class="input-row"><span class="lbl">Linens &amp; Replacements</span><span class="val"><span class="e" data-k="p_linens" data-n contenteditable>200</span> SR</span></div>
       <div class="input-row total-row"><span class="lbl">Total Variable</span><span class="val" id="p-totalVar">—</span></div>
@@ -484,7 +483,7 @@ tbody tr.dimmed{opacity:.3}
   <p class="section-label">Confirmed Future Revenue</p>
   <div class="card" style="overflow-x:auto">
     <div class="forecast-row hdr">
-      <span>Month</span><span>Bookings</span><span style="text-align:right">Expected Payout</span><span style="text-align:right">Fixed Costs</span><span style="text-align:right">Net</span><span style="text-align:center">Covers Rent?</span>
+      <span>Month</span><span>Bookings</span><span style="text-align:right">Confirmed</span><span style="text-align:right">+Extra</span><span style="text-align:right">Fixed Costs</span><span style="text-align:right">Net</span><span style="text-align:center">Covers Rent?</span>
     </div>
     <div id="forecast-body"></div>
   </div>
@@ -1216,13 +1215,11 @@ function recompute() {
   const pAmen=n('p_amen'),pMaint=n('p_maint'),pLinens=n('p_linens');
   const pNi   = Math.round((pOcc/100)*pDays);
   const projRev= pNi*pRate;
-  const airFee = projRev*0.03;
-  const totVar = pElec+pNet+(pClean*pTurns)+pAmen+airFee+pMaint+pLinens;
+  const totVar = pElec+pNet+(pClean*pTurns)+pAmen+pMaint+pLinens;
   const totCosts= fixedMo+totVar;
   const netMo  = projRev-totCosts;
   setText('p-nights', String(pNi)+' nights');
   setText('p-projRev', fmt(projRev)+' SR');
-  setText('p-airbnbFee', fmt(airFee)+' SR');
   setText('p-totalVar', fmt(totVar)+' SR');
   setText('ps-rev', fmt(projRev)+' SR');
   setText('ps-fixed', fmt(fixedMo)+' SR');
@@ -1331,26 +1328,41 @@ function recompute() {
     // ── Confirmed Future Revenue Table ──────────────────────────
     const futureMonths = Object.keys(moData).filter(m => m >= todayStr).sort().slice(0,6);
     const fb = document.getElementById('forecast-body');
+    let fxExtras = JSON.parse(localStorage.getItem('forecast_extras')||'{}');
     if (fb) {
       if (!futureMonths.length) {
         fb.innerHTML = '<div style="padding:16px;color:var(--muted);font-size:.82rem;text-align:center">No future confirmed bookings yet — import your CSV to populate this.</div>';
       } else {
         fb.innerHTML = futureMonths.map(mo => {
-          const d   = moData[mo];
-          const net = d.rev - fixedMo;
+          const d      = moData[mo];
+          const extra  = fxExtras[mo] || 0;
+          const total  = d.rev + extra;
+          const net    = total - fixedMo;
           const moLabel = new Date(mo+'-15').toLocaleDateString('en-SA',{month:'short',year:'numeric'});
-          const coverCls = net >= 0 ? 'cover-yes' : d.rev >= fixedMo*0.6 ? 'cover-part' : 'cover-no';
-          const coverTxt = net >= 0 ? '✓ Yes' : d.rev >= fixedMo*0.6 ? '~ Partial' : '✗ No';
+          const coverCls = net >= 0 ? 'cover-yes' : total >= fixedMo*0.6 ? 'cover-part' : 'cover-no';
+          const coverTxt = net >= 0 ? '✓ Yes' : total >= fixedMo*0.6 ? '~ Partial' : '✗ No';
           const guestList = d.guests.slice(0,2).join(', ') + (d.guests.length>2?' +' + (d.guests.length-2):'');
           return `<div class="forecast-row">
             <span style="font-weight:600;color:var(--text)">${moLabel}</span>
             <span style="color:var(--muted);font-size:.74rem">${d.count} booking${d.count!==1?'s':''}<br><span style="font-size:.7rem">${guestList}</span></span>
             <span style="text-align:right;color:var(--green);font-weight:600">${fmt(Math.round(d.rev))} SR</span>
+            <span style="text-align:right"><span contenteditable data-mo="${mo}" class="fc-extra" style="display:inline-block;min-width:44px;padding:1px 4px;border-radius:4px;border:1px solid var(--border);background:var(--surface);color:var(--accent);font-size:.76rem;text-align:right">${extra > 0 ? extra : ''}</span></span>
             <span style="text-align:right;color:var(--red)">${fmt(fixedMo)} SR</span>
             <span style="text-align:right;font-weight:700;color:${net>=0?'var(--green)':'var(--red)'}">${net>=0?'+':''}${fmt(Math.round(net))} SR</span>
             <span style="text-align:center"><span class="cover-pill ${coverCls}">${coverTxt}</span></span>
           </div>`;
         }).join('');
+        fb.querySelectorAll('.fc-extra').forEach(el => {
+          el.addEventListener('blur', () => {
+            const mo  = el.dataset.mo;
+            const val = parseFloat(el.innerText.replace(/[^\d.]/g,'')) || 0;
+            fxExtras  = JSON.parse(localStorage.getItem('forecast_extras')||'{}');
+            if (val > 0) fxExtras[mo] = val; else delete fxExtras[mo];
+            localStorage.setItem('forecast_extras', JSON.stringify(fxExtras));
+            recompute();
+          });
+          el.addEventListener('keydown', e => { if(e.key==='Enter'){e.preventDefault();el.blur();} });
+        });
       }
     }
 
@@ -1566,8 +1578,7 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
   const pAmen=n('p_amen'),pMaint=n('p_maint'),pLinens=n('p_linens');
   const pNi=Math.round((pOcc/100)*pDays);
   const projRev=pNi*pRate;
-  const airFee=projRev*0.03;
-  const totVar=pElec+pNet+(pClean*pTurns)+pAmen+airFee+pMaint+pLinens;
+  const totVar=pElec+pNet+(pClean*pTurns)+pAmen+pMaint+pLinens;
   const totCosts=fixedMo+totVar;
   const netMo=projRev-totCosts;
   const proj = [
@@ -1587,7 +1598,6 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
     ['Estimated Turnovers per Month', pTurns],
     ['Total Cleaning Costs', pClean*pTurns],
     ['Guest Amenities', pAmen],
-    ['Airbnb Service Fee (3%)', parseFloat(airFee.toFixed(2))],
     ['Maintenance Reserve', pMaint],
     ['Linens & Towel Replacement', pLinens],
     ['Total Variable Costs', parseFloat(totVar.toFixed(2))],[],
@@ -1653,7 +1663,7 @@ document.getElementById('exportBtn').addEventListener('click', async () => {
     ['Internet (High-Speed)', '200–300','Essential for guests'],
     ['Professional Cleaning', '400–700','~150 SR per turnover'],
     ['Guest Amenities', '200–400','Toiletries, coffee, snacks'],
-    ['Airbnb Service Fee (3%)', '150–300','3% of gross bookings'],
+    ['Airbnb & Platform Fees', 'Deducted from payout','Already excluded from Owner Payout'],
     ['Maintenance & Repairs', '300–500','Monthly reserve fund'],
     ['Linens & Towel Replacement', '150–250','Regular wear and tear'],
     ['TOTAL ESTIMATED MONTHLY COSTS','11,900–13,250 SR'],
